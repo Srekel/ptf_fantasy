@@ -1,0 +1,278 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: white;
+        }
+        td.writeable_attribute {
+            height:3em;
+            width: 10ch;
+            border: 1px solid black;
+        }
+        td.part_name {
+            font-weight: bold;
+            padding-right: 1em;
+        }
+        td.part_value {
+            height:1em;
+            width: 1em;
+            border: 2px solid black;
+        }
+        td.part_description {
+            padding-left: 0.5em;
+        }
+        td.attribute {
+            text-align: center;
+        }
+        td.part_race_attribute {
+            text-align: center;
+            height:1em;
+            width: 4em;
+        }
+        #attributeheader {
+            /*text-align: center;*/
+            font-weight: bold;
+            /*vertical-align: middle;*/
+        }
+
+        #test {
+            margin-top: 25px;
+            font-size: 21px;
+            text-align: center;
+            animation: fadein 1s;
+        }
+
+        @keyframes fadein {
+            from { background-color: grey; }
+            to { background-color: white; }
+        }
+    </style>
+</head>
+<body>
+    <div id="test">
+        sfsdfsf
+    </div>
+    <div id="header">
+        <div class="name">
+            <span>
+                Player name
+           </span>
+        </div>
+        <div class="name">
+            <span>
+                Character name
+           </span>
+        </div>
+        <div class="logo">
+            <span>
+                Pocket Task Force Fantasy Edition
+           </span>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <td class="attribute">
+                Level
+            </td>
+            <td class="attribute">
+                Strength
+            </td>
+            <td class="attribute">
+                Agility
+            </td>
+            <td class="attribute">
+                Wisdom
+            </td>
+            <td class="attribute">
+                Charisma
+            </td>
+            <td class="attribute">
+                Money
+            </td>
+            <td class="attribute">
+                Fate Points
+            </td>
+        </tr>
+        <tr>
+            <!-- level -->
+            <td class="writeable_attribute">
+            </td>
+            <!-- SAWC -->
+            <td class="writeable_attribute">
+            </td>
+            <td class="writeable_attribute">
+            </td>
+            <td class="writeable_attribute">
+            </td>
+            <td class="writeable_attribute">
+            </td>
+            <!-- money -->
+            <td class="writeable_attribute">
+            </td>
+            <!-- fate points -->
+            <td class="writeable_attribute">
+            </td>
+        </tr>
+    </table>
+
+    <h1>Races</h1>
+    <div>
+        <table class="characterpart1" id="races">
+            <thead>
+                <tr>
+                    <td>Race</td>
+                    <td></td>
+                    <td class="part_race_attribute">Strength</td>
+                    <td class="part_race_attribute">Agility</td>
+                    <td class="part_race_attribute">Wisdom</td>
+                    <td class="part_race_attribute">Charisma</td>
+                    <td class="part_race_attribute">Health</td>
+                    <td>Bonus</td>
+                </tr>
+            </th>
+        </table>
+    </div>
+
+    <h1>Perks</h1>
+    <div>
+        <table class="characterpart" id="perks">
+        </table>
+    </div>
+
+    <h1>Weapons</h1>
+    <div>
+        <table class="characterpart" id="weapons">
+        </table>
+    </div>
+
+    <script>
+        "use strict";
+
+        var races = [
+            ["Human", 3, 3, 3, 3, 15, "+3 Attribute Points"],
+            ["Dwarf", 5, 2, 4, 2, 20, "+1 start perk"],
+            ["Elf", 2, 4, 4, 4, 10, "-1D6 for enemies"],
+            ["Halfling", 2, 4, 3, 4, 10, "+1D6 for non-combat Agility rolls"],
+        ];
+
+        var perks = [
+            ["Berzerker", "+1DPS for both character and enemies.", ["combat"]],
+            ["Fast on Feet", "+1 Agility.", ["combat", "thief"]],
+        ];
+
+        var weapons = [
+            ["Sword & Shield", "+1 Agility.", ["combat", "thief"]],
+        ];
+
+        function clear_table(table) {
+            // http://stackoverflow.com/questions/7271490/delete-all-rows-in-an-html-table
+            // var tableRows = table.getElementsByTagName('tr');
+            // var rowCount = tableRows.length;
+
+            // for (var x=rowCount-1; x>0; x--) {
+            //     elmtTable.removeChild(tableRows[x]);
+            // }
+        }
+
+        function setup_race_table(table_name, races) {
+            var race_table = document.getElementById(table_name);
+            clear_table(race_table);
+
+            races.forEach(function(race) {
+                var row = race_table.insertRow(-1);
+
+                var namecell = row.insertCell(-1);
+                namecell.className = "part_name";
+                namecell.innerHTML = race[0];
+
+                var valuecell = row.insertCell(-1);
+                valuecell.className = "part_value";
+
+                var str_cell = row.insertCell(-1);
+                str_cell.className = "part_race_attribute";
+                str_cell.innerHTML = race[1];
+
+                var agi_cell = row.insertCell(-1);
+                agi_cell.className = "part_race_attribute";
+                agi_cell.innerHTML = race[2];
+
+                var wis_cell = row.insertCell(4);
+                wis_cell.className = "part_race_attribute";
+                wis_cell.innerHTML = race[3];
+
+                var cha_cell = row.insertCell(5);
+                cha_cell.className = "part_race_attribute";
+                cha_cell.innerHTML = race[4];
+
+                var hp_cell = row.insertCell(6);
+                hp_cell.className = "part_race_attribute";
+                hp_cell.innerHTML = race[5];
+
+                var bonus_cell = row.insertCell(7);
+                bonus_cell.className = "part_description";
+                bonus_cell.innerHTML = race[6];
+            });
+        }
+
+        function setup_perk_table(table_name, perks) {
+            var perks_table = document.getElementById(table_name);
+            clear_table(perks_table);
+
+            perks.forEach(function(perk) {
+                var row = perks_table.insertRow(0);
+
+                var namecell = row.insertCell(0);
+                namecell.className = "part_name";
+                namecell.innerHTML = perk[0];
+
+                var valuecell = row.insertCell(1);
+                valuecell.className = "part_value";
+
+                var descriptioncell = row.insertCell(2);
+                descriptioncell.className = "part_description";
+                descriptioncell.innerHTML = perk[1];
+            });
+        }
+
+        function setup_weapon_table(table_name, weapons) {
+            var weapons_table = document.getElementById(table_name);
+            clear_table(weapons_table);
+
+            weapons.forEach(function(weapon) {
+                var row = weapons_table.insertRow(0);
+
+                var namecell = row.insertCell(0);
+                namecell.className = "part_name";
+                namecell.innerHTML = weapon[0];
+
+                var valuecell = row.insertCell(1);
+                valuecell.className = "part_value";
+
+                var descriptioncell = row.insertCell(2);
+                descriptioncell.className = "part_description";
+                descriptioncell.innerHTML = weapon[1];
+            });
+        }
+
+        setup_race_table("races", races);
+        setup_perk_table("perks", perks);
+        setup_weapon_table("weapons", weapons);
+
+        // var perktable = document.getElementById("combatperks");
+        // perks.forEach(function(item, index, array) {
+        //     var row = perktable.insertRow(0);
+        //     var namecell = row.insertCell(0);
+        //     namecell.className = "perk_name";
+        //     namecell.innerHTML = item;
+
+        //     var valuecell = row.insertCell(1);
+        //     valuecell.className = "perk_value";
+
+        //     var descriptioncell = row.insertCell(2);
+        //     descriptioncell.className = "perk_description";
+        //     descriptioncell.innerHTML = "LOL";
+        // });
+    </script>
+</body>
+</html>
