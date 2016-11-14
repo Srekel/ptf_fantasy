@@ -130,19 +130,35 @@
                     <td class="part_race_attribute">Health</td>
                     <td>Bonus</td>
                 </tr>
-            </th>
+            </thead>
         </table>
     </div>
 
     <h1>Perks</h1>
     <div>
         <table class="characterpart" id="perks">
+            <thead>
+                <tr>
+                    <td class="perk_name">Perk</td>
+                    <td class="perk_value"></td>
+                    <td class="perk_description">Description</td>
+                </tr>
+            </thead>
         </table>
     </div>
 
     <h1>Weapons</h1>
     <div>
         <table class="characterpart" id="weapons">
+            <thead>
+                <tr>
+                    <td class="perk_name">Perk</td>
+                    <td class="perk_value"></td>
+                    <td class="perk_description">Action</td>
+                    <td class="perk_description">Description</td>
+                    <td class="perk_description">Rule</td>
+                </tr>
+            </thead>
         </table>
     </div>
 
@@ -154,6 +170,7 @@
             ["Dwarf", 5, 2, 4, 2, 20, "+1 start perk"],
             ["Elf", 2, 4, 4, 4, 10, "-1D6 for enemies"],
             ["Halfling", 2, 4, 3, 4, 10, "+1D6 for non-combat Agility rolls"],
+            ["Orc", 4, 4, 2, 1, 20, "+1D6 when flanked"],
         ];
 
         var perks = [
@@ -162,7 +179,10 @@
         ];
 
         var weapons = [
-            ["Sword & Shield", "+1 Agility.", ["combat", "thief"]],
+            ["Sword & Shield", [
+                ["Attack", "AD6 * Strength damage"],
+                ["Block", "AD6 * Strength damage", "Once"],
+                ]],
         ];
 
         function clear_table(table) {
@@ -197,19 +217,19 @@
                 agi_cell.className = "part_race_attribute";
                 agi_cell.innerHTML = race[2];
 
-                var wis_cell = row.insertCell(4);
+                var wis_cell = row.insertCell(-1);
                 wis_cell.className = "part_race_attribute";
                 wis_cell.innerHTML = race[3];
 
-                var cha_cell = row.insertCell(5);
+                var cha_cell = row.insertCell(-1);
                 cha_cell.className = "part_race_attribute";
                 cha_cell.innerHTML = race[4];
 
-                var hp_cell = row.insertCell(6);
+                var hp_cell = row.insertCell(-1);
                 hp_cell.className = "part_race_attribute";
                 hp_cell.innerHTML = race[5];
 
-                var bonus_cell = row.insertCell(7);
+                var bonus_cell = row.insertCell(-1);
                 bonus_cell.className = "part_description";
                 bonus_cell.innerHTML = race[6];
             });
@@ -220,16 +240,16 @@
             clear_table(perks_table);
 
             perks.forEach(function(perk) {
-                var row = perks_table.insertRow(0);
+                var row = perks_table.insertRow(-1);
 
-                var namecell = row.insertCell(0);
+                var namecell = row.insertCell(-1);
                 namecell.className = "part_name";
                 namecell.innerHTML = perk[0];
 
-                var valuecell = row.insertCell(1);
+                var valuecell = row.insertCell(-1);
                 valuecell.className = "part_value";
 
-                var descriptioncell = row.insertCell(2);
+                var descriptioncell = row.insertCell(-1);
                 descriptioncell.className = "part_description";
                 descriptioncell.innerHTML = perk[1];
             });
@@ -240,18 +260,52 @@
             clear_table(weapons_table);
 
             weapons.forEach(function(weapon) {
-                var row = weapons_table.insertRow(0);
+                var row = weapons_table.insertRow(-1);
 
+                var actions = weapon[1];
                 var namecell = row.insertCell(0);
                 namecell.className = "part_name";
                 namecell.innerHTML = weapon[0];
+                namecell.rowSpan = actions.length;
 
-                var valuecell = row.insertCell(1);
+                var valuecell = row.insertCell(-1);
                 valuecell.className = "part_value";
+                valuecell.rowSpan = actions.length;
 
-                var descriptioncell = row.insertCell(2);
-                descriptioncell.className = "part_description";
-                descriptioncell.innerHTML = weapon[1];
+
+                var actioncell = row.insertCell(-1);
+                actioncell.className = "part_description";
+                actioncell.innerHTML = actions[0][0];
+                var checkcell = row.insertCell(-1);
+                checkcell.className = "part_description";
+                checkcell.innerHTML = actions[0][1];
+                var rulecell = row.insertCell(-1);
+                rulecell.className = "part_description";
+                rulecell.innerHTML = actions[0][2];
+
+                for (var index = 1; index < actions.length; index++) {
+                    var action = actions[index];
+                    var action_row = weapons_table.insertRow(-1);
+
+                    var actioncell = action_row.insertCell(-1);
+                    actioncell.className = "part_description";
+                    actioncell.innerHTML = action[0];
+                    var checkcell = action_row.insertCell(-1);
+                    checkcell.className = "part_description";
+                    checkcell.innerHTML = action[1];
+                    var rulecell = action_row.insertCell(-1);
+                    rulecell.className = "part_description";
+                    rulecell.innerHTML = action[2];
+                }
+
+                // actions.forEach(function(action) {
+                //     var valuecell = row.insertCell(-1);
+                //     valuecell.className = "part_value";
+
+                //     var descriptioncell = row.insertCell(-1);
+                //     descriptioncell.className = "part_description";
+                //     descriptioncell.innerHTML = weapon[1];
+                // });
             });
         }
 
