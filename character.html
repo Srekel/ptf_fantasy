@@ -12,36 +12,67 @@
     <div id="test">
         Page loaded
     </div>
+
+    <div>
+        <form onsubmit="download()">
+            <input type="submit" value="Save (local)">
+        </form>
+        <form onsubmit="open()">
+            <input type="submit" value="Open">
+        </form>
+        <hr style="clear: both;" />
+    </div>
+
     <div id="header">
-        <div class="name">
-            <span>
-                Player name
-           </span>
-        </div>
-        <div class="name">
-            <span>
-                Character name
-           </span>
-        </div>
         <div class="logo">
             <span>
                 Pocket Task Force Fantasy Edition
            </span>
         </div>
+        <div class="name">
+            <span>
+                Player name
+           </span>
+           <input type="text" id="player_name">
+        </div>
+        <div class="name">
+            <span>
+                Character name
+           </span
+           ><input type="text" id="character_name">
+        </div>
     </div>
 
-    <form onsubmit="download(this['name'].value, this['text'].value)">
-        <input type="text" name="name" value="test.txt">
-        <textarea name="text"></textarea>
 
-        <input type="submit" value="Download">
-    </form>
-
-    <table id="attributes">
+    <table id="stats">
         <tr>
             <td class="attribute">
                 Level
             </td>
+            <td class="attribute">
+                Money
+            </td>
+            <td class="attribute">
+                Fate Points
+            </td>
+            <td class="attribute">
+                Health
+            </td>
+        </tr>
+        <tr>
+            <td class="writeable_attribute" id="Level">
+            </td>
+            <td class="writeable_attribute" id="Money">
+            </td>
+            <td class="writeable_attribute" id="Fate Points">
+            </td>
+            <td class="writeable_attribute" id="Health">
+            </td>
+        </tr>
+    </table>
+
+    <table id="attributes">
+        <tr>
             <td class="attribute">
                 Strength
             </td>
@@ -54,17 +85,8 @@
             <td class="attribute">
                 Charisma
             </td>
-            <td class="attribute">
-                Money
-            </td>
-            <td class="attribute">
-                Fate Points
-            </td>
         </tr>
         <tr>
-            <!-- level -->
-            <td class="writeable_attribute" id="Level">
-            </td>
             <!-- SAWC -->
             <td class="writeable_attribute" id="Strength">
             </td>
@@ -73,12 +95,6 @@
             <td class="writeable_attribute" id="Wisdom">
             </td>
             <td class="writeable_attribute" id="Charisma">
-            </td>
-            <!-- money -->
-            <td class="writeable_attribute" id="Money">
-            </td>
-            <!-- fate points -->
-            <td class="writeable_attribute" id="FatePoints">
             </td>
         </tr>
     </table>

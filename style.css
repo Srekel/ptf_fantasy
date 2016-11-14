@@ -1,63 +1,77 @@
-        body {
-            background-color: white;
-        }
-        td.writeable_attribute {
-            height:3em;
-            width: 10ch;
-            border: 1px solid black;
-        }
-        td.part_name {
-            font-weight: bold;
-            margin-right: 0;
-            padding-right: 1em;
-        }
-        td.part_value {
-            height:1em;
-            width: 1em;
-            border: 2px solid black;
-        }
-        td.part_value_selected {
-            height:1em;
-            width: 1em;
-            background: lime;
-            border: 2px solid black;
-            text-align: center;
-            font-weight: bold;
-        }
-        td.part_description {
-            padding-left: 0.5em;
-        }
-        td.attribute {
-            text-align: center;
-        }
-        td.part_race_attribute {
-            text-align: center;
-            height:1em;
-            width: 4em;
-        }
+body {
+    background-color: white;
+}
+td.writeable_attribute {
+    height:1.5em;
+    width: 3em;
+    border: 1px solid black;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+td.part_name {
+    font-weight: bold;
+    margin-right: 0;
+    padding-right: 1em;
+}
+td.part_value {
+    height:1em;
+    width: 1em;
+    border: 2px solid black;
+}
+td.part_value_selected {
+    height:1em;
+    width: 1em;
+    background: lime;
+    border: 2px solid black;
+    text-align: center;
+    font-weight: bold;
+}
+td.part_description {
+    padding-left: 0.5em;
+}
+td.attribute {
+    text-align: center;
+}
+td.part_race_attribute {
+    text-align: center;
+    height:1em;
+    width: 4em;
+}
 
-        table.characterpart tr.part:hover {
-            background-color: orange;
-        }
-        #attributeheader {
-            /*text-align: center;*/
-            font-weight: bold;
-            /*vertical-align: middle;*/
-        }
+table {
+    border-spacing-left: 0px;
+    border-spacing-right: 0px;
+    border-collapse: separate;
+}
+table.characterpart tr.part:hover {
+    background-color: orange;
+}
+#attributeheader {
+    /*text-align: center;*/
+    font-weight: bold;
+    /*vertical-align: middle;*/
+}
 
-        #test {
-            margin-top: 25px;
-            font-size: 21px;
-            text-align: center;
-            animation: fadein 1s;
-            color: white;
-        }
+#test {
+    margin-top: 25px;
+    font-size: 21px;
+    text-align: center;
+    animation: fadein 1s;
+    color: white;
+}
 
-        @keyframes fadein {
-            from { background-color: green; color:black; }
-            to { background-color: white; color:white;}
-        }
-        form * {
-            display: block;
-            margin: 10px;
-        }
+@keyframes fadein {
+    from { background-color: green; color:black; }
+    to { background-color: white; color:white;}
+}
+form * {
+    display: block;
+    margin: 10px;
+    float: left;
+}
+input {
+    height: 2em;
+}

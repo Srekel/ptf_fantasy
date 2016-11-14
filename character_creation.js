@@ -1,19 +1,18 @@
 "use strict";
 
 function clear_table(table) {
-    // http://stackoverflow.com/questions/7271490/delete-all-rows-in-an-html-table
-    // var tableRows = table.getElementsByTagName('tr');
-    // var rowCount = tableRows.length;
-
-    // for (var x=rowCount-1; x>0; x--) {
-    //     elmtTable.removeChild(tableRows[x]);
-    // }
     var new_tbody = document.createElement('tbody');
-    //populate_with_new_rows(new_tbody);
     table.replaceChild(new_tbody, table.tBodies[0])
 }
 
 function setup_tables(character) {
+    document.getElementById("character_name").value = character.character_name;
+    document.getElementById("player_name").value = character.player_name;
+    document.getElementById("character_name").oninput = function() {
+        character.character_name = this.value;
+    };
+
+    setup_attribute_table("stats", stats, character);
     setup_attribute_table("attributes", attributes, character);
     setup_race_table("races", races, character);
     setup_perk_table("perks", perks, character);
@@ -23,68 +22,74 @@ function setup_tables(character) {
 function setup_attribute_table(table_name, attributes, character) {
     var attribute_table = document.getElementById(table_name);
     // clear_table(race_table);
-    var character_attributes = character.attributes;
+    var character_attributes = character[table_name];
     attributes.forEach(function(attribute) {
         var cell = document.getElementById(attribute);
         cell.innerHTML = character_attributes[attribute];
-        cell.onclick = function() {
-            character_attributes[attribute] = character_attributes[attribute] + 1;
-            if (character_attributes[attribute] == 10) {
-                character_attributes[attribute] = 0;
-            }
-            setup_tables(character);
-        };
+        // cell.onclick = function() {
+        //     character_attributes[attribute] = character_attributes[attribute] + 1;
+        //     if (character_attributes[attribute] == 10) {
+        //         character_attributes[attribute] = 0;
+        //     }
+        //     setup_tables(character);
+        // };
     });
 }
 function setup_race_table(table_name, races, character) {
     var race_table = document.getElementById(table_name);
     clear_table(race_table);
 
-    races.forEach(function(race) {
+    for (var racename in races) {
+        if (!races.hasOwnProperty(racename)) {
+            continue;
+        }
+        var race = races[racename];
+
         var row = race_table.tBodies[0].insertRow(-1);
         row.className = "part";
         row.onclick = function(){
             var cell = this.getElementsByTagName("td")[0];
             var id = cell.innerHTML;
             character.race = id;
+            character_update_attributes(character);
             setup_tables(character);
         };
 
         var namecell = row.insertCell(-1);
         namecell.className = "part_name";
-        namecell.innerHTML = race[0];
+        namecell.innerHTML = racename;
 
         var valuecell = row.insertCell(-1);
         valuecell.className = "part_value";
-        if (race[0] == character.race) {
+        if (racename == character.race) {
             valuecell.className = "part_value_selected";
             valuecell.innerHTML = "X";
         }
 
         var str_cell = row.insertCell(-1);
         str_cell.className = "part_race_attribute";
-        str_cell.innerHTML = race[1];
+        str_cell.innerHTML = race[0];
 
         var agi_cell = row.insertCell(-1);
         agi_cell.className = "part_race_attribute";
-        agi_cell.innerHTML = race[2];
+        agi_cell.innerHTML = race[1];
 
         var wis_cell = row.insertCell(-1);
         wis_cell.className = "part_race_attribute";
-        wis_cell.innerHTML = race[3];
+        wis_cell.innerHTML = race[2];
 
         var cha_cell = row.insertCell(-1);
         cha_cell.className = "part_race_attribute";
-        cha_cell.innerHTML = race[4];
+        cha_cell.innerHTML = race[3];
 
         var hp_cell = row.insertCell(-1);
         hp_cell.className = "part_race_attribute";
-        hp_cell.innerHTML = race[5];
+        hp_cell.innerHTML = race[4];
 
         var bonus_cell = row.insertCell(-1);
         bonus_cell.className = "part_description";
-        bonus_cell.innerHTML = race[6];
-    });
+        bonus_cell.innerHTML = race[5];
+    };
 }
 
 function setup_perk_table(table_name, perks, character) {
@@ -186,26 +191,9 @@ function setup_weapon_table(table_name, weapons, character) {
     });
 }
 
-var character = {
-    char_name: "LOL",
-    player_name: "PlayerLOL",
-    attributes: {
-        Level: 1,
-        Money: 123,
-        Strength: 1,
-        Agility: 1,
-        Wisdom: 1,
-        Charisma: 1,
-        FatePoints: 0,
-    },
-    race: "Dwarf",
-    perks: {
-        Berzerker: 1,
-    },
-    weapons: {
-        "Sword & Shield": 1,
-    }
-}
+var character = character_create();
+character.perks.Berzerker = 1;
+character.weapons["Sword & Shield"] = 1;
 
 setup_tables(character);
 
@@ -224,8 +212,9 @@ setup_tables(character);
 //     descriptioncell.innerHTML = "LOL";
 // });
 
-function download(filename, text) {
-    var char_str = JSON.stringify(character, null, "  ");
+function download() {
+    var filename = character.character_name + ".ptf_character";
+    var char_str = JSON.stringify(character, null, "    ");
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(char_str));
     element.setAttribute('download', filename);
