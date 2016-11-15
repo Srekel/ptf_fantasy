@@ -1,5 +1,7 @@
 "use strict";
 
+var loaded_character = null;
+
 function clear_table(table) {
     var new_tbody = document.createElement('tbody');
     table.replaceChild(new_tbody, table.tBodies[0])
@@ -68,6 +70,9 @@ function setup_race_table(table_name, races, character) {
             valuecell.className = "part_value_selected";
             valuecell.innerHTML = "X";
         }
+        else {
+            row.className += " compactable";
+        }
 
         var str_cell = row.insertCell(-1);
         str_cell.className = "part_race_attribute";
@@ -105,7 +110,7 @@ function setup_perk_table(table_name, perks, character) {
         row.onclick = function(){
             var cell = this.getElementsByTagName("td")[0];
             var id = cell.innerHTML;
-            if (character.perks[id] === null) {
+            if (!character.perks[id]) {
                 character.perks[id] = 1;
             }
             else {
@@ -194,11 +199,11 @@ function setup_weapon_table(table_name, weapons, character) {
     });
 }
 
-var character = character_create();
-character.perks.Berzerker = 1;
-character.weapons["Sword & Shield"] = 1;
+loaded_character = character_create();
+loaded_character.perks.Berzerker = 1;
+loaded_character.weapons["Sword & Shield"] = 1;
 
-setup_tables(character);
+setup_tables(loaded_character);
 
 // var perktable = document.getElementById("combatperks");
 // perks.forEach(function(item, index, array) {
@@ -216,13 +221,13 @@ setup_tables(character);
 // });
 
 function save_local() {
-    if (!character.character_name || character.character_name == "") {
+    if (!loaded_character.character_name || loaded_character.character_name == "") {
         alert("Not a valid character name");
         return;
     }
 
-    var filename = character.character_name + ".ptf_character";
-    var char_str = JSON.stringify(character, null, "    ");
+    var filename = loaded_character.character_name + ".ptf_character";
+    var char_str = JSON.stringify(loaded_character, null, "    ");
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(char_str));
     element.setAttribute('download', filename);
@@ -253,13 +258,16 @@ function open_local() {
     }
     else {
         function receivedText(e) {
-            lines = e.target.result;
+            var lines = e.target.result;
             var newArr = JSON.parse(lines);
+            document.getElementById("TESTLOL").innerHTML = lines;
+            loaded_character = character_from_json(newArr);
+            character_update_attributes(loaded_character);
+            setup_tables(loaded_character);
         }
 
-        var file, fr;
-        file = input.files[0];
-        fr = new FileReader();
+        var file = input.files[0];
+        var fr = new FileReader();
         fr.onload = receivedText;
         fr.readAsText(file);
     }
@@ -269,13 +277,20 @@ var compact = false;
 function compact_view() {
     compact = !compact;
     if (compact) {
-        document.getElementById("compact").value = "Compact view";
-        var compactables = document.getElementsByClassName("compactable");
-        compactables.forEach(function(element) {
-            element.display = "none";
+        [].forEach.call(document.querySelectorAll('.compactable'), function (el) {
+            // el.style.display = 'none';
+            e1.style.animationName = "fade_and_hide";
         });
+        document.getElementById("compact").value = "Compact view";
+        // var compactables = document.getElementsByClassName("compactable");
+        // compactables.forEach(function(element) {
+        //     element.display = "none";
+        // });
     }
     else {
         document.getElementById("compact").value = "Full view";
+        [].forEach.call(document.querySelectorAll('.compactable'), function (el) {
+            el.style.display = "";
+        });
     }
 }

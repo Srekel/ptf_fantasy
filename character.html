@@ -14,15 +14,14 @@
     </div>
 
     <div>
-        <form onsubmit="save_local()">
-            <input type="submit" value="Save (local)">
-        </form>
-        <form onsubmit="open_local()">
-            <input type="submit" value="Open (local)">
-        </form>
-        <form onsubmit="compact_view()">
-            <input type="submit" value="Compact view" id="compact">
-        </form>
+        <!--<form onsubmit="save_local()">-->
+            <input type="submit" value="Save (local)" onclick="save_local()">
+        <!--</form>-->
+        <!--<form onsubmit="open_local()">-->
+            <input type="file" value="Open (local)" id="fileinput" onchange="open_local()">
+        <!--</form>-->
+        <!--<form onsubmit="compact_view()">-->
+        <input type="submit" value="Compact view" id="compact" onclick="compact_view()">
         <hr style="clear: both;" />
     </div>
 
@@ -102,8 +101,8 @@
         </tr>
     </table>
 
-    <h1 class="compactable">Races</h1>
-    <div>
+    <!--<h1 class="compactable">Races</h1>-->
+    <div class="characterpart">
         <table class="characterpart" id="races">
             <thead>
                 <tr>
@@ -121,8 +120,8 @@
         </table>
     </div>
 
-    <h1>Perks</h1>
-    <div>
+    <!--<h1 class="compactable">Perks</h1>-->
+    <div class="characterpart">
         <table class="characterpart" id="perks">
             <thead>
                 <tr>
@@ -135,8 +134,8 @@
         </table>
     </div>
 
-    <h1>Weapons</h1>
-    <div>
+    <!--<h1 class="compactable">Weapons</h1>-->
+    <div class="characterpart">
         <table class="characterpart" id="weapons">
             <thead>
                 <tr>
@@ -150,5 +149,7 @@
             <tbody></tbody>
         </table>
     </div>
+
+    <p id="TESTLOL" class="compactable">Test strings come here</p>
 </body>
 </html>

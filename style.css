@@ -1,5 +1,6 @@
 body {
     background-color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 td.writeable_attribute {
     height:1.5em;
@@ -49,6 +50,10 @@ table {
 table.characterpart tr.part:hover {
     background-color: orange;
 }
+thead td {
+    font-size:24px;
+    font-weight: bold;
+}
 #attributeheader {
     /*text-align: center;*/
     font-weight: bold;
@@ -76,6 +81,21 @@ input {
     height: 2em;
 }
 
-h1.compactable {
-    display: block;
+.compactable {
+    /*animation-duration: 1s;*/
+    animation: fade_and_hide 1s;
+    animation-fill-mode: both;
+}
+
+div.characterpart {
+    padding-top: 2em;
+}
+
+.hide {
+
+}
+
+@keyframes fade_and_hide {
+    from { opacity: 1; }
+    to { opacity: 0.5; display: none;}
 }

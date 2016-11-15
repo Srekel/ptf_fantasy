@@ -82,11 +82,17 @@ function character_create() {
 
 function character_from_json(json_object) {
     var character = character_create();
-    character.forEach(function(thing) {
+    for(var thing in character) {
+       if (!character.hasOwnProperty(thing)) {
+            continue;
+        }
+
         if (json_object[thing]) {
             character[thing] = json_object[thing];
         }
-    });
+    };
+    
+    return character;
 }
 
 function character_update_attributes(character) {
