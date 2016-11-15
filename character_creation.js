@@ -11,6 +11,9 @@ function setup_tables(character) {
     document.getElementById("character_name").oninput = function() {
         character.character_name = this.value;
     };
+    document.getElementById("player_name").oninput = function() {
+        character.player_name = this.value;
+    };
 
     setup_attribute_table("stats", stats, character);
     setup_attribute_table("attributes", attributes, character);
@@ -212,7 +215,12 @@ setup_tables(character);
 //     descriptioncell.innerHTML = "LOL";
 // });
 
-function download() {
+function save_local() {
+    if (!character.character_name || character.character_name == "") {
+        alert("Not a valid character name");
+        return;
+    }
+
     var filename = character.character_name + ".ptf_character";
     var char_str = JSON.stringify(character, null, "    ");
     var element = document.createElement('a');
@@ -227,33 +235,47 @@ function download() {
     document.body.removeChild(element);
 }
 
-    //function loadFile() {
-    //    var input, file, fr;
-//
-    //    if (typeof window.FileReader !== 'function') {
-    //        alert("The file API isn't supported on this browser yet.");
-    //        return;
-    //    }
-//
-    //    input = document.getElementById('fileinput');
-    //    if (!input) {
-    //        alert("Um, couldn't find the fileinput element.");
-    //    }
-    //    else if (!input.files) {
-    //        alert("This browser doesn't seem to support the `files` property of file inputs.");
-    //    }
-    //    else if (!input.files[0]) {
-    //        alert("Please select a file before clicking 'Load'");
-    //    }
-    //    else {
-    //        file = input.files[0];
-    //        fr = new FileReader();
-    //        fr.onload = receivedText;
-    //        fr.readAsText(file);
-    //    }
-//
-    //    function receivedText(e) {
-    //        lines = e.target.result;
-    //        var newArr = JSON.parse(lines);
-    //    }
-    //}
+function open_local() {
+    if (typeof window.FileReader !== 'function') {
+        alert("The file API isn't supported on this browser yet.");
+        return;
+    }
+
+    var input = document.getElementById('fileinput');
+    if (!input) {
+        alert("Um, couldn't find the fileinput element.");
+    }
+    else if (!input.files) {
+        alert("This browser doesn't seem to support the `files` property of file inputs.");
+    }
+    else if (!input.files[0]) {
+        alert("Please select a file before clicking 'Load'");
+    }
+    else {
+        function receivedText(e) {
+            lines = e.target.result;
+            var newArr = JSON.parse(lines);
+        }
+
+        var file, fr;
+        file = input.files[0];
+        fr = new FileReader();
+        fr.onload = receivedText;
+        fr.readAsText(file);
+    }
+}
+
+var compact = false;
+function compact_view() {
+    compact = !compact;
+    if (compact) {
+        document.getElementById("compact").value = "Compact view";
+        var compactables = document.getElementsByClassName("compactable");
+        compactables.forEach(function(element) {
+            element.display = "none";
+        });
+    }
+    else {
+        document.getElementById("compact").value = "Full view";
+    }
+}

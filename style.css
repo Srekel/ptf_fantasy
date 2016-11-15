@@ -75,3 +75,7 @@ form * {
 input {
     height: 2em;
 }
+
+h1.compactable {
+    display: block;
+}

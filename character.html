@@ -14,11 +14,14 @@
     </div>
 
     <div>
-        <form onsubmit="download()">
+        <form onsubmit="save_local()">
             <input type="submit" value="Save (local)">
         </form>
-        <form onsubmit="open()">
-            <input type="submit" value="Open">
+        <form onsubmit="open_local()">
+            <input type="submit" value="Open (local)">
+        </form>
+        <form onsubmit="compact_view()">
+            <input type="submit" value="Compact view" id="compact">
         </form>
         <hr style="clear: both;" />
     </div>
@@ -99,7 +102,7 @@
         </tr>
     </table>
 
-    <h1>Races</h1>
+    <h1 class="compactable">Races</h1>
     <div>
         <table class="characterpart" id="races">
             <thead>
@@ -137,10 +140,10 @@
         <table class="characterpart" id="weapons">
             <thead>
                 <tr>
-                    <td class="perk_name">Perk</td>
+                    <td class="perk_name">Weapons</td>
                     <td class="perk_value"></td>
                     <td class="perk_description">Action</td>
-                    <td class="perk_description">Description</td>
+                    <td class="perk_description">Damage</td>
                     <td class="perk_description">Rule</td>
                 </tr>
             </thead>
