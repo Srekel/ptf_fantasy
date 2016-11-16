@@ -104,7 +104,7 @@ function setup_perk_table(table_name, perks, character) {
     var perks_table = document.getElementById(table_name);
     clear_table(perks_table);
 
-    perks.forEach(function(perk) {
+    for (var perk_name in perks) {
         var row = perks_table.tBodies[0].insertRow(-1);
         row.className = "part";
         row.onclick = function(){
@@ -116,20 +116,21 @@ function setup_perk_table(table_name, perks, character) {
             else {
                 character.perks[id] = null;
             }
+            character_update_attributes(character);
             setup_tables(character);
         };
 
         var namecell = row.insertCell(-1);
         namecell.className = "part_name";
-        namecell.innerHTML = perk[0];
+        namecell.innerHTML = perk_name;
 
         var valuecell = row.insertCell(-1);
         valuecell.className = "part_value";
 
-        var perks = character.perks;
-        if (perks[perk[0]]) {
+        var character_perks = character.perks;
+        if (character_perks[perk_name]) {
             valuecell.className = "part_value_selected";
-            valuecell.innerHTML = perks[perk[0]];
+            valuecell.innerHTML = character_perks[perk_name];
         }
         else {
             row.className += " compactable";
@@ -137,32 +138,43 @@ function setup_perk_table(table_name, perks, character) {
 
         var descriptioncell = row.insertCell(-1);
         descriptioncell.className = "part_description";
-        descriptioncell.innerHTML = perk[1];
-    });
+        descriptioncell.innerHTML = perks[perk_name].description;
+    };
 }
 
 function setup_weapon_table(table_name, weapons, character) {
     var weapons_table = document.getElementById(table_name);
     clear_table(weapons_table);
 
-    weapons.forEach(function(weapon) {
+    for (var weapon_name in weapons) {
         var row = weapons_table.tBodies[0].insertRow(-1);
         row.className = "part";
+        row.onclick = function(){
+            if (!character.weapons[weapon_name]) {
+                character.weapons[weapon_name] = 1;
+            }
+            else {
+                character.weapons[weapon_name] = null;
+            }
+            character_update_attributes(character);
+            setup_tables(character);
+        };
 
-        var actions = weapon[1];
+        var weapon = weapons[weapon_name];
+        var actions = weapon;
         var namecell = row.insertCell(0);
         namecell.className = "part_name";
-        namecell.innerHTML = weapon[0];
+        namecell.innerHTML = weapon_name;
         namecell.rowSpan = actions.length;
 
         var valuecell = row.insertCell(-1);
         valuecell.className = "part_value";
         valuecell.rowSpan = actions.length;
 
-        var weapons = character.weapons;
-        if (weapons[weapon[0]]) {
+        var character_weapons = character.weapons;
+        if (character_weapons[weapon_name]) {
             valuecell.className = "part_value_selected";
-            valuecell.innerHTML = weapons[weapon[0]];
+            valuecell.innerHTML = character_weapons[weapon_name];
         }
         else {
             row.className += " compactable";
@@ -183,7 +195,7 @@ function setup_weapon_table(table_name, weapons, character) {
             var action_row = weapons_table.insertRow(-1);
             action_row.className = "part";
 
-            if (!weapons[weapon[0]]) {
+            if (!character_weapons[weapon_name]) {
                 action_row.className += " compactable";
             }
 

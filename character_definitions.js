@@ -29,21 +29,21 @@ var race_indices = {
     Health: 4,
 }
 
-var perks = [
-    ["Berzerker", "+1DPS for both character and enemies.", ["combat"]],
-    ["Fast on Feet", "+1 Agility.", ["combat", "thief"]],
-];
+var perks = {
+    Berzerker: {description: "+1DPS for both character and enemies."},
+    "Fast on Feet": {description: "+1 Agility.", modifier: function(character) { character.attributes.Agility += 1;}},
+};
 
-var weapons = [
-    ["Sword & Shield", [
-        ["Attack", "AD6 * Strength", ""],
-        ["Block", "AD6 * Strength", "Once per turn"],
-    ]],
-    ["Two-handed Axe", [
-        ["Attack", "AD6 * Strength", ""],
-        ["Block", "AD6 * Strength", "Can't both block and attack"],
-    ]],
-];
+var weapons = {
+    "Sword & Shield": [
+        {action: "Attack", damage: "AD6 * Strength", rule:""},
+        {action: "Block", damage: "AD6 * Strength", rule:"once"}
+    ],
+    // ["Two-handed Axe", [
+    //     ["Attack", "AD6 * Strength", ""],
+    //     ["Block", "AD6 * Strength", "Can't both block and attack"],
+    // ]],
+};
 
 var default_character = {
     id: null,
@@ -91,7 +91,7 @@ function character_from_json(json_object) {
             character[thing] = json_object[thing];
         }
     };
-    
+
     return character;
 }
 
@@ -100,6 +100,13 @@ function character_update_attributes(character) {
     attributes.forEach(function(attribute) {
         character.attributes[attribute] = race[race_indices[attribute]];
     });
+
+    for( var perk_name in character.perks) {
+        var perk_def = perks[perk_name];
+        if (character.perks[perk_name] && perk_def.modifier) {
+            perk_def.modifier(character);
+        }
+    }
 
     character.stats.Health = race[race_indices.Health];
 }
