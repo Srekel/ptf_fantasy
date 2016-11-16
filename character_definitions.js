@@ -37,12 +37,12 @@ var perks = {
 var weapons = {
     "Sword & Shield": [
         {action: "Attack", damage: "AD6 * Strength", rule:""},
-        {action: "Block", damage: "AD6 * Strength", rule:"once"}
+        {action: "Block", damage: "AD6 * Strength", rule:"Once per turn"}
     ],
-    // ["Two-handed Axe", [
-    //     ["Attack", "AD6 * Strength", ""],
-    //     ["Block", "AD6 * Strength", "Can't both block and attack"],
-    // ]],
+    "Two-handed Axe": [
+        {action: "Attack", damage: "AD6 * Strength", rule:""},
+        {action: "Block", damage: "AD6 * Strength", rule: "Can't both block and attack"}
+    ],
 };
 
 var default_character = {

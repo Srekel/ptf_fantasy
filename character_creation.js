@@ -149,7 +149,7 @@ function setup_weapon_table(table_name, weapons, character) {
     for (var weapon_name in weapons) {
         var row = weapons_table.tBodies[0].insertRow(-1);
         row.className = "part";
-        row.onclick = function(){
+        row.onclick = function(weapon_name) {
             if (!character.weapons[weapon_name]) {
                 character.weapons[weapon_name] = 1;
             }
@@ -158,7 +158,7 @@ function setup_weapon_table(table_name, weapons, character) {
             }
             character_update_attributes(character);
             setup_tables(character);
-        };
+        }.bind(this, weapon_name);
 
         var weapon = weapons[weapon_name];
         var actions = weapon;
@@ -182,13 +182,13 @@ function setup_weapon_table(table_name, weapons, character) {
 
         var actioncell = row.insertCell(-1);
         actioncell.className = "part_description";
-        actioncell.innerHTML = actions[0][0];
+        actioncell.innerHTML = actions[0].action;
         var checkcell = row.insertCell(-1);
         checkcell.className = "part_description";
-        checkcell.innerHTML = actions[0][1];
+        checkcell.innerHTML = actions[0].damage;
         var rulecell = row.insertCell(-1);
         rulecell.className = "part_description";
-        rulecell.innerHTML = actions[0][2];
+        rulecell.innerHTML = actions[0].rule;
 
         for (var index = 1; index < actions.length; index++) {
             var action = actions[index];
@@ -201,24 +201,16 @@ function setup_weapon_table(table_name, weapons, character) {
 
             var actioncell = action_row.insertCell(-1);
             actioncell.className = "part_description";
-            actioncell.innerHTML = action[0];
+            actioncell.innerHTML = action.action;
             var checkcell = action_row.insertCell(-1);
             checkcell.className = "part_description";
-            checkcell.innerHTML = action[1];
+            checkcell.innerHTML = action.damage;
             var rulecell = action_row.insertCell(-1);
             rulecell.className = "part_description";
-            rulecell.innerHTML = action[2];
+            rulecell.innerHTML = action.rule;
         }
 
-        // actions.forEach(function(action) {
-        //     var valuecell = row.insertCell(-1);
-        //     valuecell.className = "part_value";
-
-        //     var descriptioncell = row.insertCell(-1);
-        //     descriptioncell.className = "part_description";
-        //     descriptioncell.innerHTML = weapon[1];
-        // });
-    });
+    };
 }
 
 loaded_character = character_create();
@@ -226,21 +218,6 @@ loaded_character.perks.Berzerker = 1;
 loaded_character.weapons["Sword & Shield"] = 1;
 
 setup_tables(loaded_character);
-
-// var perktable = document.getElementById("combatperks");
-// perks.forEach(function(item, index, array) {
-//     var row = perktable.insertRow(0);
-//     var namecell = row.insertCell(0);
-//     namecell.className = "perk_name";
-//     namecell.innerHTML = item;
-
-//     var valuecell = row.insertCell(1);
-//     valuecell.className = "perk_value";
-
-//     var descriptioncell = row.insertCell(2);
-//     descriptioncell.className = "perk_description";
-//     descriptioncell.innerHTML = "LOL";
-// });
 
 function save_local() {
     if (!loaded_character.character_name || loaded_character.character_name == "") {
