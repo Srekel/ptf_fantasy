@@ -31,13 +31,15 @@ function setup_attribute_table(table_name, attributes, character) {
     attributes.forEach(function(attribute) {
         var cell = document.getElementById(attribute);
         cell.innerHTML = character_attributes[attribute];
-        // cell.onclick = function() {
-        //     character_attributes[attribute] = character_attributes[attribute] + 1;
-        //     if (character_attributes[attribute] == 10) {
-        //         character_attributes[attribute] = 0;
-        //     }
-        //     setup_tables(character);
-        // };
+        if (table_name == "stats") {
+            cell.onclick = function() {
+                var value = window.prompt("Enter new " + attribute + " value", character_attributes[attribute])
+                if (value != null) {
+                    character_attributes[attribute] = parseInt(value);
+                    cell.innerHTML = value;
+                }
+            };
+        }
     });
 }
 function setup_race_table(table_name, races, character) {
@@ -52,13 +54,6 @@ function setup_race_table(table_name, races, character) {
 
         var row = race_table.tBodies[0].insertRow(-1);
         row.className = "part";
-        row.onclick = function(){
-            var cell = this.getElementsByTagName("td")[0];
-            var id = cell.innerHTML;
-            character.race = id;
-            character_update_attributes(character);
-            setup_tables(character);
-        };
 
         var namecell = row.insertCell(-1);
         namecell.className = "part_name";
@@ -69,29 +64,38 @@ function setup_race_table(table_name, races, character) {
         if (racename == character.race) {
             valuecell.className = "part_value_selected";
             valuecell.innerHTML = "X";
+            // valuecell.className += " compactable";
         }
         else {
             row.className += " compactable";
+
+            row.onclick = function(){
+                var cell = this.getElementsByTagName("td")[0];
+                var id = cell.innerHTML;
+                character.race = id;
+                character_update_attributes(character);
+                setup_tables(character);
+            };
         }
 
         var str_cell = row.insertCell(-1);
-        str_cell.className = "part_race_attribute";
+        str_cell.className = "part_race_attribute compactable";
         str_cell.innerHTML = race[0];
 
         var agi_cell = row.insertCell(-1);
-        agi_cell.className = "part_race_attribute";
+        agi_cell.className = "part_race_attribute compactable";
         agi_cell.innerHTML = race[1];
 
         var wis_cell = row.insertCell(-1);
-        wis_cell.className = "part_race_attribute";
+        wis_cell.className = "part_race_attribute compactable";
         wis_cell.innerHTML = race[2];
 
         var cha_cell = row.insertCell(-1);
-        cha_cell.className = "part_race_attribute";
+        cha_cell.className = "part_race_attribute compactable";
         cha_cell.innerHTML = race[3];
 
         var hp_cell = row.insertCell(-1);
-        hp_cell.className = "part_race_attribute";
+        hp_cell.className = "part_race_attribute compactable";
         hp_cell.innerHTML = race[4];
 
         var bonus_cell = row.insertCell(-1);
@@ -280,10 +284,15 @@ function compact_view() {
     compact = !compact;
     if (compact) {
         var lol = 0;
+        var parent = null;
         [].forEach.call(document.querySelectorAll('.compactable'), function (el) {
-            lol = lol + 0.1;
+            if (el.parentElement !== parent) {
+                lol = 0;
+                parent = el.parentElement;
+            }
+            lol = lol + 0.05;
             el.style.animationName = "fadeout_and_hide";
-            el.style.animationDuration =  1 + "s";
+            el.style.animationDuration =  0.5 + "s";
             el.style.animationDelay = lol + "s";
 
             el.addEventListener("animationend", hidefunc);
@@ -292,12 +301,18 @@ function compact_view() {
     }
     else {
         var lol = 0;
+        var parent = null;
         document.getElementById("compact").value = "Compact view";
         [].forEach.call(document.querySelectorAll('.compactable'), function (el) {
-            lol = lol + 0.1;
+            if (el.parentElement !== parent) {
+                lol = 0;
+                parent = el.parentElement;
+            }
+            lol = lol + 0.05;
             el.style.display = "";
             el.style.animationName = "fadein_and_show";
-            el.style.animationDuration = lol + 1 + "s";
+            el.style.animationDuration = 1 + "s";
+            el.style.animationDelay = lol + "s";
             el.removeEventListener("animationend", hidefunc);
         });
     }
