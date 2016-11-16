@@ -30,8 +30,16 @@ var race_indices = {
 }
 
 var perks = {
-    Berzerker: {description: "+1DPS for both character and enemies."},
+    Aggressor: {description: "Force one enemy to attack you."},
+    Backstabber: {description: "+1 DPS from behind."},
+    Berzerker: {description: "+1 DPS for both character and enemies."},
+    Defender: {description: "-1 DPS for enemies."},
     "Fast on Feet": {description: "+1 Agility.", modifier: function(character) { character.attributes.Agility += 1;}},
+    Fighter: {description: "+1 Strength.", modifier: function(character) { character.attributes.Strength += 1;}},
+    Frenzied: {description: "+1 Attack Die."},
+    Blocker: {description: "+1 Block Die."},
+    Sniper: {description: "+2 DPS with range on unsuspecting enemy."},
+    Tank: {description: "+5 Health.", modifier: function(character) { character.attributes.Health += 5;}},
 };
 
 var weapons = {
