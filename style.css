@@ -1,6 +1,15 @@
 body {
-    background-color: white;
+    background-color: beige;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+table {
+    border-spacing-left: 0px;
+    border-spacing-right: 0px;
+    border-collapse: separate;
+}
+thead td {
+    font-size:18px;
+    font-weight: bold;
 }
 td.writeable_attribute {
     height:1.5em;
@@ -16,16 +25,28 @@ td.part_name {
     font-weight: bold;
     margin-right: 0;
     padding-right: 1em;
+    color: #333;
 }
 td.part_value {
     height:1em;
     width: 1em;
     border: 2px solid black;
 }
-td.part_value_selected {
+thead td.part_name {
+    width: 10em;
+    color: black;
+}
+thead td.part_value_selected {
+    width: 1em;
+}
+thead td.part_race_attribute {
+    padding-left:  0.5em;
+    padding-right: 0.5em;
+}
+tbody td.part_value_selected {
     height:1em;
     width: 1em;
-    background: lime;
+    background: greenyellow;
     border: 2px solid black;
     text-align: center;
     font-weight: bold;
@@ -36,23 +57,14 @@ td.part_description {
 td.attribute {
     text-align: center;
 }
-td.part_race_attribute {
+tbody td.part_race_attribute {
     text-align: center;
     height:1em;
     width: 4em;
 }
 
-table {
-    border-spacing-left: 0px;
-    border-spacing-right: 0px;
-    border-collapse: separate;
-}
 table.characterpart tr.part:hover {
     background-color: orange;
-}
-thead td {
-    font-size:24px;
-    font-weight: bold;
 }
 #attributeheader {
     /*text-align: center;*/
@@ -83,7 +95,7 @@ input {
 
 .compactable {
     /*animation-duration: 1s;*/
-    animation: fade_and_hide 1s;
+    /*animation: fade_and_hide 1s;*/
     animation-fill-mode: both;
 }
 
@@ -95,7 +107,11 @@ div.characterpart {
 
 }
 
-@keyframes fade_and_hide {
-    from { opacity: 1; }
-    to { opacity: 0.5; display: none;}
+@keyframes fadeout_and_hide {
+    from { opacity: 1; height:auto;}
+    to { opacity: 0; height:0;}
+}
+@keyframes fadein_and_show {
+    from { opacity: 0; }
+    to { opacity: 1 }
 }

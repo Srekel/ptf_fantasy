@@ -131,6 +131,9 @@ function setup_perk_table(table_name, perks, character) {
             valuecell.className = "part_value_selected";
             valuecell.innerHTML = perks[perk[0]];
         }
+        else {
+            row.className += " compactable";
+        }
 
         var descriptioncell = row.insertCell(-1);
         descriptioncell.className = "part_description";
@@ -161,6 +164,9 @@ function setup_weapon_table(table_name, weapons, character) {
             valuecell.className = "part_value_selected";
             valuecell.innerHTML = weapons[weapon[0]];
         }
+        else {
+            row.className += " compactable";
+        }
 
         var actioncell = row.insertCell(-1);
         actioncell.className = "part_description";
@@ -176,6 +182,10 @@ function setup_weapon_table(table_name, weapons, character) {
             var action = actions[index];
             var action_row = weapons_table.insertRow(-1);
             action_row.className = "part";
+
+            if (!weapons[weapon[0]]) {
+                action_row.className += " compactable";
+            }
 
             var actioncell = action_row.insertCell(-1);
             actioncell.className = "part_description";
@@ -273,24 +283,33 @@ function open_local() {
     }
 }
 
+var hidefunc = function() {
+    this.style.display = "none";
+};
 var compact = false;
 function compact_view() {
     compact = !compact;
     if (compact) {
+        var lol = 0;
         [].forEach.call(document.querySelectorAll('.compactable'), function (el) {
-            // el.style.display = 'none';
-            e1.style.animationName = "fade_and_hide";
+            lol = lol + 0.1;
+            el.style.animationName = "fadeout_and_hide";
+            el.style.animationDuration =  1 + "s";
+            el.style.animationDelay = lol + "s";
+
+            el.addEventListener("animationend", hidefunc);
         });
-        document.getElementById("compact").value = "Compact view";
-        // var compactables = document.getElementsByClassName("compactable");
-        // compactables.forEach(function(element) {
-        //     element.display = "none";
-        // });
+        document.getElementById("compact").value = "Full view";
     }
     else {
-        document.getElementById("compact").value = "Full view";
+        var lol = 0;
+        document.getElementById("compact").value = "Compact view";
         [].forEach.call(document.querySelectorAll('.compactable'), function (el) {
+            lol = lol + 0.1;
             el.style.display = "";
+            el.style.animationName = "fadein_and_show";
+            el.style.animationDuration = lol + 1 + "s";
+            el.removeEventListener("animationend", hidefunc);
         });
     }
 }
