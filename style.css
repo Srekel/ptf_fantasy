@@ -2,15 +2,31 @@ body {
     background-color: #fff;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+#header{
+    /*background-color: red;*/
+    overflow:hidden;
+}
+#header2{
+    /*background-color: red;*/
+    overflow:hidden;
+}
 div.name {
     margin-top: 1em;
     font-size: 18px;
+    /*display:block;*/
+    /*max-height:20px;*/
+    /*overflow:hidden;*/
 }
 input.name {
-    font-size: 24px;
-}
-span.name {
     font-size: 18px;
+    color:blue;
+}
+#header span.name {
+    font-size: 18px;
+    color:black;
+}
+#header2 span.name {
+    font-size: 36px;
     color:blue;
 }
 table {
@@ -105,6 +121,13 @@ input {
     height: 2em;
 }
 
+.compact {
+    /*animation-duration: 1s;*/
+    /*animation: fade_and_hide 1s;*/
+    animation-fill-mode: both;
+    opacity: 0; max-height: 0px;
+}
+
 .compactable {
     /*animation-duration: 1s;*/
     /*animation: fade_and_hide 1s;*/
@@ -120,12 +143,13 @@ div.characterpart {
 }
 
 @keyframes fadeout_and_hide {
-    from { opacity: 1; height:auto;}
-    to { opacity: 0; height:0;}
+    from { opacity: 1; max-height: 300px;}
+    to {opacity: 0; max-height: 0px; }
 }
+
 @keyframes fadein_and_show {
-    from { opacity: 0; }
-    to { opacity: 1 }
+    from { opacity: 0; max-height: 0px;}
+    to { opacity: 1; max-height: 300px;}
 }
 
 #rules {

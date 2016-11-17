@@ -55,8 +55,8 @@ var weapons = {
 
 var default_character = {
     id: null,
-    character_name: "Unnamed",
-    player_name: "Player",
+    character_name: "Alhandra",
+    player_name: "Wil Wheaton",
     attributes: {
         Strength: 0,
         Agility: 0,

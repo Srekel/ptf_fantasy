@@ -297,6 +297,7 @@ var hidefunc = function() {
 };
 
 function hide_class(class_name) {
+    var max_delay = 0;
     var delay = 0;
     var parent = null;
     [].forEach.call(document.querySelectorAll(class_name), function (el) {
@@ -305,12 +306,14 @@ function hide_class(class_name) {
             parent = el.parentElement;
         }
         delay = delay + 0.15;
+        max_delay = Math.max(delay, max_delay);
         el.style.animationName = "fadeout_and_hide";
-        el.style.animationDuration =  "1s";
+        el.style.animationDuration =  "0.5s";
         el.style.animationDelay = delay + "s";
         // animate(el, "fadeout_and_hide", delay);
         el.addEventListener("animationend", hidefunc);
     });
+    return max_delay + 0.5;
 }
 
 function show_class(class_name) {
@@ -334,15 +337,20 @@ var compact = false;
 function compact_view() {
     compact = !compact;
     if (compact) {
-        hide_class(".compactable");
-        show_class(".compact");
+        var hide_delay = hide_class(".compactable");
+        window.setTimeout(function() {
+            show_class(".compact");
+        }, hide_delay * 1000);
         document.getElementById("compact").value = "Full view";
     }
     else {
-        hide_class(".compact");
-        show_class(".compactable");
+        var hide_delay = hide_class(".compact");
+        window.setTimeout(function() {
+            show_class(".compactable");
+        }, hide_delay * 1000);
+        // show_class(".compactable");
         document.getElementById("compact").value = "Compact view";
     }
 }
 
-compact_view();
+// compact_view();
