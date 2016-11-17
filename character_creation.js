@@ -8,13 +8,17 @@ function clear_table(table) {
 }
 
 function setup_tables(character) {
+    document.getElementById("character_name_compact").innerHTML = character.character_name;
+    document.getElementById("player_name_compact").innerHTML = character.player_name;
     document.getElementById("character_name").value = character.character_name;
     document.getElementById("player_name").value = character.player_name;
     document.getElementById("character_name").oninput = function() {
         character.character_name = this.value;
+        document.getElementById("character_name_compact").innerHTML = character.character_name;
     };
     document.getElementById("player_name").oninput = function() {
         character.player_name = this.value;
+        document.getElementById("player_name_compact").innerHTML = character.player_name;
     };
 
     setup_attribute_table("stats", stats, character);
@@ -223,6 +227,11 @@ loaded_character.weapons["Sword & Shield"] = 1;
 
 setup_tables(loaded_character);
 
+[].forEach.call(document.querySelectorAll('.compact'), function (el) {
+    el.style.display = "none";
+});
+
+
 function save_local() {
     if (!loaded_character.character_name || loaded_character.character_name == "") {
         alert("Not a valid character name");
@@ -276,44 +285,64 @@ function open_local() {
     }
 }
 
+
+function animate(element, animation_name, delay) {
+    element.style.animationName = animation_name;
+    element.style.animationDuration =  "0.75s";
+    element.style.animationDelay = delay + "s";
+}
+
 var hidefunc = function() {
     this.style.display = "none";
 };
+
+function hide_class(class_name) {
+    var delay = 0;
+    var parent = null;
+    [].forEach.call(document.querySelectorAll(class_name), function (el) {
+        if (el.parentElement !== parent) {
+            delay = 0;
+            parent = el.parentElement;
+        }
+        delay = delay + 0.15;
+        el.style.animationName = "fadeout_and_hide";
+        el.style.animationDuration =  "1s";
+        el.style.animationDelay = delay + "s";
+        // animate(el, "fadeout_and_hide", delay);
+        el.addEventListener("animationend", hidefunc);
+    });
+}
+
+function show_class(class_name) {
+    var delay = 0;
+    var parent = null;
+    [].forEach.call(document.querySelectorAll(class_name), function (el) {
+        if (el.parentElement !== parent) {
+            delay = 0;
+            parent = el.parentElement;
+        }
+        delay = delay + 0.15;
+        el.style.display = "";
+        el.style.animationName = "fadein_and_show";
+        el.style.animationDuration = 1 + "s";
+        el.style.animationDelay = delay + "s";
+        el.removeEventListener("animationend", hidefunc);
+    });
+}
+
 var compact = false;
 function compact_view() {
     compact = !compact;
     if (compact) {
-        var lol = 0;
-        var parent = null;
-        [].forEach.call(document.querySelectorAll('.compactable'), function (el) {
-            if (el.parentElement !== parent) {
-                lol = 0;
-                parent = el.parentElement;
-            }
-            lol = lol + 0.05;
-            el.style.animationName = "fadeout_and_hide";
-            el.style.animationDuration =  0.5 + "s";
-            el.style.animationDelay = lol + "s";
-
-            el.addEventListener("animationend", hidefunc);
-        });
+        hide_class(".compactable");
+        show_class(".compact");
         document.getElementById("compact").value = "Full view";
     }
     else {
-        var lol = 0;
-        var parent = null;
+        hide_class(".compact");
+        show_class(".compactable");
         document.getElementById("compact").value = "Compact view";
-        [].forEach.call(document.querySelectorAll('.compactable'), function (el) {
-            if (el.parentElement !== parent) {
-                lol = 0;
-                parent = el.parentElement;
-            }
-            lol = lol + 0.05;
-            el.style.display = "";
-            el.style.animationName = "fadein_and_show";
-            el.style.animationDuration = 1 + "s";
-            el.style.animationDelay = lol + "s";
-            el.removeEventListener("animationend", hidefunc);
-        });
     }
 }
+
+compact_view();

@@ -4,13 +4,13 @@ var attributes = [
     "Strength",
     "Agility",
     "Wisdom",
-    "Charisma"
+    "Charisma",
+    "Health"
 ];
 
 var stats = [
     "Level",
     "Money",
-    "Health",
     "Fate Points"
 ];
 
@@ -61,7 +61,8 @@ var default_character = {
         Strength: 0,
         Agility: 0,
         Wisdom: 0,
-        Charisma: 0
+        Charisma: 0,
+        Health: 0,
     },
     // attribute_modifiers: {
     //     Strength: 0,
@@ -73,7 +74,6 @@ var default_character = {
         Level: 1,
         Money: 0,
         "Fate Points": 0,
-        Health: 0,
     },
     race: "Human",
     perks: {

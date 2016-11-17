@@ -25,23 +25,36 @@
         <hr style="clear: both;" />
     </div>
 
-    <div id="header">
+    <div id="header" class="compactable">
         <div class="logo">
             <span>
-                Pocket Task Force Fantasy Edition
+                Pocket Task Force: Fantasy Edition
            </span>
         </div>
         <div class="name">
-            <span>
+            <span class="name">
                 Player name
            </span>
-           <input type="text" id="player_name">
+           <input type="text" id="player_name" class="name">
         </div>
         <div class="name">
-            <span>
+            <span class="name">
                 Character name
            </span
-           ><input type="text" id="character_name">
+           ><input type="text" id="character_name" class="name">
+        </div>
+    </div>
+
+    <div id="header2lol" class="compact">
+        <div class="logo">
+            <span>
+                Pocket Task Force: Fantasy Edition
+           </span>
+        </div>
+        <div class="name">
+            <span class="name" id="player_name_compact"></span>
+            as
+            <span class="name" id="character_name_compact"></span>
         </div>
     </div>
 
@@ -57,9 +70,6 @@
             <td class="attribute">
                 Fate Points
             </td>
-            <td class="attribute">
-                Health
-            </td>
         </tr>
         <tr>
             <td class="writeable_attribute" id="Level">
@@ -67,8 +77,6 @@
             <td class="writeable_attribute" id="Money">
             </td>
             <td class="writeable_attribute" id="Fate Points">
-            </td>
-            <td class="writeable_attribute" id="Health">
             </td>
         </tr>
     </table>
@@ -87,6 +95,9 @@
             <td class="attribute">
                 Charisma
             </td>
+            <td class="attribute">
+                Health
+            </td>
         </tr>
         <tr>
             <td class="writeable_attribute" id="Strength">
@@ -96,6 +107,8 @@
             <td class="writeable_attribute" id="Wisdom">
             </td>
             <td class="writeable_attribute" id="Charisma">
+            </td>
+            <td class="writeable_attribute" id="Health">
             </td>
         </tr>
     </table>
@@ -147,6 +160,25 @@
             </thead>
             <tbody></tbody>
         </table>
+    </div>
+
+    <hr/>
+    <div id="rules">
+        <ul>
+            <li>Rolls on actions performed by character
+                are rolled with a number of D6 (six-sided dice).</li>
+            <li>The result of a die roll counts as following: 1: Critical fail. 2-3: Fail. 4-5: Success. 6: Critical success.</li>
+            <li>1D6 means: One six sided die.</li>
+            <li>AD6 means: Look at character's Agility. Roll that
+                many D6.</li>
+            <li>SD6, WD6, CD6 means: Same as AD6 but look at
+                Strength, Wisdom, Charisma.</li>
+            <li>AD6 * Strength for an action means:
+                Roll AD6. Count the number of successes.
+                Multiply that number with the character's Strength.</li>
+            <li></li>
+
+        </ul>
     </div>
 
     <p id="TESTLOL" class="compactable">Test strings come here</p>
