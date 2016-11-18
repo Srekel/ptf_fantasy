@@ -26,6 +26,7 @@ function setup_tables(character) {
     setup_race_table("races", races, character);
     setup_perk_table("perks", perks, character);
     setup_weapon_table("weapons", weapons, character);
+    setup_technique_table("techniques", techniques, character);
 }
 
 function setup_attribute_table(table_name, attributes, character) {
@@ -41,11 +42,14 @@ function setup_attribute_table(table_name, attributes, character) {
                 if (value != null) {
                     character_attributes[attribute] = parseInt(value);
                     cell.innerHTML = value;
+                    character_update_attributes(character);
+                    setup_tables(character);
                 }
             };
         }
     });
 }
+
 function setup_race_table(table_name, races, character) {
     var race_table = document.getElementById(table_name);
     clear_table(race_table);
@@ -221,9 +225,52 @@ function setup_weapon_table(table_name, weapons, character) {
     };
 }
 
+function setup_technique_table(table_name, techniques, character) {
+    var techniques_table = document.getElementById(table_name);
+    clear_table(techniques_table);
+
+    for (var technique_name in techniques) {
+        var row = techniques_table.tBodies[0].insertRow(-1);
+        row.className = "part";
+        row.onclick = function(){
+            var cell = this.getElementsByTagName("td")[0];
+            var id = cell.innerHTML;
+            if (!character.techniques[id]) {
+                character.techniques[id] = 1;
+            }
+            else {
+                character.techniques[id] = null;
+            }
+            character_update_attributes(character);
+            setup_tables(character);
+        };
+
+        var namecell = row.insertCell(-1);
+        namecell.className = "part_name";
+        namecell.innerHTML = technique_name;
+
+        var valuecell = row.insertCell(-1);
+        valuecell.className = "part_value";
+
+        var character_techniques = character.techniques;
+        if (character_techniques[technique_name]) {
+            valuecell.className = "part_value_selected";
+            valuecell.innerHTML = character_techniques[technique_name];
+        }
+        else {
+            row.className += " compactable";
+        }
+
+        var descriptioncell = row.insertCell(-1);
+        descriptioncell.className = "part_description";
+        descriptioncell.innerHTML = techniques[technique_name].description;
+    };
+}
+
 loaded_character = character_create();
 loaded_character.perks.Berzerker = 1;
 loaded_character.weapons["Sword & Shield"] = 1;
+loaded_character.techniques["The Omnislash"] = 1;
 
 setup_tables(loaded_character);
 

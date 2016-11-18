@@ -38,7 +38,7 @@ var perks = {
     Fighter: {description: "+1 Strength.", modifier: function(character) { character.attributes.Strength += 1;}},
     Frenzied: {description: "+1 Attack Die."},
     Blocker: {description: "+1 Block Die."},
-    Sniper: {description: "+2 DPS with range on unsuspecting enemy."},
+    Sniper: {description: "+2 DPS with ranged on unsuspecting enemy."},
     Tank: {description: "+5 Health.", modifier: function(character) { character.attributes.Health += 5;}},
 };
 
@@ -58,16 +58,17 @@ var weapons = {
 };
 
 var techniques = {
-    "The Follow-up": {description: "After an Attack, do a new one with CS-2D6"},
-    "The Switcharoo": {description: "After an Block, you and enemy switch place."},
-    "The Omnislash": {description: "After an Attack, hit every enemy around you with -2D6."},
-    "The Shank": {description: "After an Attack with Daggers, "},
+    "The Follow-up": {description: "After an Attack, do a new one with +CS-2D6."},
+    "The Switcharoo": {description: "After a Block, you and enemy switch place."},
+    "The Omnislash": {description: "After an Attack, hit every enemy around you with +CS-2D6."},
+    "The Shank": {description: "After an Attack with Daggers, do CS new attacks with -2D6."},
+    "The Chain Reaction": {description: "After an Attack that kills, take a move action towards an enemy."},
 }
 
 var default_character = {
     id: null,
-    character_name: "Alhandra",
-    player_name: "Wil Wheaton",
+    character_name: "Srekel",
+    player_name: "Anders",
     attributes: {
         Strength: 0,
         Agility: 0,
@@ -90,6 +91,8 @@ var default_character = {
     perks: {
     },
     weapons: {
+    },
+    techniques: {
     }
 };
 
@@ -127,5 +130,5 @@ function character_update_attributes(character) {
         }
     }
 
-    character.stats.Health = race[race_indices.Health];
+    character.attributes.Health += character.attributes.Strength * (character.stats.Level - 1);
 }
