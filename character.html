@@ -164,21 +164,52 @@
 
     <hr/>
     <div id="rules">
-        <ul>
-            <li>Rolls on actions performed by character
-                are rolled with a number of D6 (six-sided dice).</li>
-            <li>The result of a die roll counts as following: 1: Critical fail. 2-3: Fail. 4-5: Success. 6: Critical success.</li>
-            <li>1D6 means: One six sided die.</li>
-            <li>AD6 means: Look at character's Agility. Roll that
-                many D6.</li>
-            <li>SD6, WD6, CD6 means: Same as AD6 but look at
-                Strength, Wisdom, Charisma.</li>
-            <li>AD6 * Strength for an action means:
-                Roll AD6. Count the number of successes.
-                Multiply that number with the character's Strength.</li>
-            <li></li>
+        <div>
+            <h2>Action Tests</h2>
+            <ol>
+                <li>Rolls on actions performed by character
+                    are rolled with a number of D6 (six-sided dice).</li>
+                <li>After rolling, the player can use one or more Fate Points to affect the result. Each FP can:
+                    <ul>
+                        <li>Reroll one die.</li>
+                        <li>Increase the value of one die AND reduce another die.</li>
+                        <li>Add one more die to the roll.</li>
+                    </ul>
+                </li>
+                <li>The result of a die roll counts as following:
+                    <ul>
+                        <li>1: Critical Fail (CF)</li>
+                        <li>2-3: Fail</li>
+                        <li>4-5: Success</li>
+                        <li>6: Critical Success (CS)</li>
+                    </ul>
+                </li>
+                <li>Each CS cancels out a CF. If there are no CFs, it cancels a
+                    Fail. Similarly, CFs cancels CSs and Successes.</li>
+                <li>When done Fate Pointing, the follow effect happens:
+                    <ul>
+                        <li>1 CF: </li>
+                        <li>1 CF: </li>
+                        <li>1 CS: </li>
+                        <li>1 CF: </li>
+                    </ul>
+                </li>
+                <li>If there are more ones than total successes, the action has critically failed, and vice versa for critical successes.</li>
+                <!--<li>If the player rolls two sixes, she gets a Fate Point (FP).</li>-->
 
-        </ul>
+
+                <li>1D6 means: One six sided die.</li>
+                <li>AD6 means: Look at character's Agility. Roll that
+                    many D6.</li>
+                <li>SD6, WD6, CD6 means: Same as AD6 but look at
+                    Strength, Wisdom, Charisma.</li>
+                <li>AD6 * Strength for an action means:
+                    Roll AD6. Count the number of successes.
+                    Multiply that number with the character's Strength.</li>
+                <li></li>
+
+            </ol>
+        </div>
     </div>
 
     <p id="TESTLOL" class="compactable">Test strings come here</p>
