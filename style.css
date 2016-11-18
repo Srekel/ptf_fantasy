@@ -155,3 +155,7 @@ div.characterpart {
 #rules {
     max-width: 40em;
 }
+
+.keyword {
+    font-weight: bold;
+}

@@ -51,7 +51,18 @@ var weapons = {
         {action: "Attack", damage: "AD6 * Strength", rule:""},
         {action: "Block", damage: "AD6 * Strength", rule: "Can't both block and attack"}
     ],
+    "Double Daggers": [
+        {action: "Attack", damage: "AD6 * Agility", rule:"Armor reduces for each success."},
+        {action: "Block", damage: "AD6 * Strength", rule: ""}
+    ],
 };
+
+var techniques = {
+    "The Follow-up": {description: "After an Attack, do a new one with CS-2D6"},
+    "The Switcharoo": {description: "After an Block, you and enemy switch place."},
+    "The Omnislash": {description: "After an Attack, hit every enemy around you with -2D6."},
+    "The Shank": {description: "After an Attack with Daggers, "},
+}
 
 var default_character = {
     id: null,
