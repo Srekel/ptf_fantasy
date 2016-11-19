@@ -195,10 +195,10 @@
                 </li>
                 <li>The result of a D6 die roll counts as following:
                     <ul>
-                        <li>1: Critical Fail (CF)</li>
+                        <li>1: Critical Fail (<span class="keyword_cf">CF</span>)</li>
                         <li>2-3: Fail</li>
                         <li>4-5: Success</li>
-                        <li>6: Critical Success (CS)</li>
+                        <li>6: Critical Success (<span class="keyword_cs">CS</span>)</li>
                     </ul>
                     In other words, equal chance of succeding or failing.
                 </li>
@@ -209,20 +209,30 @@
                     </ul>
                     In other words, 25% chance of Fail, 75% chance of Success.
                 </li>
-                <li>Each CS cancels out a CF (discard both form result).
-                    If there are no CFs, it cancels a
-                    Fail. Similarly, CFs cancels CSs and Successes.</li>
-                <li>When done Fate Pointing, the follow effect happens:
+                <li>For each pair of <span class="keyword_cs">CS</span> and <span class="keyword_cf">CF</span>, remove both.</li>
+                <li>For each <span class="keyword_cf">CF</span>, if there is a Success, remove it. If not, change a Fail to a <span class="keyword_cf">CF</span>.</li>
+                <li>The following happens if there are any CSs left:
                     <ul>
-                        <li>1 CF: </li>
-                        <li>1 CF: </li>
-                        <li>1 CS: </li>
-                        <li>1 CF: </li>
+                        <li>The character can perform one or more Techniques.</li>
+                        <li>Performing a Technique cost at least one <span class="keyword_cs">CS</span>, but some allows
+                            you to spend more than one to enhance its effect.
+                        </li>
+                    </ul>
+                    And this happens if there are any CFs left.
+                    <ul>
+                        <li>Take all <span class="keyword_cf">CF</span> dice and roll them.</li>
+                        <li>Until there is only one left: Remove the smallest result, then
+                            the largest result, then the smallest, etc.
+                        </li>
+                        <li>Take that result and follow the result from this list, and use the General PTF Rule to determine what happens.</li>
+                        <li>1 <span class="keyword_cf">CF</span>: Trivial fumble. </li>
+                        <li>2 <span class="keyword_cf">CF</span>: Minor fumble.</li>
+                        <li>3 <span class="keyword_cf">CF</span>: Fumble.</li>
+                        <li>4 <span class="keyword_cf">CF</span>: Moderate Fumble.</li>
+                        <li>5 <span class="keyword_cf">CF</span>: Serious Fumble.</li>
+                        <li>6+ <span class="keyword_cf">CF</span>: Critical Fumble.</li>
                     </ul>
                 </li>
-                <li>If there are more ones than total successes, the action has critically failed, and vice versa for critical successes.</li>
-                <!--<li>If the player rolls two sixes, she gets a Fate Point (FP).</li>-->
-
 
                 <li>1D6 means: One six sided die.</li>
                 <li>AD6 means: Look at character's Agility. Roll that

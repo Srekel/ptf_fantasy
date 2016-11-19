@@ -159,3 +159,13 @@ div.characterpart {
 .keyword {
     font-weight: bold;
 }
+
+.keyword_cs {
+    color: mediumblue;
+    font-weight: bold;
+}
+
+.keyword_cf {
+    font-weight: bold;
+    color: red;
+}
