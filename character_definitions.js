@@ -15,7 +15,7 @@ var stats = [
 ];
 
 var races = {
-    Human: [3, 3, 3, 3, 15, "Gets Fate Point on 2 sixes"],
+    Human: [3, 3, 3, 3, 15, "Can exchange a single D6 for a D8 for Action Tests."],
     Dwarf: [4, 2, 3, 2, 20, "+1 start perk"],
     Elf: [2, 4, 4, 4, 10, "-1D6 for enemies"],
     Halfling: [2, 4, 3, 4, 10, "+1D6 for non-combat Agility rolls"],
@@ -30,16 +30,19 @@ var race_indices = {
 }
 
 var perks = {
-    Aggressor: {description: "Force one enemy to attack you."},
-    Backstabber: {description: "+1 DPS from behind."},
-    Berzerker: {description: "+1 DPS for both character and enemies."},
+    Backstabber: {description: "+1D6 from behind."},
+    Berzerker: {description: "+1D6 for both character and enemies."},
     Defender: {description: "-1 DPS for enemies."},
-    "Fast on Feet": {description: "+1 Agility.", modifier: function(character) { character.attributes.Agility += 1;}},
+    Mobile: {description: "+1 Agility.", modifier: function(character) { character.attributes.Agility += 1;}},
+    "Fast on Feet": {description: "Perform free move action on AD6 > 2."},
     Fighter: {description: "+1 Strength.", modifier: function(character) { character.attributes.Strength += 1;}},
-    Frenzied: {description: "+1 Attack Die."},
-    Blocker: {description: "+1 Block Die."},
-    Sniper: {description: "+2 DPS with ranged on unsuspecting enemy."},
-    Tank: {description: "+5 Health.", modifier: function(character) { character.attributes.Health += 5;}},
+    Frenzied: {description: "+1D6 for Attack."},
+    Blocker: {description: "+1D6 for Block."},
+    Sniper: {description: "+1D6 when attacking from more than 20 meters."},
+    Precise: {description: "+1 DPS when attacking."},
+    Tank: {description: "+10 Health.", modifier: function(character) { character.attributes.Health += 10;}},
+    Silent: {description: "+1D6 when trying to be silent."},
+    Ghost: {description: "+1D6 when trying to not be seen."},
 };
 
 var weapons = {
@@ -57,12 +60,21 @@ var weapons = {
     ],
 };
 
+var armors = {
+    "No armor": {rating: 0, rule: "+1 Agility, -1D6 for enemy attacks.", modifier: function(character) {character.attributes.Agility += 1;}},
+    "Leather armor": {rating: 2, rule: "+1 Agility.", modifier: function(character) {character.attributes.Agility += 1;}},
+    "Plate armor": {rating: 6, rule: ""}
+}
+
 var techniques = {
-    "The Follow-up": {description: "After an Attack, do a new one with +CS-2D6."},
-    "The Switcharoo": {description: "After a Block, you and enemy switch place."},
-    "The Omnislash": {description: "After an Attack, hit every enemy around you with +CS-2D6."},
+    "The Follow-up": {description: "Perform a free Attack on same enemy with -1D6."},
+    "The Omnislash": {description: "Attack hits one more target, both with -1D6."},
     "The Shank": {description: "After an Attack with Daggers, do CS new attacks with -2D6."},
-    "The Chain Reaction": {description: "After an Attack that kills, take a move action towards an enemy."},
+    "The Chain Reaction": {description: "Attack with -1D6. If it kills, take a free move action towards an enemy."},
+    "The Piercer": {description: "Attack with -1D6. Armor counts as one level weaker."},
+    "The Switcharoo": {description: "Block with -1D6. If no damage is taken, switch places."},
+    "The Disarm": {description: "Block with -1D6. If no damage is taken, enemy is disarmed."},
+    "The Taunt": {description: "If a block blocks all damage, force one enemy to attack you."},
 }
 
 var default_character = {
@@ -88,9 +100,10 @@ var default_character = {
         "Fate Points": 0,
     },
     race: "Human",
-    perks: {
-    },
     weapons: {
+    },
+    armor: "No armor",
+    perks: {
     },
     techniques: {
     }
@@ -131,4 +144,8 @@ function character_update_attributes(character) {
     }
 
     character.attributes.Health += character.attributes.Strength * (character.stats.Level - 1);
+    var armor_modifier_func = armors[character.armor].modifier;
+    if (armor_modifier_func) {
+        armor_modifier_func(character);
+    }
 }

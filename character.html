@@ -9,10 +9,6 @@
     <script src="character_definitions.js" defer></script>
     <script src="character_creation.js" defer></script>
 
-    <div id="test">
-        Page loaded
-    </div>
-
     <div>
         <!--<form onsubmit="save_local()">-->
             <input type="submit" value="Save (local)" onclick="save_local()">
@@ -114,7 +110,7 @@
     </table>
 
     <div class="characterpart">
-        <table class="characterpart" id="races">
+        <table class="characterpart" id="race">
             <thead>
                 <tr>
                     <td class="part_name">Race</td>
@@ -132,19 +128,6 @@
     </div>
 
     <div class="characterpart">
-        <table class="characterpart" id="perks">
-            <thead>
-                <tr>
-                    <td class="part_name">Perks</td>
-                    <td class="perk_value"></td>
-                    <td class="part_race_attribute">Description</td>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div>
-
-    <div class="characterpart">
         <table class="characterpart" id="weapons">
             <thead>
                 <tr>
@@ -153,6 +136,33 @@
                     <td class="part_race_attribute">Action</td>
                     <td class="part_race_attribute">Damage</td>
                     <td class="part_race_attribute">Rule</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="characterpart">
+        <table class="characterpart" id="armor">
+            <thead>
+                <tr>
+                    <td class="part_name">Armor</td>
+                    <td class="perk_value"></td>
+                    <td class="part_race_attribute">Rating</td>
+                    <td class="part_race_attribute">Rule</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="characterpart">
+        <table class="characterpart" id="perks">
+            <thead>
+                <tr>
+                    <td class="part_name">Perks</td>
+                    <td class="perk_value"></td>
+                    <td class="part_race_attribute">Description</td>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -191,6 +201,7 @@
                         <li>Reroll one die.</li>
                         <li>Increase the value of one die AND reduce another die.</li>
                         <li>Add one more die to the roll.</li>
+                        <li>Turn one Success to a <span class="keyword_cs">CS</span> AND one Success to a Fail.</li>
                     </ul>
                 </li>
                 <li>The result of a D6 die roll counts as following:

@@ -23,9 +23,10 @@ function setup_tables(character) {
 
     setup_attribute_table("stats", stats, character);
     setup_attribute_table("attributes", attributes, character);
-    setup_race_table("races", races, character);
-    setup_perk_table("perks", perks, character);
+    setup_race_table("race", races, character);
     setup_weapon_table("weapons", weapons, character);
+    setup_armor_table("armor", armors, character);
+    setup_perk_table("perks", perks, character);
     setup_technique_table("techniques", techniques, character);
 }
 
@@ -222,6 +223,52 @@ function setup_weapon_table(table_name, weapons, character) {
             rulecell.innerHTML = action.rule;
         }
 
+    };
+}
+
+function setup_armor_table(table_name, armors, character) {
+    var armor_table = document.getElementById(table_name);
+    clear_table(armor_table);
+
+    for (var armorname in armors) {
+        if (!armors.hasOwnProperty(armorname)) {
+            continue;
+        }
+        var armor = armors[armorname];
+
+        var row = armor_table.tBodies[0].insertRow(-1);
+        row.className = "part";
+
+        var namecell = row.insertCell(-1);
+        namecell.className = "part_name";
+        namecell.innerHTML = armorname;
+
+        var valuecell = row.insertCell(-1);
+        valuecell.className = "part_value";
+        if (armorname == character.armor) {
+            valuecell.className = "part_value_selected";
+            valuecell.innerHTML = "X";
+            // valuecell.className += " compactable";
+        }
+        else {
+            row.className += " compactable";
+
+            row.onclick = function(){
+                var cell = this.getElementsByTagName("td")[0];
+                var id = cell.innerHTML;
+                character.armor = id;
+                character_update_attributes(character);
+                setup_tables(character);
+            };
+        }
+
+        var rating_cell = row.insertCell(-1);
+        rating_cell.className = "part_description";
+        rating_cell.innerHTML = armor.rating;
+
+        var rule_cell = row.insertCell(-1);
+        rule_cell.className = "part_description";
+        rule_cell.innerHTML = armor.rule;
     };
 }
 

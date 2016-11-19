@@ -1,7 +1,13 @@
 body {
     background-color: #fff;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    animation: page_fadein 1s;
 }
+@keyframes page_fadein {
+    from { background-color: #eee; color:gray; }
+    to { background-color: white; color:black;}
+}
+
 #header{
     /*background-color: red;*/
     overflow:hidden;
@@ -35,6 +41,10 @@ table {
     border-spacing: 0px;
     border-collapse: separate;
 }
+table.characterpart {
+    border-spacing: 1px;
+    border-collapse: separate;
+}
 thead td {
     font-size:18px;
     font-weight: bold;
@@ -58,7 +68,7 @@ td.part_name {
 td.part_value {
     height:1em;
     width: 1em;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 thead td.part_name {
     width: 10em;
@@ -100,18 +110,7 @@ table.characterpart tr.part:hover {
     /*vertical-align: middle;*/
 }
 
-#test {
-    margin-top: 25px;
-    font-size: 21px;
-    text-align: center;
-    animation: fadein 1s;
-    color: white;
-}
 
-@keyframes fadein {
-    from { background-color: green; color:black; }
-    to { background-color: white; color:white;}
-}
 form * {
     display: block;
     margin: 10px;
