@@ -41,6 +41,8 @@ var perks = {
     Sniper: {description: "+1D6 when attacking from more than 20 meters."},
     Precise: {description: "+1 DPS when attacking."},
     Tank: {description: "+10 Health.", modifier: function(character) { character.attributes.Health += 10;}},
+    Archer: {description: "+1D6 with bows."},
+    Bullseye: {description: "+1D6 with bows when shooting an object."},
     Silent: {description: "+1D6 when trying to be silent."},
     Ghost: {description: "+1D6 when trying to not be seen."},
 };
@@ -75,6 +77,7 @@ var techniques = {
     "The Switcharoo": {description: "Block with -1D6. If no damage is taken, switch places."},
     "The Disarm": {description: "Block with -1D6. If no damage is taken, enemy is disarmed."},
     "The Taunt": {description: "If a block blocks all damage, force one enemy to attack you."},
+    "The Sneak Attack": {description: "Attack is -1D6 to hit, and +1D6 to remain unnoticed."},
 }
 
 var default_character = {
