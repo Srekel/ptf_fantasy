@@ -187,9 +187,9 @@
     <hr/ class="compactable">
     <div id="rules" class="compactable">
         <h1>Introduction to Pocket Task Force</h1>
-        <p>Pocket Task Force - PTF - is a pen-and-paper Role Playing Game the following USPs:
+        <p>Pocket Task Force - PTF - is a pen-and-paper Role Playing Game with the following USPs:
             <ol>
-                <li>Everyone is the Game Master together. (See The PTF Rule for how this works)</li>
+                <li>Everyone is the Game Master together. (See The PTF Rule below for how this works)</li>
                 <li>It's compact. The rules are no more than a few pages long.</li>
                 <li>Combat is deadly. Attempts to hack-and-slash your way to a mission will
                     likely lead to the death of all of your characters.</li>
@@ -205,8 +205,8 @@
         </p>
 
         <p>The original Pocket Task Force was set in a near-future setting where the players
-            played agents working for 'evil' corporations, doing less than legal missions for them.
-            In PTF: Fantasy Edition, you play as up-and-coming adventurers, taking jobs for...
+            played agents working for 'evil' corporations, doing less than legal missions for them.</p>
+        <p>In <span class="keyword">PTF: Fantasy Edition</span>, you play as up-and-coming adventurers, taking jobs for...
             Well, you decide! While you'll face goblins and bandits and caravans and other
             things you might expect in a fantasy world, the gameplay of PTF is unlike anything
             you've tried before. :)</p>
@@ -275,7 +275,7 @@
                     </ul>
                 </li>
                 <li>For each pair of <span class="keyword_cs">CS</span> and <span class="keyword_cf">CF</span>, remove both.</li>
-                <li>For each <span class="keyword_cf">CF</span>, if there is a Success, remove it. If not, change a Fail to a <span class="keyword_cf">CF</span>.</li>
+                <li>For each pair of <span class="keyword_cf">CF</span> and Success, remove both.</li>
                 <li>The following happens if there are any <span class="keyword_cs">CS</span>s left:
                     <ul>
                         <li>All the <span class="keyword_cs">CS</span>s counts as Success. In addition, roll one D6 for each CS and follow this table:</li>
@@ -298,7 +298,7 @@
             </ol>
 
             <h2>Nomenclature</h2>
-           <ol>
+            <ol>
                 <li>1D6 means: One six sided die.</li>
                 <li>1D6 means: One eight sided die. Et cetera.</li>
                 <li>AD6 means: Look at character's Agility. Roll that
@@ -308,26 +308,34 @@
                 <li>AD6 * Strength for an action means:
                     Roll AD6. Count the number of successes.
                     Multiply that number with the character's Strength.</li>
+                <li>AWD6 means:
+                    Add your Agility and Wisdom together. Roll that many D6s.</li>
             </ol>
 
             <h2>Combat</h2>
             <p>In combat, each character (player, allies, and enemies) has 2 actions per round. Each action can be used for
                 either movement or an attack.
-                The character with the highest Wisdom goes first. Tie breakers are Agility and then Strength.</p>
+                Roll an AWD6 Action Test for each combatant at the start of the combat. Highest value goes first.</p>
+            <p>When attacking, look at the Attack action of your equipped weapon. Roll the dice and calculate the total damage.
+                Then subtract the enemy's armor rating from the damage. Subtract the damage from the total health. If that reaches 0,
+                the enemy has died.
+            </p>
+            <p>A Move Action allows you to move five meters. Using two move actions in one turn takes you roughly 20 meters.</p>
 
             <h2>Sneaking</h2>
             <p>Combat is deadly in Pocket Task Force, so it's often a better idea to sneak past an enemy, or take them out
-            without anyone else noticing. To sneak past someone, roll an AWD6 Action Test. The result needs to be higher
-            than 1 plus modifiers. These modifiers are best left up to decide on the spot, but here are some guidelines:</p>
+            without anyone else noticing. To sneak past someone, roll an WD6 * Agility Action Test. The result needs to be higher
+            than the enemy's Wisdom + modifiers. These modifiers are best left up to decide on the spot, but here are some guidelines:</p>
             <ul>
-                <li>In field of view and in light: 2</li>
-                <li>In field of view and in dark: 2</li>
-                <li>Within 5 meters on noisy ground (e.g. twigs): 2</li>
-                <li>Farther than 10 meters on soft ground (e.g. leaves): -1</li>
+                <li>In field of view and in light: 3</li>
+                <li>In field of view and in dark: 1</li>
+                <li>Within 5 meters on noisy ground (e.g. twigs): 3</li>
+                <li>Within 10 meters on soft ground (e.g. dirt): 1</li>
                 <li>Per enemy: 1</li>
                 <li>Enemy is on alert: 1</li>
                 <li>Enemy is looking for player: 1</li>
             </ul>
+            <p>Note that in some cases making sound doesn't play in, and in some cases visibility doesn't play in.
         </div>
     </div>
 

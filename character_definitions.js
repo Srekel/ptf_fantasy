@@ -41,6 +41,7 @@ var perks = {
     Sniper: {description: "+1D6 when attacking from more than 20 meters."},
     Precise: {description: "+1 DPS when attacking."},
     Tank: {description: "+10 Health.", modifier: function(character) { character.attributes.Health += 10;}},
+    Initiator: {description: "+1D6 for initiative."},
     Archer: {description: "+1D6 with bows."},
     Bullseye: {description: "+1D6 with bows when shooting an object."},
     Silent: {description: "+1D6 when trying to be silent."},
@@ -65,7 +66,7 @@ var weapons = {
 var armors = {
     "No armor": {rating: 0, rule: "+1 Agility, -1D6 for enemy attacks.", modifier: function(character) {character.attributes.Agility += 1;}},
     "Leather armor": {rating: 2, rule: "+1 Agility.", modifier: function(character) {character.attributes.Agility += 1;}},
-    "Plate armor": {rating: 6, rule: ""}
+    "Plate armor": {rating: 10, rule: "Sneak roll -1D6."}
 }
 
 var techniques = {
