@@ -1,0 +1,30 @@
+body {
+    background-color: #fff;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    animation: page_fadein 1s;
+    max-width: 40em;
+}
+@keyframes page_fadein {
+    from { background-color: #eee; color:gray; }
+    to { background-color: white; color:black;}
+}
+
+.logo {
+    font-size: 2em;
+}
+
+.keyword {
+    font-weight: bold;
+}
+
+thead {
+    font-weight: bold;
+}
+
+th {
+    background-color: #fa0;
+    padding: 1em;
+}
+td {
+    padding: 1em;
+}

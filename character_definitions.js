@@ -20,6 +20,7 @@ var races = {
     Elf: [2, 4, 4, 4, 10, "-1D6 for enemies"],
     Halfling: [2, 4, 3, 4, 10, "+1D6 for non-combat Agility rolls"],
     Orc: [4, 4, 2, 2, 20, "+1D6 when flanked"],
+    Goblin: [2, 2, 1, 1, 20, ""],
 };
 var race_indices = {
     Strength: 0,
