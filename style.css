@@ -158,6 +158,12 @@ div.characterpart {
     max-width: 40em;
 }
 
+@media print { 
+    #rules {
+        max-width: none;
+    }
+}
+
 .keyword {
     font-weight: bold;
 }
