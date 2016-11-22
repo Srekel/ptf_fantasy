@@ -20,7 +20,7 @@ var races = {
     Elf: [2, 4, 4, 4, 10, "-1D6 for enemies"],
     Halfling: [2, 4, 3, 4, 10, "+1D6 for non-combat Agility rolls"],
     Orc: [4, 4, 2, 2, 20, "+1D6 when flanked"],
-    Goblin: [2, 2, 1, 1, 20, ""],
+    Goblin: [2, 2, 1, 1, 10, ""],
 };
 var race_indices = {
     Strength: 0,
@@ -31,9 +31,11 @@ var race_indices = {
 }
 
 var perks = {
+    Ambidextrous: {description: "+1D6 when using two items."},
     Backstabber: {description: "+1D6 from behind."},
     Berzerker: {description: "+1D6 for both character and enemies."},
     Defender: {description: "-1 DPS for enemies."},
+    Dodger: {description: "-1D6 for enemies."},
     Mobile: {description: "+1 Agility.", modifier: function(character) { character.attributes.Agility += 1;}},
     "Fast on Feet": {description: "Perform free move action on AD6 > 2."},
     Fighter: {description: "+1 Strength.", modifier: function(character) { character.attributes.Strength += 1;}},
@@ -47,6 +49,9 @@ var perks = {
     Bullseye: {description: "+1D6 with bows when shooting an object."},
     Silent: {description: "+1D6 when trying to be silent."},
     Ghost: {description: "+1D6 when trying to not be seen."},
+    "Guardian Angel": {description: "Get an FP at the start of each mission."},
+    "On the Move": {description: "Can move and attack the same action with -1D6."},
+    "Technical": {description: "Ignore one -1D6 when using a technique, per action."},
 };
 
 var weapons = {
@@ -61,6 +66,15 @@ var weapons = {
     "Double Daggers": [
         {action: "Attack", damage: "AD6 * Agility", rule:"Armor reduces for each success."},
         {action: "Block", damage: "AD6 * Strength", rule: ""}
+    ],
+    "Short Bow": [
+        {action: "Attack", damage: "AD6 * Agility", rule:"-1D6 for each 5m distance."}
+    ],
+    "Long Bow": [
+        {action: "Attack", damage: "AD6 * Strength", rule:"-1D6 for each 15m distance."}
+    ],
+    "Crossbow": [
+        {action: "Attack", damage: "AD6 * Wisdom", rule:"-1D6 for each 15m distance. Ignores 50% armor."}
     ],
 };
 
@@ -80,6 +94,7 @@ var techniques = {
     "The Disarm": {description: "Block with -1D6. If no damage is taken, enemy is disarmed."},
     "The Taunt": {description: "If a block blocks all damage, force one enemy to attack you."},
     "The Sneak Attack": {description: "Attack is -1D6 to hit, and +1D6 to remain unnoticed."},
+    "The Silent Takedown": {description: "Attack is -1D6 to hit, and +2D6 to remain unnoticed if it kills."},
 }
 
 var default_character = {
