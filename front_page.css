@@ -10,11 +10,35 @@ body {
 }
 
 #header {
+      position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
     /*height: 100em;*/
     /*display: flex;*/
-    align-items: center;
-    justify-content: center;
+    /*align-items: center;
+    justify-content: center;*/
     background: white;
+    padding: 1em;
+}
+
+#logo {
+    white-space:nowrap;
+    text-shadow: 2px 2px 2px #575;
+}
+
+#tagline * {
+    background: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    /*text-align: justify;*/
+    /*text-align-last: justify;*/
+    text-justify: inter-word;
+    padding: 1em;
+}
+
+#about_short {
 }
 
 #about_long {
