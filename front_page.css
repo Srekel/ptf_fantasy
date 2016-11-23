@@ -1,0 +1,22 @@
+body {
+    background-color: #cdc;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    animation: page_fadein 1s;
+}
+
+@keyframes page_fadein {
+    from { color:gray; }
+    to { color:black;}
+}
+
+#header {
+    /*height: 100em;*/
+    /*display: flex;*/
+    align-items: center;
+    justify-content: center;
+    background: white;
+}
+
+#about_long {
+    display:none;
+}
