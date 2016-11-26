@@ -1,5 +1,5 @@
 body {
-    background-color: #cdc;
+    background-color: #333;
     font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
     animation: page_fadein 1s;
 }
@@ -21,26 +21,101 @@ body {
     justify-content: center;*/
     background: white;
     padding: 1em;
+    margin:0;
+    /*background: red;*/
+}
+
+#logo * {
+    white-space:nowrap;
+    text-shadow: 2px 2px 2px #565;
+    /*background: #fad;*/
+    margin: 0em;
+    text-align: center;
 }
 
 #logo {
-    white-space:nowrap;
-    text-shadow: 2px 2px 2px #575;
+    margin-bottom: 2em;
 }
 
-#tagline * {
-    background: #fff;
+#tagline {
+    margin: 0em;
+    /*background: #ffA;*/
+}
+#tagline p {
+    /*margin: 0em;*/
     text-align: center;
-    text-transform: uppercase;
-    /*text-align: justify;*/
-    /*text-align-last: justify;*/
-    text-justify: inter-word;
-    padding: 1em;
+    /*text-transform: uppercase;*/
+    text-align: justify;
+    text-align-last: justify;
+    /*text-justify: inter-word;*/
+    padding-bottom: 2em;
+    text-shadow: 1px 1px 2px #555;
+    font-variant: small-caps;
+    /*font*/
 }
 
-#about_short {
+a {
+    text-decoration: none;
+    color:#333;
 }
 
-#about_long {
-    display:none;
+a:visited {
+    color:#222;
+}
+
+a:hover {
+    color:black;
+}
+
+.item * {
+    margin:10px;
+    padding:1em;
+    text-align: center;
+}
+
+.item:hover {
+    font-weight: bold;
+    /*text-decoration: underline;*/
+    text-decoration-style: dotted;
+    /*cursor: pointer;*/
+}
+
+#intro * {
+    background: #fc3;
+}
+
+#intro *:hover{
+    background: #fd8;
+}
+
+#character * {
+    background: #7a3;
+}
+
+#character *:hover{
+    background: #ac5;
+}
+
+#rules * {
+    background: cornflowerblue;
+}
+
+#rules *:hover{
+    background: #5af;
+}
+
+#mission * {
+    background: mediumpurple;
+}
+
+#mission *:hover{
+    background: #faf;
+}
+
+#campaign * {
+    background: mediumpurple;
+}
+
+#campaign *:hover{
+    background: #faf;
 }

@@ -1,67 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pocket Task Force Fantasy</title>
     <meta charset="UTF-8">
-    <LINK href="front_page.css" rel="stylesheet" type="text/css">
+    <title>Pocket Task Force: Fantasy Edition</title>
+    <link href="front_page.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div id="header">
         <div id="logo">
-            <h1>Pocket Task Force: Fantasy Edition</h1>
+            <h1>Pocket Task Force</h1><h2>Fantasy Edition</h2>
         </div>
-
+<!--
         <div id="tagline">
             <p>Everyone is the Game Master</p>
+        </div>-->
+
+        <div id="about_short" onclick="show_about_long();">
         </div>
 
-        <div id="about_short" onclick="alert('LOL');">
-            Introduction to PTF
+        <a href="rules.html#introduction">
+        <div id="intro" class="item">
+            <p>Introduction to PTF</p>
         </div>
+        </a>
 
-        <div id="about_long">
-            <h1>Introduction to Pocket Task Force</h1>
-            <p>Pocket Task Force - PTF - is a pen-and-paper Role Playing Game with the following USPs:
-                <ol>
-                    <li>Everyone is the Game Master together. (See The PTF Rule below for how this works)</li>
-                    <li>It's compact. The rules are no more than a few pages long. You can almost literally
-                        carry it in your pocket!</li>
-                    <li>Combat is deadly. Attempts to hack-and-slash your way to a mission will
-                        likely lead to the death of all of your characters.</li>
-                    <li>Planning is half the game. Often you'll need to do something that requires
-                        a lot of forethought.</li>
-                    <li>Teamwork is key. You'll likely need to cover all sorts of situations, and
-                        no one character can know or do everything.</li>
-                    <li>Freedom of character building. No classes, no skill trees. Build your character
-                        as you'd like her to be.</li>
-                    <li>Studying long tomes of lore are not needed to play the game - just jump in
-                        and make it up on the spot!</li>
-                </ol>
-            </p>
-
-            <h1>What's different about Pocket Task Force: Fantasy Edition?</h1>
-            <p>The setting is the obvious part. The original Pocket Task Force was set in a near-future setting where the players
-                played agents working for 'evil' corporations, doing less than legal missions for them.</p>
-            <p>In <span class="keyword">PTF: Fantasy Edition</span>, you play as up-and-coming adventurers, taking jobs for...
-                Well, you decide! While you'll face goblins and bandits and caravans and other
-                things you might expect in a fantasy world, the gameplay of PTF is unlike anything
-                you've tried before. :)</p>
-            <p>The most iconic part about PTF - that everyone is the Game Master, and The PTF Rule - is identical. All other
-                rules are have been re-made from scratch to better suit a fantasy theme: character creation and development,
-                dice rolling, combat, etc.
-            </p>
-            <p>There's a lot more in PTF: Fantasy. Maybe this is due to fantasy being a richer theme than near-future-sci-fi,
-                or maybe it's just because we're fleshing it out. To counteract the character sheet not fitting into a single
-                side of an sheet of A4, there's now a "web app" that can export something more compact.
-            </p>
+        <a href="character.html">
+        <div id="character" class="item">
+            <p>Create a character</p>
         </div>
+        </a>
 
-        <div id="gate">
-            <ul>
-                <li>Read the rules</li>
-                <li>Create a character</li>
-            </ul>
+        <a href="rules.html#rules">
+        <div id="rules" class="item">
+            <p>Read the rules</p>
         </div>
+        </a>
+
+        <a href="missions/the_recipe.html">
+        <div id="mission" class="item">
+            <p>Play a mission</p>
+        </div>
+        </a>
+
+        <!--<a href="missions/the_recipe.html">-->
+        <div id="campaign" class="item">
+            <p>Play a campaign [SOON]</p>
+        </div>
+        <!--</a>-->
     </div>
+
+    <script>
+        "use strict"
+        // var about_long = document.getElementById("about_long");
+        // var about_long = document.getElementById("about_long");
+
+        // // var height = about_long.height;
+        // about_long.style.display = "none";
+
+        // function show_about_long() {
+        //     if (about_long.style.display == "") {
+        //         about_long.style.display = "none";
+        //     }
+        //     else {
+        //         about_long.style.display = "";
+        //         // about_long.style.transform = trans
+        //     }
+        // }
+
+        // function show_about_short() {
+        //     about_long.style.display = "none";
+        // }
+
+        // document.getElementById("gate").innerHTML = height;
+    </script>
 </body>
 </html>

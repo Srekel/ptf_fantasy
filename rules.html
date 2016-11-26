@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PTF Fantasy - Rules</title>
+    <link href="rules.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div id="introduction" class="content">
+        <h1>Introduction to Pocket Task Force</h1>
+        <p>Pocket Task Force - PTF - is a pen-and-paper Role Playing Game with the following USPs:
+            <ol>
+                <li>Everyone is the Game Master together. (See The PTF Rule below for how this works)</li>
+                <li>It's compact. The rules are no more than a few pages long. You can almost literally
+                    carry it in your pocket!</li>
+                <li>Combat is deadly. Attempts to hack-and-slash your way to a mission will
+                    likely lead to the death of all of your characters.</li>
+                <li>Planning is half the game. Often you'll need to do something that requires
+                    a lot of forethought.</li>
+                <li>Teamwork is key. You'll likely need to cover all sorts of situations, and
+                    no one character can know or do everything.</li>
+                <li>Freedom of character building. No classes, no skill trees. Build your character
+                    as you'd like her to be.</li>
+                <li>Studying long tomes of lore are not needed to play the game - just jump in
+                    and make it up on the spot!</li>
+            </ol>
+        </p>
+
+        <h1>What's different about Pocket Task Force: Fantasy Edition?</h1>
+        <p>The setting is the obvious part. The original Pocket Task Force is set in a near-future setting where the players
+            play agents working for 'evil' corporations, doing less than legal missions.</p>
+        <p>In <span class="keyword">PTF: Fantasy Edition</span>, you play as up-and-coming adventurers, taking jobs for...
+            Well, you decide! While you'll face goblins and bandits and caravans and other
+            things you might expect in a fantasy world, the gameplay of PTF is unlike anything
+            you've tried before. :)</p>
+        <p>The most iconic part about PTF - that everyone is the Game Master, and The PTF Rule - is identical. All other
+             rules are have been re-made from scratch to better suit a fantasy theme: character creation and development,
+             dice rolling, combat, etc.
+        </p>
+        <p>There's a lot more in PTF: Fantasy. Maybe this is due to fantasy being a richer theme than near-future-sci-fi,
+            or maybe it's just because we're fleshing it out. To counteract the character sheet not fitting into a single
+            side of an sheet of A4, there's now a "web app" that can export something more compact.
+        </p>
+    </div>
+
+    <div id="rules" class="content">
+        <h1>Rules</h1>
+        <div>
+            <h2>The PTF Rule</h2>
+            <p>PTF is defined more than anything by its main rule, or mechanic.
+                In Pocket Task Force, everyone is the GM, or Game Master, together. To
+                determine the state of the world, a character, an object, or
+                to resolve what happens in a particular situation this is what
+                the GMs do:
+                <ol>
+                    <li>Talk and figure out the various reasonable options.</li>
+                    <li>Discuss their relative likelyhood/probability.</li>
+                    <li>Arrange it on a scale of a die of your choosing.
+                        D10 or D20 is recommended due to splitting up into
+                        easy-to-understand chunks of 5 or 10 percent.</li>
+                    <li>Roll the die!</li>
+                </ol>
+                For example:
+                <ol>
+                    <li>The weather could be sunny, cloudy, or rainy.</li>
+                    <li>It was earlier decided that the game takes place in a desert.</li>
+                    <li>So let's say 75% chance of sun, 20% cloudy, 5% rain. On a D20
+                        that's 1-15 = sun, 16-19 = clouds, 20 = rain.
+                    </li>
+                    <li>A roll of 1 could be interpreted as it's not only sunny, but
+                        scorching hot. 15 could be that there are some thin white
+                        clouds forming in the sky.
+                    </li>
+                </ol>
+                The mechanic is super simple but extremely powerful - and fun!
+            </p>
+
+            <h2>Character creation</h2>
+            <ol>
+                <li>Pick a race.</li>
+                <li>Pick two weapons.</li>
+                <li>Pick an armor.</li>
+                <li>Pick two perks.</li>
+                <li>Pick one technique.</li>
+                <li>Roll a D6 - the result is your Luck.</li>
+            </ol>
+
+            <h2>Action Tests</h2>
+            <ol>
+                <li>Rolls on actions performed by character
+                    are rolled with a number of D6 (six-sided dice).</li>
+                <li>Before rolling, the character may
+                    <span class="keyword">Concentrate</span>: Discard
+                    two or more D6 and replace them with one D8 for every pair of D6.</li>
+                <li>The result of a D6 die roll counts as following:
+                    <ul>
+                        <li>1: Critical Fail (<span class="keyword_cf">CF</span>)</li>
+                        <li>2-3: Fail</li>
+                        <li>4-5: Success</li>
+                        <li>6: Critical Success (<span class="keyword_cs">CS</span>)</li>
+                    </ul>
+                    In other words, equal chance of succeding or failing.
+                </li>
+                <li>The result of a D8 die roll counts as following:
+                    <ul>
+                        <li>1-2: Fail</li>
+                        <li>3-8: Success</li>
+                    </ul>
+                    In other words, 25% chance of Fail, 75% chance of Success.
+                </li>
+                <li>After rolling, the player can use one or more
+                    Fate Points to affect the result. Each FP can:
+                    <ul>
+                        <li>Reroll one die.</li>
+                        <li>Add one D6 to the roll.</li>
+                        <li>Turn one Success to a <span class="keyword_cs">CS</span> AND one Success to a Fail.</li>
+                        <li>Increase the value of one die AND reduce another die. (?)</li>
+                    </ul>
+                </li>
+                <li>For each pair of <span class="keyword_cs">CS</span> and <span class="keyword_cf">CF</span>, remove both.</li>
+                <li>For each pair of <span class="keyword_cf">CF</span> and Success, remove both.</li>
+                <li>The following happens if there are any <span class="keyword_cs">CS</span>s left:
+                    <ul>
+                        <li>All the <span class="keyword_cs">CS</span>s counts as Success. In addition, roll one D6 for each CS and follow this table:</li>
+                        <li>1-2: Gain one Fate Point.</li>
+                        <li>3-4: Count an additional Success.</li>
+                        <li>5: Use a Technique without drawback.</li>
+                        <li>6: Take 1D8 and store it for the character's next Action Test.</li>
+                    </ul>
+                </li>
+                <li>And this happens if there are any <span class="keyword_cf">CF</span>s left.
+                    <ul>
+                        <li>Follow the result from this list, and use The PTF Rule to determine what happens.</li>
+                        <li>1 <span class="keyword_cf">CF</span>: Trivial fumble. </li>
+                        <li>2 <span class="keyword_cf">CF</span>: Minor fumble.</li>
+                        <li>3 <span class="keyword_cf">CF</span>: Fumble.</li>
+                        <li>4 <span class="keyword_cf">CF</span>: Moderate Fumble.</li>
+                        <li>5 <span class="keyword_cf">CF</span>: Serious Fumble.</li>
+                        <li>6+ <span class="keyword_cf">CF</span>: Critical Fumble.</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h2>Nomenclature</h2>
+            <ol>
+                <li>1D6 means: One six sided die.</li>
+                <li>1D6 means: One eight sided die. Et cetera.</li>
+                <li>AD6 means: Look at character's Agility. Roll that
+                    many D6.</li>
+                <li>SD6, WD6, CD6 means: Same as AD6 but look at
+                    Strength, Wisdom, Charisma.</li>
+                <li>AD6 * Strength for an action means:
+                    Roll AD6. Count the number of successes.
+                    Multiply that number with the character's Strength.</li>
+                <li>AWD6 means:
+                    Add your Agility and Wisdom together. Roll that many D6s.</li>
+            </ol>
+
+            <h2>Combat</h2>
+            <p>In combat, each character (player, allies, and enemies) has 2 actions per round. Each action can be used for
+                either movement or an attack. Initiators get one extra action first round if they surprise the enemy.</p>
+            <p>To determine who goes first, roll an AWD6 Action Test for each combatant at the start of the combat.
+                Highest value goes first.</p>
+            <p>When attacking, look at the Attack action of the character's equipped weapon. Roll the dice and calculate the total damage.
+                Then subtract the enemy's armor rating from the damage. Subtract the damage from the total health. If that reaches 0,
+                the enemy has died.</p>
+            <p>A Move Action allows you to move five meters. Using two move actions in one turn takes you roughly 20 meters.</p>
+            <p>When a character has less than half health left, she gets -1D6 on all rolls.</p>
+
+            <h2>Sneaking</h2>
+            <p>Combat is deadly in Pocket Task Force, so it's often a better idea to sneak past an enemy, or take them out
+            without anyone else noticing. To sneak past someone, roll an WD6 * Agility Action Test. The result needs to be higher
+            than the enemy's Wisdom + modifiers. These modifiers are best left up to decide on the spot, but here are some guidelines:</p>
+            <ul>
+                <li>In field of view and in light: 3</li>
+                <li>In field of view and in dark: 1</li>
+                <li>Within 5 meters on noisy ground (e.g. twigs): 3</li>
+                <li>Within 10 meters on soft ground (e.g. dirt): 1</li>
+                <li>Per enemy: 1</li>
+                <li>Enemy is on alert: 1</li>
+                <li>Enemy is looking for player: 1</li>
+            </ul>
+            <p>Note that in some cases making sound doesn't play in, and in some cases visibility doesn't play in.
+
+            <h2>Techniques</h2>
+            <p>A Technique is a way to amplify an action. Think of how Legolas jumps, stabs, and shoots in
+                a continous motion.</p>
+            <p>Techniques can be combined, chained, and stacked. For example, if you have the chops for it, you could attack
+                someone with two instances of The Piercer, then do a The Follow-up, and finish it off with
+                The Chain Reaction, moving to a new enemy.
+            </p>
+            <p>Technique costs are cumulative, so in the example above, the initial piercing attack would be made
+                with -2D6, and the follow-up chain reaction attack -4D6.
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
