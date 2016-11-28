@@ -10,12 +10,14 @@ body {
 }
 
 .content {
+    /*position:absolute;*/
     /*left: 50%;*/
-    /*transform: translate(-50%, -50%);*/
+    /*transform: translateX(-50%);*/
     background: white;
     padding: 5em;
     margin:5em;
     max-width: 40em;
+    /*left: 50%;*/
 }
 /*
 #introduction {
