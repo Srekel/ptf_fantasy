@@ -74,7 +74,7 @@ var weapons = {
         {action: "Attack", damage: "AD6 * Strength", rule:"-1D6 for each 15m distance."}
     ],
     "Crossbow": [
-        {action: "Attack", damage: "AD6 * Wisdom", rule:"-1D6 for each 15m distance. Ignores 50% armor."}
+        {action: "Attack", damage: "AD6 * Wisdom", rule:"-1D6 for each 15m distance. Pierces 2 armor."}
     ],
 };
 
@@ -95,6 +95,27 @@ var techniques = {
     "The Taunt": {description: "If a block blocks all damage, force one enemy to attack you."},
     "The Sneak Attack": {description: "Attack is -1D6 to hit, and +1D6 to remain unnoticed."},
     "The Silent Takedown": {description: "Attack is -1D6 to hit, and +2D6 to remain unnoticed if it kills."},
+}
+
+var conversation_skills = {
+    Lie: {description: "Convince NPC of a falsehood."},
+    Bluff: {description: "Tell NPC you have something you don't have, or will do something you won't do."},
+    Intimidate: {description: "Threaten NPC through body language."},
+    Threaten: {description: "Threaten NPC with words."},
+    Blackmail: {description: "Threaten NPC with exposing secret."},
+    Grab: {description: "Lay hands on NPC. Not necessarily violently."},
+    Choke: {description: "Stranglehold on NPC."},
+    "Friendly shoulder-box": {description: "Attempt to be friendly with NPC."},
+    Wink: {description: "Subtly hint something at NPC."},
+    "Invade personal space": {description: "Stand uncomfortably close to NPC."},
+    Belittle: {description: "Make NPC feel inferior."},
+    Interrupt: {description: "Talk over NPC."},
+    Swear: {description: "Say something nasty."},
+    Insult: {description: "Say something bad about NPC."},
+    Ignore: {description: "Pretend not to hear NPC."},
+    Ridicule: {description: "Make fun of NPC."},
+    Listen: {description: "Listen attentively to NPC."},
+    Yawn: {description: "Act uninterested in NPC."},
 }
 
 var default_character = {

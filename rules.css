@@ -30,3 +30,8 @@ body {
 .keyword {
     font-weight: bold;
 }
+
+.important {
+    font-weight: bold;
+    /*font-style: italic;*/
+}
