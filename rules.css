@@ -35,3 +35,7 @@ body {
     font-weight: bold;
     /*font-style: italic;*/
 }
+
+.highlight {
+    font-style: italic;
+}
