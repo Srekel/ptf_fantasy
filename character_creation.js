@@ -2,12 +2,74 @@
 
 var loaded_character = null;
 
+function resolve_value(value, character, compact) {
+    if (!compact) {
+        var d6index = value.indexOf("D6")
+        if (d6index != -1) {
+            value = value.substr(0, d6index) + " D6";
+        }
+        return value;
+    }
+
+    var tokens = value.split(" ");
+    for(var i = 0; i < tokens.length; i++) {
+        var token = tokens[i];
+        var d6index = token.indexOf("D6");
+        if (d6index != -1) {
+            var total = 0;
+            for(var comp_i = 0; comp_i < d6index; comp_i++) {
+                var number = parseInt(token[comp_i])
+                if (!isNaN(number))
+                    total = total + number;
+                else if(token[comp_i]  == "S")
+                    total = total + character.attributes.Strength;
+                else if(token[comp_i]  == "A")
+                    total = total + character.attributes.Agility;
+                else if(token[comp_i]  == "W")
+                    total = total + character.attributes.Wisdom;
+                else if(token[comp_i]  == "C")
+                    total = total + character.attributes.Charisma;
+            }
+
+            tokens[i] = String(total) + " D6";
+        }
+        else if (token == "Strength") {
+            tokens[i] = character.attributes.Strength;
+        }
+        else if (token == "Agility") {
+            tokens[i] = character.attributes.Agility;
+        }
+        else if (token == "Wisdom") {
+            tokens[i] = character.attributes.Wisdom;
+        }
+        else if (token == "Charisma") {
+            tokens[i] = character.attributes.Charisma;
+        }
+    }
+
+    for(var i = 0; i < tokens.length; i++) {
+        var token = tokens[i];
+        if (token == "+") {
+            tokens[i] = parseInt(tokens[i-1]) + parseInt(tokens[i+1])
+            tokens[i-1] = ""
+            tokens[i+1] = ""
+        }
+        else if (token == "*") {
+            tokens[i] = parseInt(tokens[i-1]) * parseInt(tokens[i+1])
+            tokens[i-1] = ""
+            tokens[i+1] = ""
+        }
+    }
+
+    return tokens.join("");
+}
 function clear_table(table) {
     var new_tbody = document.createElement('tbody');
     table.replaceChild(new_tbody, table.tBodies[0])
 }
 
-function setup_tables(character) {
+function setup_tables(character, compact) {
+    compact = !!compact;
     document.getElementById("character_name_compact").innerHTML = character.character_name;
     document.getElementById("player_name_compact").innerHTML = character.player_name;
     document.getElementById("character_name").value = character.character_name;
@@ -155,12 +217,38 @@ function setup_perk_table(table_name, perks, character) {
     };
 }
 
-function setup_weapon_table(table_name, weapons, character) {
+function setup_weapon_table(table_name, weapons, character, compact) {
     var weapons_table = document.getElementById(table_name);
-    clear_table(weapons_table);
 
+    if (!compact) {
+        clear_table(weapons_table);
+        for (var weapon_name in weapons) {
+            var row = weapons_table.tBodies[0].insertRow(-1);
+            var namecell = row.insertCell(-1);
+            var valuecell = row.insertCell(-1);
+            var actioncell = row.insertCell(-1);
+            var dicecell = row.insertCell(-1);
+            var effectcell = row.insertCell(-1);
+            var rulecell = row.insertCell(-1);
+
+            var weapon = weapons[weapon_name];
+            var actions = weapon;
+
+            for (var index = 1; index < actions.length; index++) {
+                var action = actions[index];
+                var action_row = weapons_table.tBodies[0].insertRow(-1);
+                var actioncell = action_row.insertCell(-1);
+                var dicecell = action_row.insertCell(-1);
+                var effectcell = action_row.insertCell(-1);
+                var rulecell = action_row.insertCell(-1);
+            }
+        }
+    }
+
+    var row_i = -1;
     for (var weapon_name in weapons) {
-        var row = weapons_table.tBodies[0].insertRow(-1);
+        row_i = row_i + 1
+        var row = weapons_table.tBodies[0].rows[row_i];
         row.className = "part";
         row.onclick = function(weapon_name) {
             if (!character.weapons[weapon_name]) {
@@ -175,12 +263,13 @@ function setup_weapon_table(table_name, weapons, character) {
 
         var weapon = weapons[weapon_name];
         var actions = weapon;
-        var namecell = row.insertCell(0);
+
+        var namecell = row.cells[0];
         namecell.className = "part_name";
         namecell.innerHTML = weapon_name;
         namecell.rowSpan = actions.length;
 
-        var valuecell = row.insertCell(-1);
+        var valuecell = row.cells[1];
         valuecell.className = "part_value";
         valuecell.rowSpan = actions.length;
 
@@ -193,32 +282,39 @@ function setup_weapon_table(table_name, weapons, character) {
             row.className += " compactable";
         }
 
-        var actioncell = row.insertCell(-1);
+        var actioncell = row.cells[2];
         actioncell.className = "part_description";
         actioncell.innerHTML = actions[0].action;
-        var checkcell = row.insertCell(-1);
-        checkcell.className = "part_description";
-        checkcell.innerHTML = actions[0].damage;
-        var rulecell = row.insertCell(-1);
+        var dicecell = row.cells[3];
+        dicecell.className = "part_description resolveable";
+        dicecell.innerHTML = resolve_value(actions[0].dicepool, character, compact);
+        var effectcell = row.cells[4];
+        effectcell.className = "part_description";
+        effectcell.innerHTML = resolve_value(actions[0].effect, character, compact);;
+        var rulecell = row.cells[5];
         rulecell.className = "part_description";
         rulecell.innerHTML = actions[0].rule;
 
         for (var index = 1; index < actions.length; index++) {
+            row_i = row_i + 1
             var action = actions[index];
-            var action_row = weapons_table.insertRow(-1);
+            var action_row = weapons_table.tBodies[0].rows[row_i];
             action_row.className = "part";
 
             if (!character_weapons[weapon_name]) {
                 action_row.className += " compactable";
             }
 
-            var actioncell = action_row.insertCell(-1);
+            var actioncell = action_row.cells[0];
             actioncell.className = "part_description";
             actioncell.innerHTML = action.action;
-            var checkcell = action_row.insertCell(-1);
-            checkcell.className = "part_description";
-            checkcell.innerHTML = action.damage;
-            var rulecell = action_row.insertCell(-1);
+            var dicecell = action_row.cells[1];
+            dicecell.className = "part_description resolveable";
+            dicecell.innerHTML = resolve_value(action.dicepool, character, compact);;
+            var effectcell = action_row.cells[2];
+            effectcell.className = "part_description";
+            effectcell.innerHTML = resolve_value(action.effect, character, compact);;
+            var rulecell = action_row.cells[3];
             rulecell.className = "part_description";
             rulecell.innerHTML = action.rule;
         }
@@ -318,7 +414,6 @@ loaded_character = character_create();
 loaded_character.perks.Berzerker = 1;
 loaded_character.weapons["Sword & Shield"] = 1;
 loaded_character.techniques["The Omnislash"] = 1;
-
 setup_tables(loaded_character);
 
 [].forEach.call(document.querySelectorAll('.compact'), function (el) {
@@ -445,6 +540,8 @@ function compact_view() {
         // show_class(".compactable");
         document.getElementById("compact").value = "Compact view";
     }
+
+    setup_weapon_table("weapons", weapons, loaded_character, compact);
 }
 
 // compact_view();

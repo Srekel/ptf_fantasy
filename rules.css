@@ -39,3 +39,13 @@ body {
 .highlight {
     font-style: italic;
 }
+
+.keyword_cs {
+    color: mediumblue;
+    font-weight: bold;
+}
+
+.keyword_cf {
+    font-weight: bold;
+    color: red;
+}

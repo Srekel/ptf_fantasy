@@ -20,7 +20,9 @@ var races = {
     Elf: [2, 4, 4, 4, 10, "-1D6 for enemies"],
     Halfling: [2, 4, 3, 4, 10, "+1D6 for non-combat Agility rolls"],
     Orc: [4, 4, 2, 2, 20, "+1D6 when flanked"],
-    Goblin: [2, 2, 1, 1, 10, ""],
+    Goblin: [2, 2, 2, 2, 10, ""],
+    Ogre: [5, 2, 1, 1, 10, ""],
+    Centaur: [3, 3, 3, 3, 20, "Double Strength when charging."],
 };
 var race_indices = {
     Strength: 0,
@@ -56,25 +58,25 @@ var perks = {
 
 var weapons = {
     "Sword & Shield": [
-        {action: "Attack", damage: "AD6 * Strength", rule:""},
-        {action: "Block", damage: "AD6 * Strength", rule:"Once per turn"}
+        {action: "Attack", dicepool: "AAD6", effect: "5 + Strength", rule:""},
+        {action: "Block", dicepool: "SD6", effect: "Strength", rule:"Once per turn"}
     ],
     "Two-handed Axe": [
-        {action: "Attack", damage: "AD6 * Strength", rule:""},
-        {action: "Block", damage: "AD6 * Strength", rule: "Can't both block and attack"}
+        {action: "Attack", dicepool: "AD6", effect: "2 * Strength", rule:""},
+        {action: "Block", dicepool: "SAD6", effect: "Strength", rule: "Can't both block and attack"}
     ],
     "Double Daggers": [
-        {action: "Attack", damage: "AD6 * Agility", rule:"Armor reduces for each success."},
-        {action: "Block", damage: "AD6 * Strength", rule: ""}
+        {action: "Attack", dicepool: "AAD6", effect: "Agility", rule:"Armor reduces for each success."},
+        {action: "Block", dicepool: "SAD6", effect: "1", rule: ""}
     ],
     "Short Bow": [
-        {action: "Attack", damage: "AD6 * Agility", rule:"-1D6 for each 5m distance."}
+        {action: "Attack", dicepool: "SAD6", effect: "Agility", rule:"-1D6 for each 5m distance."}
     ],
     "Long Bow": [
-        {action: "Attack", damage: "AD6 * Strength", rule:"-1D6 for each 15m distance."}
+        {action: "Attack", dicepool: "SAD6", effect: "Strength", rule:"-1D6 for each 15m distance."}
     ],
     "Crossbow": [
-        {action: "Attack", damage: "AD6 * Wisdom", rule:"-1D6 for each 15m distance. Pierces 2 armor."}
+        {action: "Attack", dicepool: "AWD6", effect: "5 + Wisdom", rule:"-1D6 for each 15m distance. Pierces 2 armor."}
     ],
 };
 

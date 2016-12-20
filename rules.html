@@ -83,7 +83,13 @@
         </div>
     </div>
     <div id="rules" class="content">
+        <h1>Rules for Player Characters</h1>
+        <p>So how do you do the role playing aspects of the game? How do you create a character, and how do you resolve if she's successful in her attempts to do stuff? This shit right here, that's how.</p>
+        <p>Note that things in this section are very much subject to change.</p>
+
         <h2>Character creation</h2>
+        <p>It's easy to get up and running in PTF. Creating a character is simple and fast - it shouldn't take more than ten minutes, even for a new player. However! If you create all your characters together, then you probably want to discuss amongst yourselves to find a good compisition. It's important to have spread out skills so you are ready for any kind of obstacle. This can significantly increase the time it takes to create characters, but of course, it's also a lot of fun. :)</p>
+        <p>Here's what you do:</p>
         <ol>
             <li>Pick a race.</li>
             <li>Pick two weapons.</li>
@@ -96,17 +102,15 @@
         <h2>Character development</h2>
         <p>After a completed session, you gain a level.</p>
         <ol>
-            <li>Pick one perks.</li>
-            <li>Pick one technique.</li>
+            <li>Increase you Health with an amount equal to your character's Strength. (Not sure about this)</li>
+            <li>Add one perk.</li>
+            <li>Add one technique.</li>
         </ol>
 
         <h2>Action Tests</h2>
         <ol>
-            <li>Rolls on actions performed by character
-                are rolled with a number of D6 (six-sided dice).</li>
-            <li>Before rolling, the character may
-                <span class="keyword">Concentrate</span>: Discard
-                two or more D6 and replace them with one D8 for every pair of D6.</li>
+            <li>Rolls on actions performed by character are rolled with a <span class="highlight">dice pool</span> - a number of D6 (six-sided dice).</li>
+            <li>Before rolling, the character may <span class="keyword">Concentrate</span>: Exchange one or more D6 for a D10.</li>
             <li>The result of a D6 die roll counts as following:
                 <ul>
                     <li>1: Critical Fail (<span class="keyword_cf">CF</span>)</li>
@@ -116,57 +120,48 @@
                 </ul>
                 In other words, equal chance of succeding or failing.
             </li>
-            <li>The result of a D8 die roll counts as following:
+            <li>The result of a D10 die roll counts as following:
                 <ul>
                     <li>1-2: Fail</li>
-                    <li>3-8: Success</li>
+                    <li>3-10: Success</li>
                 </ul>
-                In other words, 25% chance of Fail, 75% chance of Success.
+                In other words, 20% chance of Fail, 80% chance of Success. As you can see, using a D10 instead of a D6 increases the chance of a Success but removes any chance of getting a <span class="keyword_cs">CS</span> or <span class="keyword_cf">CF</span>.
             </li>
-            <li>After rolling, the player can use one or more
-                Fate Points to affect the result. Each FP can:
-                <ul>
-                    <li>Reroll one die.</li>
-                    <li>Add one D6 to the roll.</li>
-                    <li>Turn one Success to a <span class="keyword_cs">CS</span> AND one Success to a Fail.</li>
-                    <li>Increase the value of one die AND reduce another die. (?)</li>
-                </ul>
-            </li>
+            <li>After rolling, the player can use one or more Fate Points to affect the result. When using an FP you are allowed to reroll one or more dice. You can do this as many times as you like, for as long as you have FPs.</li>
             <li>For each pair of <span class="keyword_cs">CS</span> and <span class="keyword_cf">CF</span>, remove both.</li>
             <li>For each pair of <span class="keyword_cf">CF</span> and Success, remove both.</li>
             <li>The following happens if there are any <span class="keyword_cs">CS</span>s left:
                 <ul>
-                    <li>All the <span class="keyword_cs">CS</span>s counts as Success. In addition, roll one D6 for each CS and follow this table:</li>
-                    <li>1-2: Gain one Fate Point.</li>
-                    <li>3-4: Count an additional Success.</li>
-                    <li>5: Use a Technique without drawback.</li>
-                    <li>6: Take 1D8 and store it for the character's next Action Test.</li>
+                    <li>Each <span class="keyword_cs">CS</span> counts as <span class="important">two Successes</span>.
+                    <li>Gain one Fate Point.</li>
                 </ul>
             </li>
             <li>And this happens if there are any <span class="keyword_cf">CF</span>s left.
                 <ul>
-                    <li>Follow the result from this list, and use The PTF Rule to determine what happens.</li>
-                    <li>1 <span class="keyword_cf">CF</span>: Trivial fumble. </li>
-                    <li>2 <span class="keyword_cf">CF</span>: Minor fumble.</li>
-                    <li>3 <span class="keyword_cf">CF</span>: Fumble.</li>
-                    <li>4 <span class="keyword_cf">CF</span>: Moderate Fumble.</li>
-                    <li>5 <span class="keyword_cf">CF</span>: Serious Fumble.</li>
-                    <li>6+ <span class="keyword_cf">CF</span>: Critical Fumble.</li>
+                    <li>1 <span class="keyword_cf">CF</span>: Minor fumble. </li>
+                    <li>2 <span class="keyword_cf">CF</span>: Fumble.</li>
+                    <li>3 <span class="keyword_cf">CF</span>: Critical Fumble.</li>
+                    <li>4+ <span class="keyword_cf">CF</span>: Deadly Fumble.</li>
                 </ul>
+                Of course it would be futile to try and list all of the things that can go wrong when fumbling with every skill in every circumstance. Therefore, use The PTF Rule to determine what happens.
             </li>
+            <li>Finally, count up the number of total Successes. What happens with successes depends on what your character tried to do.</li>
         </ol>
+
+        <h3>Attack</h3>
+        <p>When attacking someone, you count the number of Successes and multiply that with the damage rating of the weapon,subtract the enemy's armor rating,</p>
+
         <h3>Working together</h3>
         <p>If two or more characters are trying to do the same thing, such as climb up some cliffs, they can help each other out. Any player who gets a <span class="keyword_cs">CS</span> can choose to give an extra D8 to a friend, instead of rolling on the <span class="keyword_cs">CS</span> table. This represents a skilled climber telling her partner where to grab and where to put the feet.</p>
         <p>If two or more characters are working together to achieve a goal, such as pushing a big rock, they both roll dice, then count all the results as if it was one big dice pool. Round up the number of remaining <span class="keyword_cs">CS</span>s to be a multiple of the number of characters.</p>
 
         <h2>Nomenclature</h2>
         <ol>
-            <li>1D6 means: One six sided die.</li>
-            <li>1D6 means: One eight sided die. Et cetera.</li>
-            <li>AD6 means: Look at character's Agility. Roll that
-                many D6.</li>
-            <li>SD6, WD6, CD6 means: Same as AD6 but look at
-                Strength, Wisdom, Charisma.</li>
+            <li>1D6 means: A single six sided die.</li>
+            <li>2D6 means: A pair of six sided dice.</li>
+            <li>1D10 means: One ten sided die.</li>
+            <li>AD6 means: Look at character's Agility. Roll that many D6.</li>
+            <li>SD6, WD6, CD6 means: Same as AD6 but look at Strength, Wisdom, Charisma.</li>
             <li>AD6 * Strength for an action means:
                 Roll AD6. Count the number of successes.
                 Multiply that number with the character's Strength.</li>
