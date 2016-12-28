@@ -122,6 +122,7 @@ function setup_tables(character, compact) {
     setup_armor_table("armor", armors, character);
     setup_perk_table("perks", perks, character);
     setup_technique_table("techniques", techniques, character);
+    setup_social_talents_table("social_talents", social_talents, character);
 }
 
 function setup_attribute_table(table_name, attributes, character) {
@@ -442,10 +443,59 @@ function setup_technique_table(table_name, techniques, character) {
     };
 }
 
+function setup_social_talents_table(table_name, social_talents, character) {
+    var social_talents_table = document.getElementById(table_name);
+    clear_table(social_talents_table);
+
+    for (var social_talent_name in social_talents) {
+        var row = social_talents_table.tBodies[0].insertRow(-1);
+        row.className = "part";
+        row.onclick = function(){
+            var cell = this.getElementsByTagName("td")[0];
+            var id = cell.innerHTML;
+            if (!character.social_talents[id]) {
+                character.social_talents[id] = 1;
+            }
+            else {
+                character.social_talents[id] = null;
+            }
+            character_update_attributes(character);
+            setup_tables(character);
+        };
+
+        var namecell = row.insertCell(-1);
+        namecell.className = "part_name";
+        namecell.innerHTML = social_talent_name;
+
+        var valuecell = row.insertCell(-1);
+        valuecell.className = "part_value";
+
+        var statecell = row.insertCell(-1);
+        statecell.className = "part_description";
+        if (social_talents[social_talent_name].state) {
+            statecell.innerHTML = social_talents[social_talent_name].state.replace(";", "<br/>").replace(";", "<br/>");
+        }
+
+        var character_social_talents = character.social_talents;
+        if (character_social_talents[social_talent_name]) {
+            valuecell.className = "part_value_selected";
+            valuecell.innerHTML = character_social_talents[social_talent_name];
+        }
+        else {
+            row.className += " compactable";
+        }
+
+        var descriptioncell = row.insertCell(-1);
+        descriptioncell.className = "part_description";
+        descriptioncell.innerHTML = social_talents[social_talent_name].description;
+    };
+}
+
 loaded_character = character_create();
 loaded_character.perks.Mobile = 1;
 loaded_character.weapons["Sword & Shield"] = 1;
 loaded_character.techniques["The Agile"] = 1;
+loaded_character.social_talents["Bluff"] = 1;
 character_update_attributes(loaded_character);
 setup_tables(loaded_character);
 
