@@ -15,14 +15,14 @@ var stats = [
 ];
 
 var races = {
-    Human: [3, 3, 3, 3, 15, "Can exchange a single D6 for a D8 for Action Tests."],
-    Dwarf: [4, 2, 3, 2, 20, "+1 start perk"],
-    Elf: [2, 4, 4, 4, 10, "-1D6 for enemies"],
-    Halfling: [2, 4, 3, 4, 10, "+1D6 for non-combat Agility rolls"],
-    Orc: [4, 4, 2, 2, 20, "+1D6 when flanked"],
+    Human: [3, 3, 3, 3, 20, "Can exchange a single D6 for a D8 for Action Tests."],
+    Dwarf: [4, 2, 3, 2, 30, "+1 start perk"],
+    Elf: [2, 4, 4, 4, 15, "-1D6 for enemies"],
+    Halfling: [2, 4, 3, 4, 15, "+1D6 for non-combat Agility rolls"],
+    Orc: [4, 4, 2, 2, 25, "+1D6 when flanked"],
     Goblin: [2, 2, 2, 2, 10, ""],
-    Ogre: [5, 2, 1, 1, 10, ""],
-    Centaur: [3, 3, 3, 3, 20, "Double Strength when charging."],
+    Ogre: [5, 2, 1, 1, 40, ""],
+    Centaur: [3, 3, 3, 3, 25, "Double Strength when charging."],
 };
 var race_indices = {
     Strength: 0,
@@ -33,70 +33,77 @@ var race_indices = {
 }
 
 var perks = {
+    Archer: {description: "+1D6 with bows."},
     Ambidextrous: {description: "+1D6 when using two items."},
     Backstabber: {description: "+1D6 from behind."},
     Berzerker: {description: "+1D6 for both character and enemies."},
-    Defender: {description: "-1 DPS for enemies."},
+    Blocker: {description: "+1D6 for Block."},
+    Bullseye: {description: "+1D6 with bows when shooting an object."},
+    Defender: {description: "-2 to enemy attack effect."},
     Dodger: {description: "-1D6 for enemies."},
-    Mobile: {description: "+1 Agility.", modifier: function(character) { character.attributes.Agility += 1;}},
-    "Fast on Feet": {description: "Perform free move action on AD6 > 2."},
+    "Fast on Feet": {description: "Extra action just for moving."},
     Fighter: {description: "+1 Strength.", modifier: function(character) { character.attributes.Strength += 1;}},
     Frenzied: {description: "+1D6 for Attack."},
-    Blocker: {description: "+1D6 for Block."},
-    Sniper: {description: "+1D6 when attacking from more than 20 meters."},
-    Precise: {description: "+1 DPS when attacking."},
-    Tank: {description: "+10 Health.", modifier: function(character) { character.attributes.Health += 10;}},
-    Initiator: {description: "+1D6 for initiative."},
-    Archer: {description: "+1D6 with bows."},
-    Bullseye: {description: "+1D6 with bows when shooting an object."},
-    Silent: {description: "+1D6 when trying to be silent."},
     Ghost: {description: "+1D6 when trying to not be seen."},
     "Guardian Angel": {description: "Get an FP at the start of each mission."},
-    "On the Move": {description: "Can move and attack the same action with -1D6."},
-    "Technical": {description: "Ignore one -1D6 when using a technique, per action."},
+    Initiator: {description: "+1D6 for initiative."},
+    Mobile: {description: "+1 Agility.", modifier: function(character) { character.attributes.Agility += 1;}},
+    Precise: {description: "+2 to attack effect."},
+    "Quick-Shot": {description: "+1 free attack with Short Bow when attacking twice in one turn."},
+    Silent: {description: "+1D6 when trying to be silent."},
+    Sniper: {description: "+1D6 when attacking from more than 20 meters."},
+    Surgical: {description: "Pierce +3."},
+    Tank: {description: "+10 Health.", modifier: function(character) { character.attributes.Health += 10;}},
+    Technical: {description: "Ignore one -1D6 when using a technique, per action."},
 };
 
 var weapons = {
     "Sword & Shield": [
-        {action: "Attack", dicepool: "AAD6", effect: "5 + Strength", rule:""},
-        {action: "Block", dicepool: "SD6", effect: "Strength", rule:"Once per turn"}
+        {action: "Attack", dicepool: "Agility D6", effect: "10 + Strength + Agility", rule:""},
+        {action: "Block", dicepool: "Strength - Damage / 10 D6", effect: "Block all.", rule:"Successive blocks get -1D6."}
     ],
     "Two-handed Axe": [
-        {action: "Attack", dicepool: "AD6", effect: "2 * Strength", rule:""},
-        {action: "Block", dicepool: "SAD6", effect: "Strength", rule: "Can't both block and attack"}
+        {action: "Attack", dicepool: "Strength D6", effect: "2 + 4 * Strength", rule:""},
+        {action: "Block", dicepool: "Strength - Damage / 5 D6", effect: "Block all.", rule: "Can't both block and attack."}
     ],
     "Double Daggers": [
-        {action: "Attack", dicepool: "AAD6", effect: "Agility", rule:"Armor reduces for each success."},
-        {action: "Block", dicepool: "SAD6", effect: "1", rule: ""}
+        {action: "Attack", dicepool: "Agility D6", effect: "2 * Agility", rule:"Effect is applied twice."},
+        {action: "Block", dicepool: "Agility - Damage / 5 D6", effect: "Block all.", rule: ""}
     ],
     "Short Bow": [
-        {action: "Attack", dicepool: "SAD6", effect: "Agility", rule:"-1D6 for each 5m distance."}
+        {action: "Attack", dicepool: "Agility D6", effect: "2 + 3 * Agility", rule:"-1D6 for each 5m distance."}
     ],
     "Long Bow": [
-        {action: "Attack", dicepool: "SAD6", effect: "Strength", rule:"-1D6 for each 15m distance."}
+        {action: "Attack", dicepool: "Agility D6", effect: "2 + 2 * Strength + Wisdom", rule:"-1D6 for each 15m distance. Pierce +3."}
     ],
     "Crossbow": [
-        {action: "Attack", dicepool: "AWD6", effect: "5 + Wisdom", rule:"-1D6 for each 15m distance. Pierces 2 armor."}
+        {action: "Attack", dicepool: "Agility D6", effect: "10 + 2 * Wisdom", rule:"-1D6 for each 15m distance. Pierce +6."},
+        {action: "Reload", dicepool: "Strength D6", effect: "", rule:"If successful, reload in one action. Otherwise, two actions."}
     ],
 };
 
 var armors = {
-    "No armor": {rating: 0, rule: "+1 Agility, -1D6 for enemy attacks.", modifier: function(character) {character.attributes.Agility += 1;}},
-    "Leather armor": {rating: 2, rule: "+1 Agility.", modifier: function(character) {character.attributes.Agility += 1;}},
-    "Plate armor": {rating: 10, rule: "Sneak roll -1D6."}
+    "No armor": {rating: 0, rule: "+1 Agility. -1D6 for enemy attacks.", modifier: function(character) {character.attributes.Agility += 1;}},
+    "Leather armor": {rating: 5, rule: "+1 Agility.", modifier: function(character) {character.attributes.Agility += 1;}},
+    "Plate armor": {rating: 10, rule: "Sneak roll -1D6. +1D6 for enemy attacks."}
 }
 
 var techniques = {
-    "The Follow-up": {description: "Perform a free Attack on same enemy with -1D6."},
-    "The Omnislash": {description: "Attack hits one more target, both with -1D6."},
-    "The Shank": {description: "After an Attack with Daggers, do CS new attacks with -2D6."},
+    "The Strong": {description: "Attack with -1D6. Strength +1 when resolving effect."},
+    "The Agile": {description: "Attack with -1D6. Agility +1 when resolving effect."},
+    "The Wise": {description: "Attack with -1D6. Wisdom +1 when resolving effect."},
     "The Chain Reaction": {description: "Attack with -1D6. If it kills, take a free move action towards an enemy."},
-    "The Piercer": {description: "Attack with -1D6. Armor counts as one level weaker."},
-    "The Switcharoo": {description: "Block with -1D6. If no damage is taken, switch places."},
-    "The Disarm": {description: "Block with -1D6. If no damage is taken, enemy is disarmed."},
-    "The Taunt": {description: "If a block blocks all damage, force one enemy to attack you."},
-    "The Sneak Attack": {description: "Attack is -1D6 to hit, and +1D6 to remain unnoticed."},
-    "The Silent Takedown": {description: "Attack is -1D6 to hit, and +2D6 to remain unnoticed if it kills."},
+    "The Defensive Offense": {description: "Attack with -1D6. Enemy gets -1D6 when attacking you."},
+    "The Follow-up": {description: "Attack with -1D6. Do an additional Attack on same enemy."},
+    "The Omnislash": {description: "Attack with -1D6. Resolve effect on one more target."},
+    "The Piercer": {description: "Attack with -1D6. Pierce +2."},
+    "The Sneak Attack": {description: "Attack with -1D6. +1D6 to remain unnoticed."},
+    "The Silent Takedown": {description: "Attack with -1D6. +2D6 to remain unnoticed if it kills."},
+    "The Shank": {description: "Attack with Daggers with -2D6. Do two additional attacks."},
+    "The Taunt": {description: "Block with -1D6. Force another enemy to attack you."},
+    "The Disarm": {description: "Block with -1D6. If successful, enemy is disarmed."},
+    "The Switcharoo": {description: "Block with -1D6. If successful, switch places."},
+    "The Fast Reload": {description: "Reload with -1D6. If successful, reload instantly."},
 }
 
 var conversation_skills = {

@@ -1,6 +1,7 @@
 "use strict";
 
 var loaded_character = null;
+var resolved = false;
 
 function resolve_value(value, character, compact) {
     if (!compact) {
@@ -16,22 +17,22 @@ function resolve_value(value, character, compact) {
         var token = tokens[i];
         var d6index = token.indexOf("D6");
         if (d6index != -1) {
-            var total = 0;
-            for(var comp_i = 0; comp_i < d6index; comp_i++) {
-                var number = parseInt(token[comp_i])
-                if (!isNaN(number))
-                    total = total + number;
-                else if(token[comp_i]  == "S")
-                    total = total + character.attributes.Strength;
-                else if(token[comp_i]  == "A")
-                    total = total + character.attributes.Agility;
-                else if(token[comp_i]  == "W")
-                    total = total + character.attributes.Wisdom;
-                else if(token[comp_i]  == "C")
-                    total = total + character.attributes.Charisma;
-            }
+        //     var total = 0;
+        //     for(var comp_i = 0; comp_i < d6index; comp_i++) {
+        //         var number = parseInt(token[comp_i])
+        //         if (!isNaN(number))
+        //             total = total + number;
+        //         else if(token[comp_i]  == "S")
+        //             total = total + character.attributes.Strength;
+        //         else if(token[comp_i]  == "A")
+        //             total = total + character.attributes.Agility;
+        //         else if(token[comp_i]  == "W")
+        //             total = total + character.attributes.Wisdom;
+        //         else if(token[comp_i]  == "C")
+        //             total = total + character.attributes.Charisma;
+        //     }
 
-            tokens[i] = String(total) + " D6";
+        //     tokens[i] = String(total) + " D6";
         }
         else if (token == "Strength") {
             tokens[i] = character.attributes.Strength;
@@ -47,21 +48,52 @@ function resolve_value(value, character, compact) {
         }
     }
 
-    for(var i = 0; i < tokens.length; i++) {
+    var new_tokens = [];
+    var i = 0;
+    while (i < tokens.length) {
         var token = tokens[i];
-        if (token == "+") {
-            tokens[i] = parseInt(tokens[i-1]) + parseInt(tokens[i+1])
-            tokens[i-1] = ""
-            tokens[i+1] = ""
+        if (token == "*") {
+            new_tokens[new_tokens.length-1] = parseInt(tokens[i-1]) * parseInt(tokens[i+1])
+            i = i + 2
         }
-        else if (token == "*") {
-            tokens[i] = parseInt(tokens[i-1]) * parseInt(tokens[i+1])
-            tokens[i-1] = ""
-            tokens[i+1] = ""
+        else {
+            new_tokens[new_tokens.length] = token;
+            i = i + 1
         }
     }
+    tokens = new_tokens;
 
-    return tokens.join("");
+    new_tokens = [];
+    i = 0;
+    while (i < tokens.length) {
+        var token = tokens[i];
+        if (token == "+") {
+            new_tokens[new_tokens.length-1] = parseInt(new_tokens[new_tokens.length-1]) + parseInt(tokens[i+1])
+            i = i + 2
+        }
+        else {
+            new_tokens[new_tokens.length] = token;
+            i = i + 1
+        }
+    }
+    tokens = new_tokens;
+
+
+    // for(var i = 0; i < tokens.length; i++) {
+    //     var token = tokens[i];
+    //     if (token == "+") {
+    //         tokens[i+1] = parseInt(tokens[i-1]) + parseInt(tokens[i+1])
+    //         tokens[i-1] = ""
+    //         tokens[i] = ""
+    //     }
+    //     else if (token == "*") {
+    //         tokens[i] = parseInt(tokens[i-1]) * parseInt(tokens[i+1])
+    //         tokens[i+1] = ""
+    //         tokens[i-1] = ""
+    //     }
+    // }
+
+    return tokens.join(" ");
 }
 function clear_table(table) {
     var new_tbody = document.createElement('tbody');
@@ -86,7 +118,7 @@ function setup_tables(character, compact) {
     setup_attribute_table("stats", stats, character);
     setup_attribute_table("attributes", attributes, character);
     setup_race_table("race", races, character);
-    setup_weapon_table("weapons", weapons, character);
+    setup_weapon_table("weapons", weapons, character, resolved);
     setup_armor_table("armor", armors, character);
     setup_perk_table("perks", perks, character);
     setup_technique_table("techniques", techniques, character);
@@ -286,7 +318,7 @@ function setup_weapon_table(table_name, weapons, character, compact) {
         actioncell.className = "part_description";
         actioncell.innerHTML = actions[0].action;
         var dicecell = row.cells[3];
-        dicecell.className = "part_description resolveable";
+        dicecell.className = "part_description rightcol resolveable";
         dicecell.innerHTML = resolve_value(actions[0].dicepool, character, compact);
         var effectcell = row.cells[4];
         effectcell.className = "part_description";
@@ -309,7 +341,7 @@ function setup_weapon_table(table_name, weapons, character, compact) {
             actioncell.className = "part_description";
             actioncell.innerHTML = action.action;
             var dicecell = action_row.cells[1];
-            dicecell.className = "part_description resolveable";
+            dicecell.className = "part_description rightcol resolveable";
             dicecell.innerHTML = resolve_value(action.dicepool, character, compact);;
             var effectcell = action_row.cells[2];
             effectcell.className = "part_description";
@@ -411,9 +443,10 @@ function setup_technique_table(table_name, techniques, character) {
 }
 
 loaded_character = character_create();
-loaded_character.perks.Berzerker = 1;
+loaded_character.perks.Mobile = 1;
 loaded_character.weapons["Sword & Shield"] = 1;
-loaded_character.techniques["The Omnislash"] = 1;
+loaded_character.techniques["The Agile"] = 1;
+character_update_attributes(loaded_character);
 setup_tables(loaded_character);
 
 [].forEach.call(document.querySelectorAll('.compact'), function (el) {
@@ -541,7 +574,11 @@ function compact_view() {
         document.getElementById("compact").value = "Compact view";
     }
 
-    setup_weapon_table("weapons", weapons, loaded_character, compact);
+}
+
+function resolve_view() {
+    resolved = !resolved;
+    setup_weapon_table("weapons", weapons, loaded_character, resolved);
 }
 
 // compact_view();

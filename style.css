@@ -1,11 +1,11 @@
 body {
-    background-color: #fff;
+    background-color: #ffe;
     font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-    animation: page_fadein 1s;
+    animation: page_fadein 3s;
 }
 @keyframes page_fadein {
-    from { background-color: #eee; color:gray; }
-    to { background-color: white; color:black;}
+    from { color:gray; }
+    to { color:black;}
 }
 
 #header{
@@ -23,9 +23,21 @@ div.name {
     /*max-height:20px;*/
     /*overflow:hidden;*/
 }
+span.name {
+    background-color: yellow;
+    padding: 0.5em;
+    margin-left: 1em;
+    font-weight: bold;
+    /*border-width: 1px;*/
+    /*border-color: silver;*/
+    /*border-style: solid;*/
+}
 input.name {
     font-size: 18px;
-    color:blue;
+    font-weight: bold;
+    background-color: #ffc;
+    color:#660;
+    padding-left: 1em;
 }
 #header span.name {
     font-size: 18px;
@@ -33,7 +45,8 @@ input.name {
 }
 #header2 span.name {
     font-size: 36px;
-    color:blue;
+    color:#660;
+    padding: 0.1em;
 }
 table {
     border-spacing-left: 0px;
@@ -104,6 +117,11 @@ tbody td.part_race_attribute {
     width: 4em;
 }
 
+td.rightcol {
+    text-align: right;
+    padding-right: 1.5em;
+}
+
 table.characterpart tr.part:hover {
     background-color: orange;
 }
@@ -158,7 +176,7 @@ div.characterpart {
     max-width: 40em;
 }
 
-@media print { 
+@media print {
     #rules {
         max-width: none;
     }
