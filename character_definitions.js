@@ -33,28 +33,28 @@ var race_indices = {
 }
 
 var perks = {
-    // Archer: {description: "+1D6 with bows."},
-    // Ambidextrous: {description: "+1D6 when using two items."},
-    // Backstabber: {description: "+1D6 from behind."},
-    // Berzerker: {description: "+1D6 for both character and enemies."},
-    // Blocker: {description: "+1D6 for Block."},
-    // Bullseye: {description: "+1D6 with bows when shooting an object."},
-    // Defender: {description: "-2 to enemy attack effect."},
-    // Dodger: {description: "-1D6 for enemies."},
-    // "Fast on Feet": {description: "Extra action just for moving."},
-    // Fighter: {description: "+1 Strength.", modifier: function(character) { character.attributes.Strength += 1;}},
-    // Frenzied: {description: "+1D6 for Attack."},
-    // Ghost: {description: "+1D6 when trying to not be seen."},
-    // "Guardian Angel": {description: "Get an FP at the start of each mission."},
-    // Initiator: {description: "+1D6 for initiative."},
+    Archer: {description: "+1D6 with bows."},
+    Ambidextrous: {description: "+1D6 when using two items."},
+    Backstabber: {description: "+1D6 from behind."},
+    Berzerker: {description: "+1D6 for both character and enemies."},
+    Blocker: {description: "+1D6 for Block."},
+    Bullseye: {description: "+1D6 with bows when shooting an object."},
+    Defender: {description: "-2 to enemy attack effect."},
+    Dodger: {description: "-1D6 for enemies."},
+    "Fast on Feet": {description: "Extra action just for moving."},
+    Fighter: {description: "+1 Strength.", modifier: function(character) { character.attributes.Strength += 1;}},
+    Frenzied: {description: "+1D6 for Attack."},
+    Ghost: {description: "+1D6 when trying to not be seen."},
+    "Guardian Angel": {description: "Get an FP at the start of each mission."},
+    Initiator: {description: "+1D6 for initiative."},
     Mobile: {description: "+1 Agility.", modifier: function(character) { character.attributes.Agility += 1;}},
-    // Precise: {description: "+2 to attack effect."},
-    // "Quick-Shot": {description: "+1 free attack with Short Bow when attacking twice in one turn."},
-    // Silent: {description: "+1D6 when trying to be silent."},
-    // Sniper: {description: "+1D6 when attacking from more than 20 meters."},
-    // Surgical: {description: "Pierce +3."},
-    // Tank: {description: "+10 Health.", modifier: function(character) { character.attributes.Health += 10;}},
-    // Technical: {description: "Ignore one -1D6 when using a technique, per action."},
+    Precise: {description: "+2 to attack effect."},
+    "Quick-Shot": {description: "+1 free attack with Short Bow when attacking twice in one turn."},
+    Silent: {description: "+1D6 when trying to be silent."},
+    Sniper: {description: "+1D6 when attacking from more than 20 meters."},
+    Surgical: {description: "Pierce +3."},
+    Tank: {description: "+10 Health.", modifier: function(character) { character.attributes.Health += 10;}},
+    Technical: {description: "Ignore one -1D6 when using a technique, per action."},
 };
 
 var weapons = {
@@ -62,69 +62,91 @@ var weapons = {
         {action: "Attack", dicepool: "Agility D6", effect: "10 + Strength + Agility", rule:""},
         {action: "Block", dicepool: "Strength - Damage / 10 D6", effect: "Block all.", rule:"Successive blocks get -1D6."}
     ],
-    // "Two-handed Axe": [
-    //     {action: "Attack", dicepool: "Strength D6", effect: "2 + 4 * Strength", rule:""},
-    //     {action: "Block", dicepool: "Strength - Damage / 5 D6", effect: "Block all.", rule: "Can't both block and attack."}
-    // ],
-    // "Double Daggers": [
-    //     {action: "Attack", dicepool: "Agility D6", effect: "2 * Agility", rule:"Effect is applied twice."},
-    //     {action: "Block", dicepool: "Agility - Damage / 5 D6", effect: "Block all.", rule: ""}
-    // ],
-    // "Short Bow": [
-    //     {action: "Attack", dicepool: "Agility D6", effect: "2 + 3 * Agility", rule:"-1D6 for each 5m distance."}
-    // ],
-    // "Long Bow": [
-    //     {action: "Attack", dicepool: "Agility D6", effect: "2 + 2 * Strength + Wisdom", rule:"-1D6 for each 15m distance. Pierce +3."}
-    // ],
-    // "Crossbow": [
-    //     {action: "Attack", dicepool: "Agility D6", effect: "10 + 2 * Wisdom", rule:"-1D6 for each 15m distance. Pierce +6."},
-    //     {action: "Reload", dicepool: "Strength D6", effect: "", rule:"If successful, reload in one action. Otherwise, two actions."}
-    // ],
+    "Two-handed Axe": [
+        {action: "Attack", dicepool: "Strength D6", effect: "2 + 4 * Strength", rule:""},
+        {action: "Block", dicepool: "Strength - Damage / 5 D6", effect: "Block all.", rule: "Can't both block and attack."}
+    ],
+    "Double Daggers": [
+        {action: "Attack", dicepool: "Agility D6", effect: "2 * Agility", rule:"Effect is applied twice."},
+        {action: "Block", dicepool: "Agility - Damage / 5 D6", effect: "Block all.", rule: ""}
+    ],
+    "Short Bow": [
+        {action: "Attack", dicepool: "Agility D6", effect: "2 + 3 * Agility", rule:"-1D6 for each 5m distance."}
+    ],
+    "Long Bow": [
+        {action: "Attack", dicepool: "Agility D6", effect: "2 + 2 * Strength + Wisdom", rule:"-1D6 for each 15m distance. Pierce +3."}
+    ],
+    "Crossbow": [
+        {action: "Attack", dicepool: "Agility D6", effect: "10 + 2 * Wisdom", rule:"-1D6 for each 15m distance. Pierce +6."},
+        {action: "Reload", dicepool: "Strength D6", effect: "", rule:"If successful, reload in one action. Otherwise, two actions."}
+    ],
 };
 
 var armors = {
     "No armor": {rating: 0, rule: "+1 Agility. -1D6 for enemy attacks.", modifier: function(character) {character.attributes.Agility += 1;}},
     "Leather armor": {rating: 5, rule: "+1 Agility.", modifier: function(character) {character.attributes.Agility += 1;}},
-    // "Plate armor": {rating: 10, rule: "Sneak roll -1D6. +1D6 for enemy attacks."}
+    "Plate armor": {rating: 10, rule: "Sneak roll -1D6. +1D6 for enemy attacks."}
 }
 
 var techniques = {
     "The Strong": {description: "Attack with -1D6. Strength +1 when resolving effect."},
     "The Agile": {description: "Attack with -1D6. Agility +1 when resolving effect."},
-    // "The Wise": {description: "Attack with -1D6. Wisdom +1 when resolving effect."},
-    // "The Chain Reaction": {description: "Attack with -1D6. If it kills, take a free move action towards an enemy."},
-    // "The Defensive Offense": {description: "Attack with -1D6. Enemy gets -1D6 when attacking you."},
-    // "The Follow-up": {description: "Attack with -1D6. Do an additional Attack on same enemy."},
-    // "The Omnislash": {description: "Attack with -1D6. Resolve effect on one more target."},
-    // "The Piercer": {description: "Attack with -1D6. Pierce +2."},
-    // "The Sneak Attack": {description: "Attack with -1D6. +1D6 to remain unnoticed."},
-    // "The Silent Takedown": {description: "Attack with -1D6. +2D6 to remain unnoticed if it kills."},
-    // "The Shank": {description: "Attack with Daggers with -2D6. Do two additional attacks."},
-    // "The Taunt": {description: "Block with -1D6. Force another enemy to attack you."},
-    // "The Disarm": {description: "Block with -1D6. If successful, enemy is disarmed."},
-    // "The Switcharoo": {description: "Block with -1D6. If successful, switch places."},
-    // "The Fast Reload": {description: "Reload with -1D6. If successful, reload instantly."},
+    "The Wise": {description: "Attack with -1D6. Wisdom +1 when resolving effect."},
+    "The Chain Reaction": {description: "Attack with -1D6. If it kills, take a free move action towards an enemy."},
+    "The Defensive Offense": {description: "Attack with -1D6. Enemy gets -1D6 when attacking you."},
+    "The Follow-up": {description: "Attack with -1D6. Do an additional Attack on same enemy."},
+    "The Omnislash": {description: "Attack with -1D6. Resolve effect on one more target."},
+    "The Piercer": {description: "Attack with -1D6. Pierce +2."},
+    "The Sneak Attack": {description: "Attack with -1D6. +1D6 to remain unnoticed."},
+    "The Silent Takedown": {description: "Attack with -1D6. +2D6 to remain unnoticed if it kills."},
+    "The Shank": {description: "Attack with Daggers with -2D6. Do two additional attacks."},
+    "The Taunt": {description: "Block with -1D6. Force another enemy to attack you."},
+    "The Disarm": {description: "Block with -1D6. If successful, enemy is disarmed."},
+    "The Switcharoo": {description: "Block with -1D6. If successful, switch places."},
+    "The Fast Reload": {description: "Reload with -1D6. If successful, reload instantly."},
 }
 
 var social_talents = {
-    Lie: {description: "Convince NPC of a falsehood.", state: "Trust"},
-    Bluff: {description: "Tell NPC you have something you don't have, or will do something you won't do.", state: "Trust"},
-    Intimidate: {description: "Threaten NPC through body language.", state: "Threatened -> Fear"},
-    Threaten: {description: "Threaten NPC with words.", state: "Threatened -> Fear"},
-    Blackmail: {description: "Threaten NPC with exposing secret."},
-    Grab: {description: "Lay hands on NPC. Not necessarily violently."},
-    Choke: {description: "Stranglehold on NPC."},
-    "Friendly Shoulder-Box": {description: "Attempt to be friendly with NPC."},
-    Wink: {description: "Subtly hint something at NPC.", state: "Attracted -> Interested; Like -> Trust; Uncomfortable -> Threatened"},
-    "Invade Personal Space": {description: "Stand uncomfortably close to NPC.", state: "* -> Uncomfortable; Uncomfortable -> Threatened"},
-    Belittle: {description: "Make NPC feel inferior.", state: "* -> Uncomfortable"},
-    Interrupt: {description: "Talk over NPC.", state: "* -> Uncomfortable; Like -> Respected"},
-    Swear: {description: "Say something nasty.", state: "Sucker -> Respect"},
-    Insult: {description: "Say something bad about NPC.", state: "Respect -> Sucker"},
-    Ignore: {description: "Pretend not to hear NPC.", state: "Respect -> Sucker"},
-    Ridicule: {description: "Make fun of NPC.", state: "Respect -> Sucker"},
-    Listen: {description: "Listen attentively to NPC.", state: "Sucker -> Respect; Sucker -> Like"},
-    Yawn: {description: "Act uninterested in NPC.", state: "Like -> Sucker"},
+    Lie: {description: "Convince NPC of a falsehood.",
+            states: [{req: "Trust", res: "Believe"}, {req: "Like", res: "Believe", modifier: "-1D6"}]},
+    Bluff: {description: "Tell NPC you have something you don't have, or will do something you won't do.",
+             states: [{req: "Trust", res: "Believe"}, {req: "Like", res: "Believe", modifier: "-1D6"}]},
+    Intimidate: {description: "Threaten NPC through body language.",
+             states: [{req: "Threatened", res: "Fear"}]},
+    Threaten: {description: "Threaten NPC with words.",
+             states: [{req: "Threatened", res: "Fear"}, {req: "Fear", res: "Believe"},
+                {req: "Threatened", res: "Believe", modifier: "-1D6"}]},
+    Blackmail: {description: "Threaten NPC with exposing secret.",
+             states: [{req: "Threatened", res: "Fear"}, {req: "Fear", res: "Believe"}]},
+    Grab: {description: "Lay hands on NPC. Not necessarily violently.",
+             states: [{req: "Threatened", res: "Fear"}, {req: "Uncomfortable", res: "Threatened"}]},
+    Choke: {description: "Stranglehold on NPC.",
+             states: [{req: "Threatened", res: "Fear"}, {req: "*", res: "Threatened"}]},
+    "Friendly Shoulder-Box": {description: "Attempt to be friendly with NPC.",
+             states: [{req: "Like", res: "Trust"}]},
+    Wink: {description: "Subtly hint something at NPC.",
+             states: [{req: "Like", res: "Attracted"}, {req: "Like", res: "Trust"},
+                {req: "Uncomfortable", res: "Threatened"}, {req: "Dislike", res: "Threatened"}]},
+    "Invade Personal Space": {description: "Stand uncomfortably close to NPC.",
+             states: [{req: "*", res: "Uncomfortable"}, {req: "Uncomfortable", res: "Threatened"}]},
+    Belittle: {description: "Make NPC feel inferior.",
+             states: [{req: "Uncomfortable", res: "Threatened"}, {req: "*", res: "Uncomfortable"}]},
+    Interrupt: {description: "Talk over NPC.",
+             states: [{req: "Like", res: "Submissive"}, {req: "*", res: "Uncomfortable"}]},
+    Swear: {description: "Say something nasty.",
+             states: [{req: "Submissive", res: "Respect"}]},
+    Insult: {description: "Say something bad about NPC.",
+             states: [{req: "Respect", res: "Submissive"}, {req: "Dislike", res: "Threatened"},
+                {req: "*", res: "Uncomfortable"}]},
+    Ignore: {description: "Pretend not to hear NPC.",
+             states: [{req: "Respect", res: "Submissive"}, {req: "Uncomfortable", res: "Dislike"},
+                {req: "*", res: "Uncomfortable"}]},
+    Ridicule: {description: "Make fun of NPC.",
+             states: [{req: "Respect", res: "Submissive"}]},
+    Listen: {description: "Listen attentively to NPC.",
+             states: [{req: "Dislike", res: "Like"}]},
+    Yawn: {description: "Act uninterested in NPC.",
+             states: [{req: "Like", res: "Submissive"}, {req: "Uncomfortable", res: "Submissive"}]},
 }
 
 var default_character = {
@@ -138,12 +160,6 @@ var default_character = {
         Charisma: 0,
         Health: 0,
     },
-    // attribute_modifiers: {
-    //     Strength: 0,
-    //     Agility: 0,
-    //     Wisdom: 0,
-    //     Charisma: 0
-    // },
     stats: {
         Level: 1,
         Money: 0,

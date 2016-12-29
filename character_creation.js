@@ -270,6 +270,8 @@ function setup_weapon_table(table_name, weapons, character, compact) {
             for (var index = 1; index < actions.length; index++) {
                 var action = actions[index];
                 var action_row = weapons_table.tBodies[0].insertRow(-1);
+                // var namecell = action_row.insertCell(-1);
+                // var valuecell = action_row.insertCell(-1);
                 var actioncell = action_row.insertCell(-1);
                 var dicecell = action_row.insertCell(-1);
                 var effectcell = action_row.insertCell(-1);
@@ -278,8 +280,17 @@ function setup_weapon_table(table_name, weapons, character, compact) {
         }
     }
 
+
+    var even_header_row = false;
     var row_i = -1;
     for (var weapon_name in weapons) {
+        var even_action_row = false;
+        even_action_row = !even_action_row;
+        even_header_row = !even_header_row;
+        var even_header_class = even_header_row ? " evenrow" : " oddrow";
+        var even_action_class = even_header_row ?
+                                    (even_action_row ? " evenevensubrow" : " evenoddsubrow") :
+                                    (even_action_row ? " oddevensubrow" : " oddoddsubrow");
         row_i = row_i + 1
         var row = weapons_table.tBodies[0].rows[row_i];
         row.className = "part";
@@ -298,12 +309,12 @@ function setup_weapon_table(table_name, weapons, character, compact) {
         var actions = weapon;
 
         var namecell = row.cells[0];
-        namecell.className = "part_name";
+        namecell.className = "part_name" + even_header_class;
         namecell.innerHTML = weapon_name;
         namecell.rowSpan = actions.length;
 
         var valuecell = row.cells[1];
-        valuecell.className = "part_value";
+        valuecell.className = "part_value" + even_header_class;
         valuecell.rowSpan = actions.length;
 
         var character_weapons = character.weapons;
@@ -316,19 +327,21 @@ function setup_weapon_table(table_name, weapons, character, compact) {
         }
 
         var actioncell = row.cells[2];
-        actioncell.className = "part_description";
+        actioncell.className = "part_description" + even_action_class;
         actioncell.innerHTML = actions[0].action;
         var dicecell = row.cells[3];
-        dicecell.className = "part_description rightcol resolveable";
+        dicecell.className = "part_description rightcol resolveable" + even_action_class;
         dicecell.innerHTML = resolve_value(actions[0].dicepool, character, compact);
         var effectcell = row.cells[4];
-        effectcell.className = "part_description";
+        effectcell.className = "part_description" + even_action_class;
         effectcell.innerHTML = resolve_value(actions[0].effect, character, compact);;
         var rulecell = row.cells[5];
-        rulecell.className = "part_description";
+        rulecell.className = "part_description" + even_action_class;
         rulecell.innerHTML = actions[0].rule;
 
         for (var index = 1; index < actions.length; index++) {
+            even_action_row = !even_action_row;
+            var even_action_class = even_action_row ? " evenactionrow" : "";
             row_i = row_i + 1
             var action = actions[index];
             var action_row = weapons_table.tBodies[0].rows[row_i];
@@ -338,17 +351,22 @@ function setup_weapon_table(table_name, weapons, character, compact) {
                 action_row.className += " compactable";
             }
 
+            // var namecell = action_row.cells[0];
+            // namecell.display = "none";
+            // var valuecell = action_row.cells[1];
+            // valuecell.display = "none";
+
             var actioncell = action_row.cells[0];
-            actioncell.className = "part_description";
+            actioncell.className = "part_description" + even_action_class;
             actioncell.innerHTML = action.action;
             var dicecell = action_row.cells[1];
-            dicecell.className = "part_description rightcol resolveable";
+            dicecell.className = "part_description rightcol resolveable" + even_action_class;
             dicecell.innerHTML = resolve_value(action.dicepool, character, compact);;
             var effectcell = action_row.cells[2];
-            effectcell.className = "part_description";
+            effectcell.className = "part_description" + even_action_class;
             effectcell.innerHTML = resolve_value(action.effect, character, compact);;
             var rulecell = action_row.cells[3];
-            rulecell.className = "part_description";
+            rulecell.className = "part_description" + even_action_class;
             rulecell.innerHTML = action.rule;
         }
 
@@ -448,7 +466,9 @@ function setup_social_talents_table(table_name, social_talents, character) {
     clear_table(social_talents_table);
 
     for (var social_talent_name in social_talents) {
-        var row = social_talents_table.tBodies[0].insertRow(-1);
+        var tbody = document.createElement('tbody');
+        social_talents_table.appendChild(tbody);
+        var row = tbody.insertRow(-1);
         row.className = "part";
         row.onclick = function(){
             var cell = this.getElementsByTagName("td")[0];
@@ -463,17 +483,45 @@ function setup_social_talents_table(table_name, social_talents, character) {
             setup_tables(character);
         };
 
+        var states = social_talents[social_talent_name].states;
+
         var namecell = row.insertCell(-1);
         namecell.className = "part_name";
         namecell.innerHTML = social_talent_name;
+        namecell.rowSpan = states.length;
 
         var valuecell = row.insertCell(-1);
         valuecell.className = "part_value";
+        valuecell.rowSpan = states.length;
 
-        var statecell = row.insertCell(-1);
-        statecell.className = "part_description";
-        if (social_talents[social_talent_name].state) {
-            statecell.innerHTML = social_talents[social_talent_name].state.replace(";", "<br/>").replace(";", "<br/>");
+
+        if (states) {
+            for (var i = 0; i < states.length; i++) {
+                var staterow = i == 0 ? row : tbody.insertRow(-1);
+
+                var state = states[i];
+                var reqcell = staterow.insertCell(-1);
+                reqcell.className = "part_description";
+                reqcell.innerHTML = state.req;
+                var rescell = staterow.insertCell(-1);
+                rescell.className = "part_description";
+                rescell.innerHTML = state.res;
+                var modcell = staterow.insertCell(-1);
+                modcell.className = "part_description";
+                modcell.innerHTML = state.modifier ? state.modifier : "";
+            }
+            // var states = state.split(";");
+            // states = states.map(function(s) {
+            //     return s.replace(/.*:/, function(match) {
+            //         return "<span class='social'>" + match + "</span>";
+            //     });
+            // });
+            // state = states.join("</br>");
+            // state = state.replace(/(.*)(:.*;)/g, function(match, p1, p2) {
+            //     return "<span class='social'>" + p1 + "</span>" + p2 + "</br>";
+            // });
+            // state = state.replace(/;/g, "<br/>")
+            // statecell.innerHTML = state
         }
 
         var character_social_talents = character.social_talents;
@@ -488,6 +536,7 @@ function setup_social_talents_table(table_name, social_talents, character) {
         var descriptioncell = row.insertCell(-1);
         descriptioncell.className = "part_description";
         descriptioncell.innerHTML = social_talents[social_talent_name].description;
+        descriptioncell.rowSpan = states.length;
     };
 }
 

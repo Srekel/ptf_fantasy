@@ -1,5 +1,5 @@
 body {
-    background-color: #ffe;
+    background-color: #fff;
     font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
     animation: page_fadein 3s;
 }
@@ -56,7 +56,7 @@ table {
 }
 table.characterpart {
     border-spacing: 1px;
-    border-collapse: separate;
+    border-collapse: collapse;
 }
 thead td {
     font-size:18px;
@@ -122,9 +122,58 @@ td.rightcol {
     padding-right: 1.5em;
 }
 
-table.characterpart tr.part:hover {
+table.characterpart tbody tr.part:hover {
     background-color: orange;
 }
+table.simplerows tbody tr:nth-child(odd) {
+    background-color: #eed;
+}
+table.loltest tbody:nth-child(odd) {
+    background-color: #eed;
+}
+/*table.loltest tbody tr:nth-child(even) {
+    background-color: #eed;
+}*/
+/*
+table.simplerows tbody tr:nth-child(3n+1) {
+    background-color: #ccb;
+}*/
+
+td.evenrow {
+    background-color: #ccb;
+}
+
+td.oddrow {
+    background-color: #eed;
+}
+
+/*tbody:nth-child(odd) {
+  background: white;
+}*/
+/*tbody:nth-child(even) {
+  background: red;
+}*/
+tbody:hover , tr:hover td {
+   background: orange !important;
+}
+/*td.evenactionrow {
+    background-color: #ddc;
+}*/
+td.evenevensubrow {
+    background-color: #ccb;
+}
+
+td.evenoddsubrow {
+    background-color: #fff;
+}
+
+td.oddevensubrow {
+    background-color: #eed;
+}
+td.oddoddsubrow {
+    background-color: #fff;
+}
+
 #attributeheader {
     /*text-align: center;*/
     font-weight: bold;
@@ -194,4 +243,9 @@ div.characterpart {
 .keyword_cf {
     font-weight: bold;
     color: red;
+}
+
+.social {
+    font-weight: bold;
+    color: #44f;
 }
