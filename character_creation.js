@@ -68,7 +68,6 @@ function clear_tbody(table) {
 function clear_table(table) {
     var tbodies = table.getElementsByTagName('tbody');
     while(tbodies.length > 0) {
-    // for (var i = 0; i < tbodies.length; i++) {
         table.removeChild(tbodies[0]);
     }
 }
@@ -94,6 +93,7 @@ function setup_tables(character, compact) {
     setup_weapon_table("weapons", weapons, character, resolved);
     setup_armor_table("armor", armors, character);
     setup_perk_table("perks", perks, character);
+    setup_perk_table("generic_perks", generic_perks, character);
     setup_technique_table("techniques", techniques, character);
     setup_social_talents_table("social_talents", social_talents, character);
 }
@@ -156,23 +156,23 @@ function setup_race_table(table_name, races, character) {
         }
 
         var str_cell = row.insertCell(-1);
-        str_cell.className = "part_race_attribute compactable";
+        str_cell.className = "part_race_attribute";
         str_cell.innerHTML = race[0];
 
         var agi_cell = row.insertCell(-1);
-        agi_cell.className = "part_race_attribute compactable";
+        agi_cell.className = "part_race_attribute";
         agi_cell.innerHTML = race[1];
 
         var wis_cell = row.insertCell(-1);
-        wis_cell.className = "part_race_attribute compactable";
+        wis_cell.className = "part_race_attribute";
         wis_cell.innerHTML = race[2];
 
         var cha_cell = row.insertCell(-1);
-        cha_cell.className = "part_race_attribute compactable";
+        cha_cell.className = "part_race_attribute";
         cha_cell.innerHTML = race[3];
 
         var hp_cell = row.insertCell(-1);
-        hp_cell.className = "part_race_attribute compactable";
+        hp_cell.className = "part_race_attribute";
         hp_cell.innerHTML = race[4];
 
         var bonus_cell = row.insertCell(-1);
@@ -191,11 +191,11 @@ function setup_perk_table(table_name, perks, character) {
         row.onclick = function(){
             var cell = this.getElementsByTagName("td")[0];
             var id = cell.innerHTML;
-            if (!character.perks[id]) {
-                character.perks[id] = 1;
+            if (!character[table_name][id]) {
+                character[table_name][id] = 1;
             }
             else {
-                character.perks[id] = null;
+                character[table_name][id] = null;
             }
             character_update_attributes(character);
             setup_tables(character);
@@ -208,7 +208,7 @@ function setup_perk_table(table_name, perks, character) {
         var valuecell = row.insertCell(-1);
         valuecell.className = "part_value";
 
-        var character_perks = character.perks;
+        var character_perks = character[table_name];
         if (character_perks[perk_name]) {
             valuecell.className = "part_value_selected";
             valuecell.innerHTML = character_perks[perk_name];
@@ -245,8 +245,6 @@ function setup_weapon_table(table_name, weapons, character, compact) {
             for (var index = 1; index < actions.length; index++) {
                 var action = actions[index];
                 var action_row = tbody.insertRow(-1);
-                // var namecell = action_row.insertCell(-1);
-                // var valuecell = action_row.insertCell(-1);
                 var actioncell = action_row.insertCell(-1);
                 var dicecell = action_row.insertCell(-1);
                 var effectcell = action_row.insertCell(-1);
@@ -300,7 +298,7 @@ function setup_weapon_table(table_name, weapons, character, compact) {
             valuecell.innerHTML = character_weapons[weapon_name];
         }
         else {
-            row.className += " compactable";
+            tbody.className += " compactable";
         }
 
         var actioncell = row.cells[2];
@@ -324,15 +322,6 @@ function setup_weapon_table(table_name, weapons, character, compact) {
             var action_row = tbody.rows[row_i];
             action_row.className = "part";
 
-            if (!character_weapons[weapon_name]) {
-                action_row.className += " compactable";
-            }
-
-            // var namecell = action_row.cells[0];
-            // namecell.display = "none";
-            // var valuecell = action_row.cells[1];
-            // valuecell.display = "none";
-
             var actioncell = action_row.cells[0];
             actioncell.className = "part_description" + even_action_class;
             actioncell.innerHTML = action.action;
@@ -346,7 +335,6 @@ function setup_weapon_table(table_name, weapons, character, compact) {
             rulecell.className = "part_description" + even_action_class;
             rulecell.innerHTML = action.rule;
         }
-
     };
 }
 
@@ -471,7 +459,7 @@ function setup_social_talents_table(table_name, social_talents, character) {
         valuecell.className = "part_value";
         valuecell.rowSpan = states.length;
 
-
+        var character_social_talents = character.social_talents;
         if (states) {
             for (var i = 0; i < states.length; i++) {
                 var staterow = i == 0 ? row : tbody.insertRow(-1);
@@ -487,27 +475,14 @@ function setup_social_talents_table(table_name, social_talents, character) {
                 modcell.className = "part_description";
                 modcell.innerHTML = state.modifier ? state.modifier : "";
             }
-            // var states = state.split(";");
-            // states = states.map(function(s) {
-            //     return s.replace(/.*:/, function(match) {
-            //         return "<span class='social'>" + match + "</span>";
-            //     });
-            // });
-            // state = states.join("</br>");
-            // state = state.replace(/(.*)(:.*;)/g, function(match, p1, p2) {
-            //     return "<span class='social'>" + p1 + "</span>" + p2 + "</br>";
-            // });
-            // state = state.replace(/;/g, "<br/>")
-            // statecell.innerHTML = state
         }
 
-        var character_social_talents = character.social_talents;
         if (character_social_talents[social_talent_name]) {
             valuecell.className = "part_value_selected";
             valuecell.innerHTML = character_social_talents[social_talent_name];
         }
         else {
-            row.className += " compactable";
+            tbody.className += " compactable";
         }
 
         var descriptioncell = row.insertCell(-1);
@@ -522,6 +497,7 @@ loaded_character.perks.Mobile = 1;
 loaded_character.weapons["Sword & Shield"] = 1;
 loaded_character.techniques["The Agile"] = 1;
 loaded_character.social_talents["Bluff"] = 1;
+loaded_character.generic_perks["Cook"] = 1;
 character_update_attributes(loaded_character);
 setup_tables(loaded_character);
 
@@ -602,11 +578,12 @@ function hide_class(class_name) {
         if (el.parentElement !== parent) {
             delay = 0;
             parent = el.parentElement;
+            console.log("LOL" + parent.id);
         }
-        delay = delay + 0.15;
+        delay = delay + 1.0 / parent.children.length;
         max_delay = Math.max(delay, max_delay);
         el.style.animationName = "fadeout_and_hide";
-        el.style.animationDuration =  "0.5s";
+        el.style.animationDuration =  String(1) + "s";
         el.style.animationDelay = delay + "s";
         // animate(el, "fadeout_and_hide", delay);
         el.addEventListener("animationend", hidefunc);

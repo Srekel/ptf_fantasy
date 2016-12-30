@@ -45,7 +45,6 @@ var perks = {
     Fighter: {description: "+1 Strength.", modifier: function(character) { character.attributes.Strength += 1;}},
     Frenzied: {description: "+1D6 for Attack. -1D6 to remain silent."},
     Ghost: {description: "+1D6 when trying to not be seen."},
-    "Guardian Angel": {description: "Get an FP at the start of each mission."},
     Initiator: {description: "+1D6 for initiative."},
     Mobile: {description: "+1 Agility.", modifier: function(character) { character.attributes.Agility += 1;}},
     Precise: {description: "+2 to attack effect."},
@@ -56,6 +55,20 @@ var perks = {
     Tank: {description: "+10 Health.", modifier: function(character) { character.attributes.Health += 10;}},
     Technical: {description: "Ignore one -1D6 when using a technique, per action."},
 };
+
+var generic_perks = {
+    Cliffhanger: {description: "+1D6 when climbing vertically or worse."},
+    Climber: {description: "+1D6 when climbing."},
+    Cook: {description: "+1D6 for making food."},
+    "Guardian Angel": {description: "Get an FP at the start of each mission."},
+    Herbalist: {description: "+1D6 for knowledge of herbs and recipies."},
+    Historian: {description: "+1D6 when dealing with old stuff."},
+    Lookout: {description: "+1D6 when looking for things at some distance."},
+    Miner: {description: "+1D6 for stone related stuff."},
+    Raceologist: {description: "+1D6 for knowledge of races."},
+    Scavenger: {description: "+1D6 when trying to find an object."},
+    Woodsman: {description: "+1D6 in woods."},
+}
 
 var weapons = {
     "Sword & Shield": [
@@ -172,6 +185,8 @@ var default_character = {
     perks: {
     },
     techniques: {
+    },
+    generic_perks: {
     },
     social_talents: {
     },
