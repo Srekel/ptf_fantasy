@@ -43,7 +43,7 @@ var perks = {
     Dodger: {description: "-1D6 for enemies."},
     "Fast on Feet": {description: "Extra action just for moving."},
     Fighter: {description: "+1 Strength.", modifier: function(character) { character.attributes.Strength += 1;}},
-    Frenzied: {description: "+1D6 for Attack."},
+    Frenzied: {description: "+1D6 for Attack. -1D6 to remain silent."},
     Ghost: {description: "+1D6 when trying to not be seen."},
     "Guardian Angel": {description: "Get an FP at the start of each mission."},
     Initiator: {description: "+1D6 for initiative."},

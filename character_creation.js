@@ -15,26 +15,7 @@ function resolve_value(value, character, compact) {
     var tokens = value.split(" ");
     for(var i = 0; i < tokens.length; i++) {
         var token = tokens[i];
-        var d6index = token.indexOf("D6");
-        if (d6index != -1) {
-        //     var total = 0;
-        //     for(var comp_i = 0; comp_i < d6index; comp_i++) {
-        //         var number = parseInt(token[comp_i])
-        //         if (!isNaN(number))
-        //             total = total + number;
-        //         else if(token[comp_i]  == "S")
-        //             total = total + character.attributes.Strength;
-        //         else if(token[comp_i]  == "A")
-        //             total = total + character.attributes.Agility;
-        //         else if(token[comp_i]  == "W")
-        //             total = total + character.attributes.Wisdom;
-        //         else if(token[comp_i]  == "C")
-        //             total = total + character.attributes.Charisma;
-        //     }
-
-        //     tokens[i] = String(total) + " D6";
-        }
-        else if (token == "Strength") {
+        if (token == "Strength") {
             tokens[i] = character.attributes.Strength;
         }
         else if (token == "Agility") {
@@ -77,27 +58,19 @@ function resolve_value(value, character, compact) {
         }
     }
     tokens = new_tokens;
-
-
-    // for(var i = 0; i < tokens.length; i++) {
-    //     var token = tokens[i];
-    //     if (token == "+") {
-    //         tokens[i+1] = parseInt(tokens[i-1]) + parseInt(tokens[i+1])
-    //         tokens[i-1] = ""
-    //         tokens[i] = ""
-    //     }
-    //     else if (token == "*") {
-    //         tokens[i] = parseInt(tokens[i-1]) * parseInt(tokens[i+1])
-    //         tokens[i+1] = ""
-    //         tokens[i-1] = ""
-    //     }
-    // }
-
     return tokens.join(" ");
 }
-function clear_table(table) {
+function clear_tbody(table) {
     var new_tbody = document.createElement('tbody');
     table.replaceChild(new_tbody, table.tBodies[0])
+}
+
+function clear_table(table) {
+    var tbodies = table.getElementsByTagName('tbody');
+    while(tbodies.length > 0) {
+    // for (var i = 0; i < tbodies.length; i++) {
+        table.removeChild(tbodies[0]);
+    }
 }
 
 function setup_tables(character, compact) {
@@ -148,7 +121,7 @@ function setup_attribute_table(table_name, attributes, character) {
 
 function setup_race_table(table_name, races, character) {
     var race_table = document.getElementById(table_name);
-    clear_table(race_table);
+    clear_tbody(race_table);
 
     for (var racename in races) {
         if (!races.hasOwnProperty(racename)) {
@@ -210,7 +183,7 @@ function setup_race_table(table_name, races, character) {
 
 function setup_perk_table(table_name, perks, character) {
     var perks_table = document.getElementById(table_name);
-    clear_table(perks_table);
+    clear_tbody(perks_table);
 
     for (var perk_name in perks) {
         var row = perks_table.tBodies[0].insertRow(-1);
@@ -256,7 +229,9 @@ function setup_weapon_table(table_name, weapons, character, compact) {
     if (!compact) {
         clear_table(weapons_table);
         for (var weapon_name in weapons) {
-            var row = weapons_table.tBodies[0].insertRow(-1);
+            var tbody = document.createElement('tbody');
+            weapons_table.appendChild(tbody);
+            var row = tbody.insertRow(-1);
             var namecell = row.insertCell(-1);
             var valuecell = row.insertCell(-1);
             var actioncell = row.insertCell(-1);
@@ -269,7 +244,7 @@ function setup_weapon_table(table_name, weapons, character, compact) {
 
             for (var index = 1; index < actions.length; index++) {
                 var action = actions[index];
-                var action_row = weapons_table.tBodies[0].insertRow(-1);
+                var action_row = tbody.insertRow(-1);
                 // var namecell = action_row.insertCell(-1);
                 // var valuecell = action_row.insertCell(-1);
                 var actioncell = action_row.insertCell(-1);
@@ -280,9 +255,8 @@ function setup_weapon_table(table_name, weapons, character, compact) {
         }
     }
 
-
+    var tbody_i = -1;
     var even_header_row = false;
-    var row_i = -1;
     for (var weapon_name in weapons) {
         var even_action_row = false;
         even_action_row = !even_action_row;
@@ -291,8 +265,11 @@ function setup_weapon_table(table_name, weapons, character, compact) {
         var even_action_class = even_header_row ?
                                     (even_action_row ? " evenevensubrow" : " evenoddsubrow") :
                                     (even_action_row ? " oddevensubrow" : " oddoddsubrow");
+        var row_i = -1;
         row_i = row_i + 1
-        var row = weapons_table.tBodies[0].rows[row_i];
+        tbody_i = tbody_i + 1
+        var tbody = weapons_table.tBodies[tbody_i];
+        var row = tbody.rows[row_i];
         row.className = "part";
         row.onclick = function(weapon_name) {
             if (!character.weapons[weapon_name]) {
@@ -344,7 +321,7 @@ function setup_weapon_table(table_name, weapons, character, compact) {
             var even_action_class = even_action_row ? " evenactionrow" : "";
             row_i = row_i + 1
             var action = actions[index];
-            var action_row = weapons_table.tBodies[0].rows[row_i];
+            var action_row = tbody.rows[row_i];
             action_row.className = "part";
 
             if (!character_weapons[weapon_name]) {
@@ -375,7 +352,7 @@ function setup_weapon_table(table_name, weapons, character, compact) {
 
 function setup_armor_table(table_name, armors, character) {
     var armor_table = document.getElementById(table_name);
-    clear_table(armor_table);
+    clear_tbody(armor_table);
 
     for (var armorname in armors) {
         if (!armors.hasOwnProperty(armorname)) {
@@ -421,7 +398,7 @@ function setup_armor_table(table_name, armors, character) {
 
 function setup_technique_table(table_name, techniques, character) {
     var techniques_table = document.getElementById(table_name);
-    clear_table(techniques_table);
+    clear_tbody(techniques_table);
 
     for (var technique_name in techniques) {
         var row = techniques_table.tBodies[0].insertRow(-1);
