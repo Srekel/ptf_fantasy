@@ -162,6 +162,37 @@ var social_talents = {
              states: [{req: "Like", res: "Submissive"}, {req: "Uncomfortable", res: "Submissive"}]},
 }
 
+var spells = {
+    Fireball: {
+        description: "Cast a fireball that travels to its target at 5m/s. Max range 10m. Deals 5 damage.",
+        modifiers: [{name: "Grow", effect: "Double damage."}, {name: "Speed", effect: "Double speed and range."}]
+    },
+    "Pick Lock": {
+        description: "Unlock a door. One Success needed for rural, basic wood key. 30 Successes for bank vault.",
+        modifiers: [{name: "Silent", effect: "No clicks or rustles or other sounds are made."}]
+    },
+    "Make Sound": {
+        description: "Create a sound for half a second, about 20?? dB (equivalent to wooden mug falling from table).",
+        modifiers: [{name: "Volume", effect: "Increase dB by 10."}, {name: "Duration", effect: "Double the sound's duration."}]
+    },
+    "Bash Door": {
+        description: "Smash open a door. One Success needed for rural, wooden door. 10 Successes for bank vault. Double amount for locked doors.",
+        modifiers: [{name: "Force", effect: "Anyone behind the door takes damage equal to number of Successes."}]
+    },
+    "Knockout": {
+        description: "Knocks a person or creature out for one minute. Need Successes equal to its Strength. Max range 5m.",
+        modifiers: [{name: "Duration", effect: "Double the duration."}, {name: "Range", effect: "Double the range."}]
+    },
+    "See Through Walls": {
+        description: "You or ally sees through walls for one second. One success need for rural, wooden wall. 20 Successes for bank vault.",
+        modifiers: [{name: "Duration", effect: "Double the duration."}]
+    },
+    "Night Vision": {
+        description: "You or ally sees as though it was day for one minute.",
+        modifiers: [{name: "Duration", effect: "Double the duration."}]
+    },
+}
+
 var default_character = {
     id: null,
     character_name: "Srekel",
@@ -190,6 +221,8 @@ var default_character = {
     },
     social_talents: {
     },
+    spells: {
+    }
 };
 
 function character_create() {

@@ -96,6 +96,7 @@ function setup_tables(character, compact) {
     setup_perk_table("generic_perks", generic_perks, character);
     setup_technique_table("techniques", techniques, character);
     setup_social_talents_table("social_talents", social_talents, character);
+    setup_spells_table("spells", spells, character);
 }
 
 function setup_attribute_table(table_name, attributes, character) {
@@ -492,12 +493,76 @@ function setup_social_talents_table(table_name, social_talents, character) {
     };
 }
 
+function setup_spells_table(table_name, spells, character) {
+    var spells_table = document.getElementById(table_name);
+    clear_table(spells_table);
+
+    for (var spell_name in spells) {
+        var tbody = document.createElement('tbody');
+        spells_table.appendChild(tbody);
+        var row = tbody.insertRow(-1);
+        row.className = "part";
+        row.onclick = function(){
+            var cell = this.getElementsByTagName("td")[0];
+            var id = cell.innerHTML;
+            if (!character.spells[id]) {
+                character.spells[id] = 1;
+            }
+            else {
+                character.spells[id] = null;
+            }
+            character_update_attributes(character);
+            setup_tables(character);
+        };
+
+        var modifiers = spells[spell_name].modifiers;
+
+        var namecell = row.insertCell(-1);
+        namecell.className = "part_name";
+        namecell.innerHTML = spell_name;
+        namecell.rowSpan = modifiers.length;
+
+        var valuecell = row.insertCell(-1);
+        valuecell.className = "part_value";
+        valuecell.rowSpan = modifiers.length;
+
+        var character_spells = character.spells;
+        if (modifiers) {
+            for (var i = 0; i < modifiers.length; i++) {
+                var modifierrow = i == 0 ? row : tbody.insertRow(-1);
+
+                var modifier = modifiers[i];
+                var namecell = modifierrow.insertCell(-1);
+                namecell.className = "part_description";
+                namecell.innerHTML = modifier.name;
+                var effectcell = modifierrow.insertCell(-1);
+                effectcell.className = "part_description";
+                effectcell.innerHTML = modifier.effect;
+            }
+        }
+
+        if (character_spells[spell_name]) {
+            valuecell.className = "part_value_selected";
+            valuecell.innerHTML = character_spells[spell_name];
+        }
+        else {
+            tbody.className += " compactable";
+        }
+
+        var descriptioncell = row.insertCell(-1);
+        descriptioncell.className = "part_description";
+        descriptioncell.innerHTML = spells[spell_name].description;
+        descriptioncell.rowSpan = modifiers.length;
+    };
+}
+
 loaded_character = character_create();
 loaded_character.perks.Mobile = 1;
 loaded_character.weapons["Sword & Shield"] = 1;
 loaded_character.techniques["The Agile"] = 1;
 loaded_character.social_talents["Bluff"] = 1;
 loaded_character.generic_perks["Cook"] = 1;
+loaded_character.spells["Fireball"] = 1;
 character_update_attributes(loaded_character);
 setup_tables(loaded_character);
 
