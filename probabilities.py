@@ -8,20 +8,22 @@ d2 = [0, 1, 2, 1000, "d2"]
 dice_tests = [
     [d6],
     [d6, d6],
-    [d10],
+    # [d10],
     [d6, d6, d6],
-    [d6, d10],
+    # [d6, d10],
     [d6, d6, d6, d6],
-    [d6, d6, d10],
-    [d10, d10],
+    # [d6, d6, d10],
+    # [d10, d10],
     [d6, d6, d6, d6, d6],
-    [d6, d6, d6, d10],
-    [d6, d10, d10],
+    # [d6, d6, d6, d10],
+    # [d6, d10, d10],
     [d6, d6, d6, d6, d6, d6],
-    [d6, d6, d10, d10],
-    [d10, d10, d10],
-    [d6, d10, d10, d10],
-    [d10, d10, d10, d10],
+    # [d6, d6, d10, d10],
+    # [d10, d10, d10],
+    # [d6, d10, d10, d10],
+    # [d10, d10, d10, d10],
+    [d6, d6, d6, d6, d6, d6, d6],
+    [d6, d6, d6, d6, d6, d6, d6, d6],
 ]
 
 def roll(dice):
@@ -34,26 +36,13 @@ def roll(dice):
         for out_i in range(outcomes_size):
             del outcomes[0]
 
-    result = [0, 0, 0]
-    for out in outcomes:
-        for die_i in range(len(out)):
-            dieroll = out[die_i]
-            if dieroll <= dice[die_i][0]:
-                result[0] += 1
-            elif dieroll <= dice[die_i][1]:
-                result[1] += 1
-            else:
-                result[2] += 1
-
-    # print "result"
-    # print(result)
-
-    result = [0.0, 0.0, 0.0, 0.0] #succ, cf, cs, totsucc
+    result = [0.0, 0.0, 0.0, 0.0] #succ, cs, cf, totsucc
     for out in outcomes:
         successes = 0
         cfs = 0
         css = 0
-        for die_i in range(len(out)):
+        num_dice = len(out)
+        for die_i in range(num_dice):
             dieroll = out[die_i]
             if dieroll <= dice[die_i][0]:
                 cfs += 1
@@ -66,18 +55,23 @@ def roll(dice):
 
         if css >= cfs:
             css -= cfs
-            successes -= cfs
             cfs = 0
         if cfs >= css:
-            successes -= css
             cfs -= css
             css = 0
+        # if successes >= cfs:
+        #     successes -= cfs
+        #     cfs = 0
+        # if cfs >= successes:
+        #     cfs -= successes
+        #     successes = 0
         if successes > 0:
             result[0] += 1
-        if css > 0:# and successes > 0:
+        if css > 0 and successes >= num_dice: # and css >= successes / 2:# and successes > 0:
             result[1] += 1
         if cfs > 0 and successes == 0:
             result[2] += 1
+            successes = 0
         result[3] += successes
 
     # print("result %-30s 1/%-4d %6.1f%% %6.1f%% %6.1f%%" % (
