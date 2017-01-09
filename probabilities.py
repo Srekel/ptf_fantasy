@@ -48,7 +48,7 @@ def roll(dice):
     # print "result"
     # print(result)
 
-    result = [0.0, 0.0, 0.0] #succ, cf, cs
+    result = [0.0, 0.0, 0.0, 0.0] #succ, cf, cs, totsucc
     for out in outcomes:
         successes = 0
         cfs = 0
@@ -62,28 +62,44 @@ def roll(dice):
                 successes += 1
             if dieroll >= dice[die_i][3]:
                 css += 1
-                successes -= 1
+                # successes -= 1
 
-        if successes > 0:
-            result[0] += 1
         if css >= cfs:
             css -= cfs
+            successes -= cfs
             cfs = 0
         if cfs >= css:
+            successes -= css
             cfs -= css
             css = 0
+        if successes > 0:
+            result[0] += 1
         if css > 0:# and successes > 0:
             result[1] += 1
         if cfs > 0 and successes == 0:
             result[2] += 1
+        result[3] += successes
 
-    print "result %-30s 1/%-4d %6.1f%% %6.1f%% %6.1f%%" % (
-        " + ".join([die[4] for die in dice]),
+    # print("result %-30s 1/%-4d %6.1f%% %6.1f%% %6.1f%%" % (
+    #     " + ".join([die[4] for die in dice]),
+    #     1 / (1-result[0] / len(outcomes)),
+    #     100 * result[0] / len(outcomes),
+    #     100 * result[1] / len(outcomes),
+    #     100 * result[2] / len(outcomes)
+    # ))
+
+
+    dice = [str([d[4] for d in dice].count(die)) + die for die in set([d[4] for d in dice])]
+    # print(dice)
+
+    print("%s,%d,%6.1f%%,%6.1f%%,%6.1f%%,%.2f" % (
+        " + ".join([die for die in dice]),
         1 / (1-result[0] / len(outcomes)),
         100 * result[0] / len(outcomes),
         100 * result[1] / len(outcomes),
-        100 * result[2] / len(outcomes)
-        )
+        100 * result[2] / len(outcomes),
+        result[3] / len(outcomes)
+    ))
 
 for test in dice_tests:
     roll(test)
