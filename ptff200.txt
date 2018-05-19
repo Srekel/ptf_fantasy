@@ -1,4 +1,4 @@
-All players are BOTH the gamemaster AND agents in a traditional fantasy setting. The characters work for "The Shadow Guild", who strives for power through subterfuge and secret missions.
+All players are BOTH the gamemaster AND agents in a traditional fantasy setting. The characters work for "The Shadow Guild", who strives for power through subterfuge and clandestine missions.
 =================================================================
 
          | Strength | Agility   | Wisdom       | Charisma
@@ -19,7 +19,7 @@ Bow:                   Agility     |     -
 Crossbow:              Wisdom      |  Strength
 
 * Pick race + two weapons.
-* Add/Modify an attribute. (Examples: Superswole, Tolerant, Patient)
+* Add/Modify an attribute. (Superswole, Tolerant, ...)
 
 =================================================================
 
@@ -31,7 +31,7 @@ Combat:
 
 EVERYTHING is resolved like so:
 * Discuss possible outcomes.
-* Distribute their probabilities 1-20.
+* Distribute their probabilities 1-20. (Consider attributes where applicable)
 * Roll D20.
 
 EXAMPLES
@@ -50,9 +50,6 @@ EXAMPLES
 "Damage? Killed/Downed/Grazed"
   Headshot, crossbow, unarmored: [KKKKKKKKKKKKKKKDDDGG]
 
-"Where is guard? Barfing/Dicegaming/Patrolling"
-  Lazy, rainy, poisoned: [BBBBBBBBBBDDDDDDDPP]
-
 "Weather? Rainy/Cloudy/Sunny"
   Northern climate, autumn: [RRRRRCCCCCCCCCCSSSSS]
 
@@ -63,13 +60,16 @@ EXAMPLES
   Limber, distracted guard, dark: [YYYYYYYYYYYYYYYYNNNN]
 
 "Guard count?"
-  Encampment, night, unalerted: [00111122222222333334]
+  Encampment, night: [00111122222222333334]
 
-Keywords: CONTEXT, DETAILS, BELIEVABILITY, VARIETY.
+"Where's the guard? Sick/Dicegaming/Patrolling"
+  Lazy, rainy, poisoned: [SSSSSSSSSSSDDDDDDDPP]
+
+Aim for: DETAILS, BELIEVABILITY, VARIETY, CONTEXT.
 
 =================================================================
 
-Your first mission:
-A goblin wizard is researching a promising potion recipe. Go steal it!
+Your mission:
+A goblin wizard is researching a promising potion recipe. Steal it!
 
 =================================================================
