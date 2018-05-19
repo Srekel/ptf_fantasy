@@ -1,4 +1,4 @@
-ALL players are BOTH the gamemaster AND agents in a traditional fantasy setting. The characters work for "The Shadow Guild", whose ambition is gaining power through subterfuge and secret missions.
+All players are BOTH the gamemaster AND agents in a traditional fantasy setting. The characters work for "The Shadow Guild", who strives for power through subterfuge and secret missions.
 =================================================================
 
          | Strength | Agility   | Wisdom       | Charisma
@@ -10,7 +10,7 @@ Halfling | Weak     | Limber    | Resolute     | Affable
 Orc      | Swole    | Athletic  | Simpleminded | Unpleasant
 Goblin   | Fragile  | Quick     | Impulsive    | Nasty
 
-                       Attack      | Block
+                       Attack      |  Block
 ----------------------------------------------
 Sword and shield:      Agility     |  Strength
 Daggers:               Agility     |  Agility
@@ -48,7 +48,7 @@ EXAMPLES
   Resolute, unstressed, in range: [CCHHHHHHHHHHHHHHMMMM]
 
 "Damage? Killed/Downed/Grazed"
-  Headshot, crossbow, unarmored, weak: [KKKKKKKKKKKKKKKDDDDG]
+  Headshot, crossbow, unarmored: [KKKKKKKKKKKKKKKDDDGG]
 
 "Where is guard? Barfing/Dicegaming/Patrolling"
   Lazy, rainy, poisoned: [BBBBBBBBBBDDDDDDDPP]
@@ -65,10 +65,11 @@ EXAMPLES
 "Guard count?"
   Encampment, night, unalerted: [00111122222222333334]
 
-Aim for CONTEXT, DETAILS, BELIEVABILITY, VARIETY.
+Keywords: CONTEXT, DETAILS, BELIEVABILITY, VARIETY.
 
 =================================================================
 
+Your first mission:
 A goblin wizard is researching a promising potion recipe. Go steal it!
 
 =================================================================
