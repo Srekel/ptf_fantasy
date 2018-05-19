@@ -1,0 +1,74 @@
+ALL players are BOTH the gamemaster AND agents in a traditional fantasy setting. The characters work for "The Shadow Guild", whose ambition is gaining power through subterfuge and secret missions.
+=================================================================
+
+         | Strength | Agility   | Wisdom       | Charisma
+------------------------------------------------------------
+Human    |          |           |              |
+Elf      | Scrawny  | Energetic | Shrewd       | Pretentious
+Dwarf    | Burly    | Slow      | Stubborn     | Intolerant
+Halfling | Weak     | Limber    | Resolute     | Affable
+Orc      | Swole    | Athletic  | Simpleminded | Unpleasant
+Goblin   | Fragile  | Quick     | Impulsive    | Nasty
+
+                       Attack      | Block
+----------------------------------------------
+Sword and shield:      Agility     |  Strength
+Daggers:               Agility     |  Agility
+Battle-axe:            Strength    |     -
+Bow:                   Agility     |     -
+Crossbow:              Wisdom      |  Strength
+
+* Pick race + two weapons.
+* Add/Modify an attribute. (Examples: Superswole, Tolerant, Patient)
+
+=================================================================
+
+Combat:
+* D20 for initiative.
+* Two actions per turn.
+
+=================================================================
+
+EVERYTHING is resolved like so:
+* Discuss possible outcomes.
+* Distribute their probabilities 1-20.
+* Roll D20.
+
+EXAMPLES
+--------
+
+"Door locked?":
+  Treasure vault: [YYYYYYYYYYYYYYYYYYYN]
+  Pub backdoor:   [YYYYNNNNNNNNNNNNNNNN]
+
+"Lock: Magic/Steel/Wooden":
+  Treasure vault: [MMSSSSSSSSSSSSWWWWWW]
+
+"Crossbow Crit/Hit/Miss?"
+  Resolute, unstressed, in range: [CCHHHHHHHHHHHHHHMMMM]
+
+"Damage? Killed/Downed/Grazed"
+  Headshot, crossbow, unarmored, weak: [KKKKKKKKKKKKKKKDDDDG]
+
+"Where is guard? Barfing/Dicegaming/Patrolling"
+  Lazy, rainy, poisoned: [BBBBBBBBBBDDDDDDDPP]
+
+"Weather? Rainy/Cloudy/Sunny"
+  Northern climate, autumn: [RRRRRCCCCCCCCCCSSSSS]
+
+"Convince?"
+  Unpleasant, palace, devoted guard: [YYYNNNNNNNNNNNNNNNNN]
+
+"Sneak?"
+  Limber, distracted guard, dark: [YYYYYYYYYYYYYYYYNNNN]
+
+"Guard count?"
+  Encampment, night, unalerted: [00111122222222333334]
+
+Aim for CONTEXT, DETAILS, BELIEVABILITY, VARIETY.
+
+=================================================================
+
+A goblin wizard is researching a promising potion recipe. Go steal it!
+
+=================================================================
