@@ -25,41 +25,41 @@ EXAMPLES
 --------
 
 "Door locked?":
-  Treasure vault: [YYYYYYYYYYYYYYYYYYYN]
-  Pub backdoor:   [YYYYNNNNNNNNNNNNNNNN]
+  Treasure vault:                 [YYYYYYYYYYYYYYYYYYYN]
+  Pub backdoor:                   [YYYYNNNNNNNNNNNNNNNN]
 
 "Lock: Magic/Steel/Wooden":
-  Treasure vault: [MMSSSSSSSSSSSSWWWWWW]
+  Treasure vault:                 [MMSSSSSSSSSSSSWWWWWW]
 
 "Crossbow Crit/Hit/Miss?"
   Resolute, unstressed, in range: [CCHHHHHHHHHHHHHHMMMM]
 
 "Damage? Killed/Downed/Grazed"
-  Headshot, crossbow, unarmored: [KKKKKKKKKKKKKKKDDDGG]
+  Headshot, crossbow, unarmored:  [KKKKKKKKKKKKKKKDDDGG]
 
 "Weather? Rainy/Cloudy/Sunny"
-  Northern climate, autumn: [RRRRRCCCCCCCCCCSSSSS]
+  Northern climate, autumn:       [RRRRRCCCCCCCCCCSSSSS]
 
 "Convince?"
-  Unpleasant, palace, devoted guard: [YYYNNNNNNNNNNNNNNNNN]
+  Nasty, palace, devoted guard:   [YYYNNNNNNNNNNNNNNNNN]
 
 "Sneak?"
   Limber, distracted guard, dark: [YYYYYYYYYYYYYYYYNNNN]
 
 "Guard count?"
-  Encampment, night: [00111122222222333334]
+  Encampment, night:              [00111122222222333334]
 
 "Where's the guard? Sick/Dicegaming/Patrolling"
-  Lazy, rainy, poisoned: [SSSSSSSSSSSDDDDDDDPP]
+  Lazy, rainy, poisoned:          [SSSSSSSSSSSDDDDDDDPP]
 
 "Initiative?"
-Slow, surprised      [11112222333344445555]
-Initiator, energetic [44444555556666677777]
+  Slow, surprised                 [11112222333344445555]
+  Initiator, energetic            [44444555556666677777]
 
 Aim for: DETAILS, BELIEVABILITY, VARIETY, CONTEXT.
 
 Ask questions + Roll D20 = Figure out world & NPCS!
-Who's the guard? Drunkard? Why? Far from mom? Why? Desolate area? Where?
+Who's the guard? Drunkard? Why? Far from mommy? Why? Desolate area? Where?
 
 
 =================================================================
