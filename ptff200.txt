@@ -1,4 +1,5 @@
-All players are BOTH the gamemaster AND agents in a traditional fantasy setting. The characters work for "The Shadow Guild", who strives for power through subterfuge and clandestine missions.
+Players cooperate as gamemasters, worldbuilders AND characters - agents employed by "The Faction", a shadow guild who strives for power through subterfuge and clandestine missions.
+
 =================================================================
 
          | Strength | Agility   | Wisdom       | Charisma
@@ -66,6 +67,7 @@ EXAMPLES
   Lazy, rainy, poisoned: [SSSSSSSSSSSDDDDDDDPP]
 
 Aim for: DETAILS, BELIEVABILITY, VARIETY, CONTEXT.
+Generate/control: World and NPCs!
 
 =================================================================
 
