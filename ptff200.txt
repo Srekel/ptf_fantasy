@@ -1,4 +1,4 @@
-Players collaborate as gamemasters, worldbuilders AND characters - agents employed by "The Faction", a shadow guild who strives for power through subterfuge and clandestine missions.
+Players collaborate as gamemasters, worldbuilders AND characters - as agents employed by "The Faction", a shadow guild who strives for power through subterfuge and clandestine missions.
 
 =================================================================
 
@@ -11,22 +11,8 @@ Halfling | Weak     | Limber    | Resolute     | Affable
 Orc      | Swole    | Athletic  | Simpleminded | Unpleasant
 Goblin   | Fragile  | Quick     | Impulsive    | Nasty
 
-                       Attack      |  Block
-----------------------------------------------
-Sword and shield:      Agility     |  Strength
-Daggers:               Agility     |  Agility
-Battle-axe:            Strength    |     -
-Bow:                   Agility     |     -
-Crossbow:              Wisdom      |  Strength
-
-* Pick race + two weapons.
-* Add/Modify an attribute. (Superswole, Tolerant, ...)
-
-=================================================================
-
-Combat:
-* D20 for initiative.
-* Two actions per turn.
+* Pick race.
+* Add/Modify one attribute (two for humans). (Superswole, Tolerant, ...)
 
 =================================================================
 
@@ -66,8 +52,15 @@ EXAMPLES
 "Where's the guard? Sick/Dicegaming/Patrolling"
   Lazy, rainy, poisoned: [SSSSSSSSSSSDDDDDDDPP]
 
+"Initiative?"
+Slow, surprised      [11112222333344445555]
+Initiator, energetic [44444555556666677777]
+
 Aim for: DETAILS, BELIEVABILITY, VARIETY, CONTEXT.
-Generate/control: World and NPCs!
+
+Ask questions + Roll D20 = Figure out world & NPCS!
+Who's the guard? Drunkard? Why? Far from mom? Why? Desolate area? Where?
+
 
 =================================================================
 
