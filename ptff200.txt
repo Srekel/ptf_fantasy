@@ -2,7 +2,7 @@ Players collaborate as gamemasters, worldbuilders, AND characters - agents
 employed by "The Guild", a shadowy faction striving for power through
 subterfuge and clandestine missions.
 
-=================================================================
+===============================================================================
 
                        | Strength | Agility   | Wisdom       | Charisma
 ---------------------------------------------------------------------------
@@ -16,7 +16,7 @@ Goblin                 | Scrawny  | Quick     | Impulsive    | Incessant
 * Pick race.
 * Add/Modify one attribute (two for humans). (Superswole, Kindhearted, ...)
 
-=================================================================
+===============================================================================
 
 EVERYTHING is resolved like so:
 * Discuss possible outcomes.
@@ -66,9 +66,9 @@ Ask questions + Roll D20 = Figure out world & NPCS!
   Why? On raiding contract.
   Where? ...
 
-=================================================================
+===============================================================================
 
 Your first mission:
-A goblin wizard is researching a promising potion recipe. Steal it!
+A goblin wizard is researching a promising potion recipe. Steal it - unnoticed!
 
-=================================================================
+===============================================================================
