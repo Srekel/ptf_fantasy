@@ -1,26 +1,26 @@
-Players collaborate as gamemasters, worldbuilders AND characters - as agents
-employed by "The Faction", a shadow guild who strives for power through
+Players collaborate as gamemasters, worldbuilders, AND characters - agents
+employed by "The Guild", a shadowy faction striving for power through
 subterfuge and clandestine missions.
 
 =================================================================
 
-         | Strength | Agility   | Wisdom       | Charisma
-------------------------------------------------------------
-Human    |          |           |              |
-Elf      | Scrawny  | Energetic | Shrewd       | Pretentious
-Dwarf    | Burly    | Slow      | Stubborn     | Intolerant
-Halfling | Weak     | Limber    | Resolute     | Affable
-Orc      | Swole    | Athletic  | Simpleminded | Unpleasant
-Goblin   | Fragile  | Quick     | Impulsive    | Nasty
+                       | Strength | Agility   | Wisdom       | Charisma
+---------------------------------------------------------------------------
+Human (Unremarkable)   |          |           |              |
+Elf                    | Lanky    | Energetic | Shrewd       | Pretentious
+Dwarf                  | Burly    | Slow      | Stubborn     | Intolerant
+Halfling               | Stocky   | Limber    | Resolute     | Affable
+Orc                    | Swole    | Athletic  | Singleminded | Tactless
+Goblin                 | Scrawny  | Quick     | Impulsive    | Incessant
 
 * Pick race.
-* Add/Modify one attribute (two for humans). (Superswole, Tolerant, ...)
+* Add/Modify one attribute (two for humans). (Superswole, Kindhearted, ...)
 
 =================================================================
 
 EVERYTHING is resolved like so:
 * Discuss possible outcomes.
-* Distribute their probabilities 1-20. (Consider attributes where applicable)
+* Distribute their probabilities 1-20. (Consider applicable attributes)
 * Roll D20.
 
 EXAMPLES
@@ -31,41 +31,44 @@ EXAMPLES
   Pub backdoor:                   [YYYYNNNNNNNNNNNNNNNN]
 
 "Lock: Magic/Steel/Wooden":
-  Treasure vault:                 [MMSSSSSSSSSSSSWWWWWW]
+  Mausoleum:                      [MMSSSSSSSSSSSSSSSWWW]
 
 "Crossbow Crit/Hit/Miss?"
   Resolute, unstressed, in range: [CCHHHHHHHHHHHHHHMMMM]
 
-"Damage? Killed/Downed/Grazed"
+"Damage: Killed/Downed/Grazed"
   Headshot, crossbow, unarmored:  [KKKKKKKKKKKKKKKDDDGG]
-
-"Weather? Rainy/Cloudy/Sunny"
-  Northern climate, autumn:       [RRRRRCCCCCCCCCCSSSSS]
-
-"Convince?"
-  Nasty, palace, devoted guard:   [YYYNNNNNNNNNNNNNNNNN]
 
 "Sneak?"
   Limber, distracted guard, dark: [YYYYYYYYYYYYYYYYNNNN]
 
+"Weather? Rainy/Cloudy/Sunny"
+  Northern climate, autumn:       [RRRRRCCCCCCCCCCSSSSS]
+
+"Stronghold type? Encampment/Cave/Tower"
+  Goblins, cold, mountainous:     [EEEECCCCCCCCCCTTTTTT]
+
 "Guard count?"
-  Encampment, night:              [00111122222222333334]
+  Encampment, night:              [01111222222222233334]
 
-"Where's the guard? Sick/Dicegaming/Patrolling"
-  Lazy, rainy, poisoned:          [SSSSSSSSSSSDDDDDDDPP]
+"Where's the guard? Relaxing/Patrolling"
+  Lazy, rainy:                    [RRRRRRRRRRRRRRRRPPPP]
 
-"Initiative?"
-  Slow, surprised                 [11112222333344445555]
-  Initiator, energetic            [44444555556666677777]
+"Initiative"
+  Slow, surprised:                [11112222333344445555]
+  Initiator:                      [44444555556666677777]
 
 Aim for: DETAILS, BELIEVABILITY, VARIETY, CONTEXT.
 
 Ask questions + Roll D20 = Figure out world & NPCS!
-Who's the guard? Drunkard? Why? Far from mommy? Why? Desolate area? Where?
+  Who's the guard? Drunkard.
+  Why? Far from mommy.
+  Why? On raiding contract.
+  Where? ...
 
 =================================================================
 
-Your mission:
+Your first mission:
 A goblin wizard is researching a promising potion recipe. Steal it!
 
 =================================================================
